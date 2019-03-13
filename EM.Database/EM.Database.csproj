@@ -79,6 +79,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\Account.cs" />
+    <Compile Include="Schema\Basic\Table.cs" />
+    <Compile Include="Schema\Classes.cs" />
+    <Compile Include="Schema\Classroom.cs" />
+    <Compile Include="Schema\ClassTime.cs" />
+    <Compile Include="Schema\Department.cs" />
+    <Compile Include="Schema\ErrorMsg.cs" />
+    <Compile Include="Schema\Function.cs" />
+    <Compile Include="Schema\Grade.cs" />
+    <Compile Include="Schema\Group.cs" />
+    <Compile Include="Schema\LearningOutcome.cs" />
+    <Compile Include="Schema\News.cs" />
+    <Compile Include="Schema\Notification.cs" />
+    <Compile Include="Schema\Parents.cs" />
+    <Compile Include="Schema\Permission.cs" />
+    <Compile Include="Schema\SchoolInformation.cs" />
+    <Compile Include="Schema\Screen.cs" />
+    <Compile Include="Schema\Slide.cs" />
+    <Compile Include="Schema\Student.cs" />
+    <Compile Include="Schema\Subjects.cs" />
+    <Compile Include="Schema\SubjectSchedule.cs" />
+    <Compile Include="Schema\Teacher.cs" />
+    <Compile Include="Schema\User.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
