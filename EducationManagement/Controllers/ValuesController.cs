@@ -23,7 +23,7 @@ namespace EducationManagement.Controllers
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public string Get(int id)
         {
-            return "value";
+            return EM.Database.TestData.Test;
         }
 
         // POST api/values

@@ -44,10 +44,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -78,31 +86,40 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Account.cs" />
-    <Compile Include="Schema\Basic\Table.cs" />
     <Compile Include="Schema\Classes.cs" />
-    <Compile Include="Schema\Classroom.cs" />
-    <Compile Include="Schema\ClassTime.cs" />
-    <Compile Include="Schema\Department.cs" />
+    <Compile Include="Schema\Classification.cs" />
+    <Compile Include="Schema\Conduct.cs" />
+    <Compile Include="DataContext.cs" />
+    <Compile Include="Schema\DayLesson.cs" />
     <Compile Include="Schema\ErrorMsg.cs" />
     <Compile Include="Schema\Function.cs" />
     <Compile Include="Schema\Grade.cs" />
     <Compile Include="Schema\Group.cs" />
-    <Compile Include="Schema\LearningOutcome.cs" />
+    <Compile Include="Schema\InforSchool.cs" />
     <Compile Include="Schema\News.cs" />
     <Compile Include="Schema\Notification.cs" />
-    <Compile Include="Schema\Parents.cs" />
+    <Compile Include="Schema\Parent.cs" />
     <Compile Include="Schema\Permission.cs" />
-    <Compile Include="Schema\SchoolInformation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\Result.cs" />
+    <Compile Include="Schema\Room.cs" />
+    <Compile Include="Schema\ScheduleSubject.cs" />
+    <Compile Include="Schema\Basic\Table.cs" />
+    <Compile Include="Schema\Scholastic.cs" />
     <Compile Include="Schema\Screen.cs" />
+    <Compile Include="Schema\Semester.cs" />
     <Compile Include="Schema\Slide.cs" />
     <Compile Include="Schema\Student.cs" />
-    <Compile Include="Schema\Subjects.cs" />
-    <Compile Include="Schema\SubjectSchedule.cs" />
+    <Compile Include="Schema\StudentTranscript.cs" />
+    <Compile Include="Schema\Subject.cs" />
+    <Compile Include="Schema\SubjectMark.cs" />
     <Compile Include="Schema\Teacher.cs" />
+    <Compile Include="Schema\Team.cs" />
+    <Compile Include="Schema\TypeMark.cs" />
     <Compile Include="Schema\User.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

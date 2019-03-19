@@ -19,6 +19,7 @@ namespace EM.Database.Schema.Basic
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { set; get; }
     }
 }

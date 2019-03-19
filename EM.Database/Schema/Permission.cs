@@ -1,11 +1,27 @@
-﻿using System;
+using EM.Database.Schema.Basic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 
-namespace EM.Database.Schema
+namespace EM.Database
 {
-    public class Permission
+
+    [Table("Permission")]
+    public partial class Permission : TableHaveIdInt
     {
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public long Id { get; set; }
+
+        public int IdGroup { get; set; }
+
+        public int IdFunction { get; set; }
+
+        public bool IdEnable { get; set; }
+
+        public virtual Function Function { get; set; }
+
+        public virtual Group Group { get; set; }
     }
 }

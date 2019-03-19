@@ -1,11 +1,31 @@
-﻿using System;
+using EM.Database.Schema.Basic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 
-namespace EM.Database.Schema
+namespace EM.Database
 {
-    public class Slide
+
+    [Table("Slide")]
+    public partial class Slide : TableHaveIdInt
     {
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public long Id { get; set; }
+
+        [Required]
+        [StringLength(200)]
+        public string Title { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string UrlImage { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string Path { get; set; }
+
+        public bool IsShow { get; set; }
     }
 }

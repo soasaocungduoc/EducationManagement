@@ -1,0 +1,35 @@
+using EM.Database.Schema.Basic;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
+
+namespace EM.Database
+{
+
+    [Table("SubjectMark")]
+    public partial class SubjectMark : TableHaveIdInt
+    {
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public long Id { get; set; }
+
+        public double Mark { get; set; }
+
+        public int IdTypeMark { get; set; }
+
+        public int IdStudent { get; set; }
+
+        public int IdSubject { get; set; }
+
+        public int IdSemester { get; set; }
+
+        public virtual Semester Semester { get; set; }
+
+        public virtual Student Student { get; set; }
+
+        public virtual Subject Subject { get; set; }
+
+        public virtual TypeMark TypeMark { get; set; }
+    }
+}
