@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using EM.Database;
 using Swashbuckle.Swagger.Annotations;
@@ -31,6 +32,13 @@ namespace EducationManagement.Controllers
         public void Post([FromBody]string value)
         {
         }
+        
+        [Route("login")]
+        public HttpResponseMessage Login([FromBody] LoginModel loginModel)
+        {
+            if (new DataContext().Account.Any(u => u.UserName == "admin" && u.Password == "admin")) return Request.CreateResponse(HttpStatusCode.OK, "");
+            return Request.CreateResponse(HttpStatusCode.Unauthorized);
+        }
 
         // PUT api/values/5
         [SwaggerOperation("Update")]
@@ -47,5 +55,12 @@ namespace EducationManagement.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class LoginModel
+    {
+        public string Username { get; set; }
+
+        public string Password { get; set; }
     }
 }
