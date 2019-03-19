@@ -1,3 +1,4 @@
+﻿using EM.Database.Schema.Basic;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -5,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using Z.EntityFramework.Plus;
 
 
 namespace EM.Database
@@ -13,11 +15,74 @@ namespace EM.Database
     public partial class DataContext : DbContext
     {
         public DataContext()
-            : base("name=DataContext")
+           : base(@"Data Source=DIEUTRAM;Initial Catalog=EM;MultipleActiveResultSets=True;")
+
         {
+            Database.SetInitializer<DataContext>(new TaoDataBase());
         }
-        //public virtual DbSet<AuditEntry> Audit { set; get; }
-        //public virtual DbSet<AuditEntryProperty> AuditProperty { set; get; }
+        public DataContext(string connectionString)
+            : base(connectionString)
+        {
+            Database.SetInitializer<DataContext>(new TaoDataBase());
+        }
+        public override int SaveChanges()
+        {
+            try
+            {
+                if (ChangeTracker.HasChanges())
+                {
+                    foreach (var entry
+                        in ChangeTracker.Entries())
+                    {
+                        try
+                        {
+                            var root = (Table)entry.Entity;
+                            var now = DateTime.Now;
+                            switch (entry.State)
+                            {
+                                case EntityState.Added:
+                                    {
+                                        root.Created_at = now;
+                                        root.Created_by = TaoDataBase.GetIdAccount();
+                                        root.Updated_at = null;
+                                        root.Updated_by = null;
+                                        root.DelFlag = false;
+                                        break;
+                                    }
+                                case EntityState.Modified:
+                                    {
+                                        root.Updated_at = now;
+                                        root.Updated_by = TaoDataBase.GetIdAccount();
+                                        break;
+                                    }
+                            }
+                        }
+                        catch { }
+                    }
+                    var audit = new Audit();
+                    audit.PreSaveChanges(this);
+                    var rowAffecteds = base.SaveChanges();
+                    audit.PostSaveChanges();
+
+                    if (audit.Configuration.AutoSavePreAction != null)
+                    {
+                        audit.Configuration.AutoSavePreAction(this, audit);
+                    }
+                    return base.SaveChanges();
+                }
+                return 0;
+            }
+            catch (DbUpdateException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public virtual DbSet<AuditEntry> Audit { set; get; }
+        public virtual DbSet<AuditEntryProperty> AuditProperty { set; get; }
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Classes> Classes { get; set; }
         public virtual DbSet<Classification> Classification { get; set; }
@@ -257,5 +322,88 @@ namespace EM.Database
                 .HasForeignKey(e => e.IdUser)
                 .WillCascadeOnDelete(false);
         }
+    }
+    public class TaoDataBase : CreateDatabaseIfNotExists<DataContext>
+    {
+        protected override void Seed(DataContext context)
+        {
+            context.SaveChanges();
+        }
+        /// <summary>
+        /// Mã hóa MD5 của 1 chuỗi có thêm chuối khóa đầu và cuối.
+        /// Author       :   QuyPN - 06/05/2018 - create
+        /// </summary>
+        /// <param name="str">
+        /// Chuỗi cần mã hóa.
+        /// </param>
+        /// <returns>
+        /// Chuỗi sau khi đã được mã hóa.
+        /// </returns>
+        public static string GetMD5(string str)
+        {
+            str = "TRUNGTAMTINHOC" + str + "TRUNGTAMTINHOC";
+            string str_md5 = "";
+            byte[] mang = System.Text.Encoding.UTF8.GetBytes(str);
+            MD5CryptoServiceProvider my_md5 = new MD5CryptoServiceProvider();
+            mang = my_md5.ComputeHash(mang);
+            foreach (byte b in mang)
+            {
+                str_md5 += b.ToString("x2");
+            }
+            return str_md5;
+        }
+        /// <summary>
+        /// Mã hóa MD5 của 1 chuỗi không có thêm chuối khóa đầu và cuối.
+        /// Author       :   QuyPN - 06/05/2018 - create
+        /// </summary>
+        /// <param name="str">
+        /// Chuỗi cần mã hóa.
+        /// </param>
+        /// <returns>
+        /// Chuỗi sau khi đã được mã hóa
+        /// </returns>
+        public static string GetSimpleMD5(string str)
+        {
+            string str_md5 = "";
+            byte[] mang = System.Text.Encoding.UTF8.GetBytes(str);
+            MD5CryptoServiceProvider my_md5 = new MD5CryptoServiceProvider();
+            mang = my_md5.ComputeHash(mang);
+            foreach (byte b in mang)
+            {
+                str_md5 += b.ToString("x2");
+            }
+            return str_md5;
+        }
+        /// <summary>
+        /// Get IdAccount đang login
+        /// Author       :   QuyPN - 26/05/2018 - create
+        /// </summary>
+        /// <returns>
+        /// IdAccount nếu tồn tại, trả về 0 nếu không tồn tại
+        /// </returns>
+        //public static int GetIdAccount()
+        //{
+        //    try
+        //    {
+        //        var cookieToken = HttpContext.Current.Request.Cookies["token"];
+        //        if (cookieToken == null)
+        //        {
+        //            return 0;
+        //        }
+        //        var base64EncodedBytes = System.Convert.FromBase64String(HttpUtility.UrlDecode(cookieToken.Value));
+        //        string token = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        //        DataContext context = new DataContext();
+        //        TokenLogin tokenLogin = context.TokenLogin.FirstOrDefault(x => x.Token == token && x.ThoiGianTonTai >= DateTime.Now && !x.DelFlag);
+        //        if (tokenLogin == null)
+        //        {
+        //            return 0;
+        //        }
+        //        return tokenLogin.Account.Id;
+        //    }
+        //    catch
+        //    {
+        //        return 0;
+        //    }
+        //}
     }
 }
