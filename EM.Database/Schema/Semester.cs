@@ -1,10 +1,10 @@
-using EM.Database.Schema.Basic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EM.Database.Schema.Bases;
 
-namespace EM.Database
+namespace EM.Database.Schema
 {
     [Table("Semester")]
     public partial class Semester : TableHaveIdInt

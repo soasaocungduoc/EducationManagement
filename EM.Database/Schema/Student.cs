@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using EM.Database.Schema.Bases;
 
-namespace EM.Database
+namespace EM.Database.Schema
 {
 
     [Table("Student")]
-    public partial class Student
+    public partial class Student : TableHaveIdInt
     {
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()

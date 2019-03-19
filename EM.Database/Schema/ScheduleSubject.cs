@@ -1,7 +1,7 @@
-using EM.Database.Schema.Basic;
 using System.ComponentModel.DataAnnotations.Schema;
+using EM.Database.Schema.Bases;
 
-namespace EM.Database
+namespace EM.Database.Schema
 {
 
     [Table("ScheduleSubject")]

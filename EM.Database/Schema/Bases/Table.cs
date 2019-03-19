@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EM.Database.Schema.Basic
+namespace EM.Database.Schema.Bases
 {
     public abstract class Table
     {

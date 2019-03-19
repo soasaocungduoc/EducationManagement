@@ -1,7 +1,7 @@
-using EM.Database.Schema.Basic;
 using System.ComponentModel.DataAnnotations;
+using EM.Database.Schema.Bases;
 
-namespace EM.Database
+namespace EM.Database.Schema
 {
 
     public partial class News : TableHaveIdInt

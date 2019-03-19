@@ -1,11 +1,12 @@
-﻿﻿using EM.Database.Schema.Basic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using EM.Database.Schema;
+using EM.Database.Schema.Bases;
 using Z.EntityFramework.Plus;
 
 
@@ -14,8 +15,9 @@ namespace EM.Database
 
     public partial class DataContext : DbContext
     {
+        private static string ConnectionString = "Server=tcp:educationmanagement.database.windows.net,1433;Initial Catalog=educationmanagement;Persist Security Info=False;User ID=man.dut;Password=1042107Td;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public DataContext()
-           : base(@"Data Source=DIEUTRAM;Initial Catalog=EM;MultipleActiveResultSets=True;")
+           : base(ConnectionString)
 
         {
             System.Data.Entity.Database.SetInitializer<DataContext>(new DatabaseCreation());
@@ -325,11 +327,8 @@ namespace EM.Database
     }
     public class DatabaseCreation : CreateDatabaseIfNotExists<DataContext>
     {
-        protected override void Seed(DataContext context)
-        {
-            context.SaveChanges();
-            var c = 1;
-        }
+        private static string _secretKey = "SOASaoCungDuoc";
+
         /// <summary>
         /// Mã hóa MD5 của 1 chuỗi có thêm chuối khóa đầu và cuối.
         /// Author       :   QuyPN - 06/05/2018 - create
@@ -340,18 +339,13 @@ namespace EM.Database
         /// <returns>
         /// Chuỗi sau khi đã được mã hóa.
         /// </returns>
-        public static string GetMD5(string str)
+        public static string GetMd5(string str)
         {
-            str = "TRUNGTAMTINHOC" + str + "TRUNGTAMTINHOC";
-            string str_md5 = "";
-            byte[] mang = System.Text.Encoding.UTF8.GetBytes(str);
-            MD5CryptoServiceProvider my_md5 = new MD5CryptoServiceProvider();
-            mang = my_md5.ComputeHash(mang);
-            foreach (byte b in mang)
-            {
-                str_md5 += b.ToString("x2");
-            }
-            return str_md5;
+            str = $"{_secretKey}{str}{_secretKey}";
+            var arrBytes = System.Text.Encoding.UTF8.GetBytes(str);
+            var myMd5 = new MD5CryptoServiceProvider();
+            arrBytes = myMd5.ComputeHash(arrBytes);
+            return arrBytes.Aggregate("", (current, b) => current + b.ToString("x2"));
         }
         /// <summary>
         /// Mã hóa MD5 của 1 chuỗi không có thêm chuối khóa đầu và cuối.
@@ -363,17 +357,12 @@ namespace EM.Database
         /// <returns>
         /// Chuỗi sau khi đã được mã hóa
         /// </returns>
-        public static string GetSimpleMD5(string str)
+        public static string GetSimpleMd5(string str)
         {
-            string str_md5 = "";
-            byte[] mang = System.Text.Encoding.UTF8.GetBytes(str);
-            MD5CryptoServiceProvider my_md5 = new MD5CryptoServiceProvider();
-            mang = my_md5.ComputeHash(mang);
-            foreach (byte b in mang)
-            {
-                str_md5 += b.ToString("x2");
-            }
-            return str_md5;
+            var arrBytes = System.Text.Encoding.UTF8.GetBytes(str);
+            var myMd5 = new MD5CryptoServiceProvider();
+            arrBytes = myMd5.ComputeHash(arrBytes);
+            return arrBytes.Aggregate("", (current, b) => current + b.ToString("x2"));
         }
         /// <summary>
         /// Get IdAccount đang login
@@ -392,14 +381,10 @@ namespace EM.Database
                     return 0;
                 }
                 var base64EncodedBytes = System.Convert.FromBase64String(HttpUtility.UrlDecode(cookieToken.Value));
-                string token = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
-                DataContext context = new DataContext();
-                Account account = context.Account.FirstOrDefault(x => x.Token == token && !x.DelFlag);
-                if (account == null)
-                {
-                    return 0;
-                }
-                return account.Id;
+                var token = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                var context = new DataContext();
+                var account = context.Account.FirstOrDefault(x => x.Token == token && !x.DelFlag);
+                return account?.Id ?? 0;
             }
             catch
             {
