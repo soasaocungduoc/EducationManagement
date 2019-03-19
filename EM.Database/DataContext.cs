@@ -18,12 +18,12 @@ namespace EM.Database
            : base(@"Data Source=DIEUTRAM;Initial Catalog=EM;MultipleActiveResultSets=True;")
 
         {
-            Database.SetInitializer<DataContext>(new TaoDataBase());
+            System.Data.Entity.Database.SetInitializer<DataContext>(new DatabaseCreation());
         }
         public DataContext(string connectionString)
             : base(connectionString)
         {
-            Database.SetInitializer<DataContext>(new TaoDataBase());
+            System.Data.Entity.Database.SetInitializer<DataContext>(new DatabaseCreation());
         }
         public override int SaveChanges()
         {
@@ -43,7 +43,7 @@ namespace EM.Database
                                 case EntityState.Added:
                                     {
                                         root.Created_at = now;
-                                        root.Created_by = TaoDataBase.GetIdAccount();
+                                        root.Created_by = DatabaseCreation.GetIdAccount();
                                         root.Updated_at = null;
                                         root.Updated_by = null;
                                         root.DelFlag = false;
@@ -52,7 +52,7 @@ namespace EM.Database
                                 case EntityState.Modified:
                                     {
                                         root.Updated_at = now;
-                                        root.Updated_by = TaoDataBase.GetIdAccount();
+                                        root.Updated_by = DatabaseCreation.GetIdAccount();
                                         break;
                                     }
                             }
@@ -323,11 +323,12 @@ namespace EM.Database
                 .WillCascadeOnDelete(false);
         }
     }
-    public class TaoDataBase : CreateDatabaseIfNotExists<DataContext>
+    public class DatabaseCreation : CreateDatabaseIfNotExists<DataContext>
     {
         protected override void Seed(DataContext context)
         {
             context.SaveChanges();
+            var c = 1;
         }
         /// <summary>
         /// Mã hóa MD5 của 1 chuỗi có thêm chuối khóa đầu và cuối.
@@ -381,29 +382,29 @@ namespace EM.Database
         /// <returns>
         /// IdAccount nếu tồn tại, trả về 0 nếu không tồn tại
         /// </returns>
-        //public static int GetIdAccount()
-        //{
-        //    try
-        //    {
-        //        var cookieToken = HttpContext.Current.Request.Cookies["token"];
-        //        if (cookieToken == null)
-        //        {
-        //            return 0;
-        //        }
-        //        var base64EncodedBytes = System.Convert.FromBase64String(HttpUtility.UrlDecode(cookieToken.Value));
-        //        string token = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
-        //        DataContext context = new DataContext();
-        //        TokenLogin tokenLogin = context.TokenLogin.FirstOrDefault(x => x.Token == token && x.ThoiGianTonTai >= DateTime.Now && !x.DelFlag);
-        //        if (tokenLogin == null)
-        //        {
-        //            return 0;
-        //        }
-        //        return tokenLogin.Account.Id;
-        //    }
-        //    catch
-        //    {
-        //        return 0;
-        //    }
-        //}
+        public static int GetIdAccount()
+        {
+            try
+            {
+                var cookieToken = HttpContext.Current.Request.Cookies["token"];
+                if (cookieToken == null)
+                {
+                    return 0;
+                }
+                var base64EncodedBytes = System.Convert.FromBase64String(HttpUtility.UrlDecode(cookieToken.Value));
+                string token = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                DataContext context = new DataContext();
+                Account account = context.Account.FirstOrDefault(x => x.Token == token && !x.DelFlag);
+                if (account == null)
+                {
+                    return 0;
+                }
+                return account.Id;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

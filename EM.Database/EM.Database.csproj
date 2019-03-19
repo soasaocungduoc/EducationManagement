@@ -108,7 +108,7 @@
     <Compile Include="Schema\Result.cs" />
     <Compile Include="Schema\Room.cs" />
     <Compile Include="Schema\ScheduleSubject.cs" />
-    <Compile Include="Schema\Basic\Table.cs" />
+    <Compile Include="Schema\Bases\Table.cs" />
     <Compile Include="Schema\Scholastic.cs" />
     <Compile Include="Schema\Screen.cs" />
     <Compile Include="Schema\Semester.cs" />
