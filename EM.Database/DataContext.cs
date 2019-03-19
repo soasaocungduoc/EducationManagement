@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
-//using Z.EntityFramework.Plus;
+using System.Security.Cryptography;
+using System.Web;
+
 
 namespace EM.Database
 {
@@ -118,6 +121,12 @@ namespace EM.Database
                 .HasForeignKey(e => e.IdGroup)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Parent>()
+                .HasMany(e => e.Student)
+                .WithRequired(e => e.Parent)
+                .HasForeignKey(e => e.IdParent)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Room>()
                 .HasMany(e => e.Classes)
                 .WithRequired(e => e.Room)
@@ -184,6 +193,18 @@ namespace EM.Database
                 .HasForeignKey(e => e.IdSubject)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Teacher>()
+                .HasMany(e => e.Classes)
+                .WithRequired(e => e.Teacher)
+                .HasForeignKey(e => e.IdTeacher)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(e => e.ScheduleSubject)
+                .WithRequired(e => e.Teacher)
+                .HasForeignKey(e => e.IdTeacher)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Team>()
                 .HasMany(e => e.Subject)
                 .WithRequired(e => e.Team)
@@ -210,8 +231,13 @@ namespace EM.Database
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.NotificationSender)
-                .WithOptional(e => e.User)
+                .WithOptional(e => e.UserSender)
                 .HasForeignKey(e => e.IdSender);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.NotificationReceiver)
+                .WithOptional(e => e.UserReceiver)
+                .HasForeignKey(e => e.IdReceiver);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Parent)
