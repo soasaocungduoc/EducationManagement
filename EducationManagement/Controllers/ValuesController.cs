@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Swashbuckle.Swagger.Annotations;
 
@@ -23,7 +20,7 @@ namespace EducationManagement.Controllers
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public string Get(int id)
         {
-            return EM.Database.TestData.Test;
+            return "value";
         }
 
         // POST api/values
