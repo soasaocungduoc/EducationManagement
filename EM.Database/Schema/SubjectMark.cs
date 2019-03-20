@@ -7,8 +7,6 @@ namespace EM.Database.Schema
     [Table("SubjectMark")]
     public partial class SubjectMark : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         public double Mark { get; set; }
 

@@ -8,8 +8,12 @@ namespace EM.Database.Schema
     [Table("Teacher")]
     public partial class Teacher : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
+        public Teacher()
+        {
+            Classes = new HashSet<Class>();
+
+            ScheduleSubjects = new HashSet<ScheduleSubject>();
+        }
 
         public int IdUser { get; set; }
 
@@ -19,8 +23,8 @@ namespace EM.Database.Schema
 
         public virtual Team Team { get; set; }
 
-        public virtual ICollection<Classes> Classes { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
 
-        public virtual ICollection<ScheduleSubject> ScheduleSubject { get; set; }
+        public virtual ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
     }
 }

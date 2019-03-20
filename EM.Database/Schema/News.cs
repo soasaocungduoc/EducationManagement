@@ -1,14 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using EM.Database.Schema.Bases;
 
 namespace EM.Database.Schema
 {
+    [Table("News")]
 
     public partial class News : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
-
+        
         [Required]
         [StringLength(200)]
         public string Title { get; set; }

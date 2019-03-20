@@ -8,13 +8,14 @@ namespace EM.Database.Schema
     [Table("Parent")]
     public partial class Parent : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
-
+        public Parent()
+        {
+            Students = new HashSet<Student>();
+        }
         public int IdUser { get; set; }
 
         public virtual User User { get; set; }
 
-        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

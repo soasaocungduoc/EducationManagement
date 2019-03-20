@@ -7,8 +7,6 @@ namespace EM.Database.Schema
     [Table("Result")]
     public partial class Result : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         public int IdStudent { get; set; }
 

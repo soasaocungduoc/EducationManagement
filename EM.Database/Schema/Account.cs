@@ -8,15 +8,7 @@ namespace EM.Database.Schema
     [Table("Account")]
     public partial class Account: TableHaveIdInt
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Account()
-        {
-            Group = new HashSet<Group>();
-        }
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
-
+        
         [Required]
         [StringLength(50)]
         public string UserName { get; set; }
@@ -31,9 +23,11 @@ namespace EM.Database.Schema
 
         public int IdUser { get; set; }
 
+        public int IdGroup { get; set; }
+
         public virtual User User { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Group { get; set; }
+        public virtual Group Group { get; set; }
+
     }
 }

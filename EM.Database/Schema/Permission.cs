@@ -7,8 +7,6 @@ namespace EM.Database.Schema
     [Table("Permission")]
     public partial class Permission : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         public int IdGroup { get; set; }
 

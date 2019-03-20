@@ -10,19 +10,15 @@ namespace EM.Database.Schema
     [Table("User")]
     public partial class User : TableHaveIdInt
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Account = new HashSet<Account>();
-            NotificationSender = new HashSet<Notification>();
-            NotificationReceiver = new HashSet<Notification>();
-            Parent = new HashSet<Parent>();
-            Student = new HashSet<Student>();
-            Teacher = new HashSet<Teacher>();
+            Accounts = new HashSet<Account>();
+            NotificationSenders = new HashSet<Notification>();
+            NotificationReceivers = new HashSet<Notification>();
+            Parents = new HashSet<Parent>();
+            Students = new HashSet<Student>();
+            Teachers = new HashSet<Teacher>();
         }
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -38,7 +34,6 @@ namespace EM.Database.Schema
 
         public bool Gender { get; set; }
 
-        //[Column(TypeName = "datetime2")]
         public DateTime Birthday { get; set; }
 
         [Required]
@@ -51,23 +46,18 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(12)]
-        public string IdentityCard { get; set; }
+        public string IdentificationNumber { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Notification> NotificationSender { get; set; }
+        public virtual ICollection<Notification> NotificationSenders { get; set; }
 
-        public virtual ICollection<Notification> NotificationReceiver { get; set; }
+        public virtual ICollection<Notification> NotificationReceivers { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Parent> Parent { get; set; }
+        public virtual ICollection<Parent> Parents { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Teacher> Teacher { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set; }
     }
 }

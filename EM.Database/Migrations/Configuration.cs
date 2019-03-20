@@ -17,7 +17,7 @@ namespace EM.Database.Migrations
         protected override void Seed(EM.Database.DataContext context)
         {
             base.Seed(context);
-            context.User.Add(new User
+            context.Users.Add(new User
             {
                 Id = 1,
                 FirstName = "Man",
@@ -28,12 +28,12 @@ namespace EM.Database.Migrations
                 Avatar =
                     "https://res.cloudinary.com/dw0yzvsvn/image/upload/v1537351431/Images/9b06a7b3-142b-429e-945a-37f6f026e823.jpg",
                 PhoneNumber = "0966156153",
-                IdentityCard = "201722516"
+                IdentificationNumber = "201722516"
             });
 
             context.SaveChanges();
 
-            context.Account.Add(new Account
+            context.Accounts.Add(new Account
             {
                 Id = 1,
                 IdUser = 1,

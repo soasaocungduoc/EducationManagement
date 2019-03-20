@@ -23,7 +23,7 @@ namespace EducationManagement.Controllers
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public string Get(int id)
         {
-            return (new DataContext()).User.Count().ToString();
+            return (new DataContext()).Users.Count().ToString();
         }
 
         // POST api/values
@@ -36,7 +36,7 @@ namespace EducationManagement.Controllers
         [Route("login")]
         public HttpResponseMessage Login([FromBody] LoginModel loginModel)
         {
-            if (new DataContext().Account.Any(u => u.UserName == "admin" && u.Password == "admin")) return Request.CreateResponse(HttpStatusCode.OK, "");
+            if (new DataContext().Accounts.Any(u => u.UserName == "admin" && u.Password == "admin")) return Request.CreateResponse(HttpStatusCode.OK, "");
             return Request.CreateResponse(HttpStatusCode.Unauthorized);
         }
 

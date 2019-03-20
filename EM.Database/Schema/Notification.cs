@@ -8,8 +8,6 @@ namespace EM.Database.Schema
     [Table("Notification")]
     public partial class Notification : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -28,7 +26,7 @@ namespace EM.Database.Schema
 
         public int? IdClassReceiver { get; set; }
 
-        public virtual Classes Classes { get; set; }
+        public virtual Class Class { get; set; }
 
         public virtual User UserSender { get; set; }
 

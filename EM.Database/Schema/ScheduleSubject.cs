@@ -7,8 +7,6 @@ namespace EM.Database.Schema
     [Table("ScheduleSubject")]
     public partial class ScheduleSubject : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         public int IdDayLesson { get; set; }
 
@@ -20,7 +18,7 @@ namespace EM.Database.Schema
 
         public virtual Teacher Teacher { get; set; }
 
-        public virtual Classes Classes { get; set; }
+        public virtual Class Class { get; set; }
 
         public virtual DayLesson DayLesson { get; set; }
 

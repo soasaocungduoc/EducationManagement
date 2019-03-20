@@ -5,11 +5,9 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
 
-    [Table("InforSchool")]
-    public partial class InforSchool : TableHaveIdInt
+    [Table("SchoolInfomation")]
+    public partial class SchoolInfomation : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public int Id { get; set; }
 
         [Required]
         [StringLength(200)]

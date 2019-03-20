@@ -95,7 +95,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
-    <Compile Include="Schema\Classes.cs" />
+    <Compile Include="Schema\Class.cs" />
     <Compile Include="Schema\Classification.cs" />
     <Compile Include="Schema\Conduct.cs" />
     <Compile Include="DataContext.cs" />
@@ -104,7 +104,7 @@
     <Compile Include="Schema\Function.cs" />
     <Compile Include="Schema\Grade.cs" />
     <Compile Include="Schema\Group.cs" />
-    <Compile Include="Schema\InforSchool.cs" />
+    <Compile Include="Schema\SchoolInfomation.cs" />
     <Compile Include="Schema\News.cs" />
     <Compile Include="Schema\Notification.cs" />
     <Compile Include="Schema\Parent.cs" />

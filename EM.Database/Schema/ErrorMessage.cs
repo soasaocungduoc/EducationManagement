@@ -5,12 +5,9 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
 
-    [Table("ErrorMsg")]
-    public partial class ErrorMsg : TableHaveIdInt
+    [Table("ErrorMessage")]
+    public partial class ErrorMessage : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public int Id { get; set; }
-
         [Required]
         [StringLength(255)]
         public string Msg { get; set; }

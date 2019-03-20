@@ -9,14 +9,10 @@ namespace EM.Database.Schema
     [Table("Function")]
     public partial class Function : TableHaveIdInt
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Function()
         {
-            Permission = new HashSet<Permission>();
+            Permissions = new HashSet<Permission>();
         }
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
 
         public int IdScreen { get; set; }
 
@@ -42,7 +38,6 @@ namespace EM.Database.Schema
 
         public virtual Screen Screen { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Permission> Permission { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

@@ -8,9 +8,7 @@ namespace EM.Database.Schema
     [Table("Slide")]
     public partial class Slide : TableHaveIdInt
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //public long Id { get; set; }
-
+        
         [Required]
         [StringLength(200)]
         public string Title { get; set; }
