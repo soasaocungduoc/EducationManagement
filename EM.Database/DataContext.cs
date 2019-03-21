@@ -15,7 +15,8 @@ namespace EM.Database
 
     public partial class DataContext : DbContext
     {
-        private static string ConnectionString = "Server=tcp:educationmanagement.database.windows.net,1433;Initial Catalog=educationmanagement;Persist Security Info=False;Users ID=man.dut;Password=1042107Td;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private static string ConnectionString = "Server=tcp:educationmanagement.database.windows.net,1433;Initial Catalog=educationmanagement;Persist Security Info=False;User ID=man.dut;Password=1042107Td;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        //private static string ConnectionString = "data source=DIEUTRAM;initial catalog=EducationManagement;Integrated Security=True;";
         public DataContext()
            : base(ConnectionString)
 
@@ -94,7 +95,7 @@ namespace EM.Database
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<SchoolInfomation> SchoolInfomations { get; set; }
+        public virtual DbSet<SchoolInformation> SchoolInformations { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }

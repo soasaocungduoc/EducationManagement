@@ -86,13 +86,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201903190905011_InitialCreate.cs" />
-    <Compile Include="Migrations\201903190905011_InitialCreate.Designer.cs">
-      <DependentUpon>201903190905011_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -100,11 +98,11 @@
     <Compile Include="Schema\Conduct.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Schema\DayLesson.cs" />
-    <Compile Include="Schema\ErrorMsg.cs" />
+    <Compile Include="Schema\ErrorMessage.cs" />
     <Compile Include="Schema\Function.cs" />
     <Compile Include="Schema\Grade.cs" />
     <Compile Include="Schema\Group.cs" />
-    <Compile Include="Schema\SchoolInfomation.cs" />
+    <Compile Include="Schema\SchoolInformation.cs" />
     <Compile Include="Schema\News.cs" />
     <Compile Include="Schema\Notification.cs" />
     <Compile Include="Schema\Parent.cs" />
@@ -126,11 +124,6 @@
     <Compile Include="Schema\Team.cs" />
     <Compile Include="Schema\TypeMark.cs" />
     <Compile Include="Schema\User.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903190905011_InitialCreate.resx">
-      <DependentUpon>201903190905011_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

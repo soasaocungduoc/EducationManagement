@@ -5,8 +5,8 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
 
-    [Table("SchoolInfomation")]
-    public partial class SchoolInfomation : TableHaveIdInt
+    [Table("SchoolInformation")]
+    public partial class SchoolInformation : TableHaveIdInt
     {
 
         [Required]
