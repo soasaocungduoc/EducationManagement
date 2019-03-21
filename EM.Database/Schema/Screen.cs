@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Screen")]
-    public partial class Screen : TableHaveIdInt
+    public sealed class Screen : TableHaveIdInt
     {
         public Screen()
         {
@@ -16,8 +16,8 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameScreen { get; set; }
+        public string ScreenName { get; set; }
 
-        public virtual ICollection<Function> Functions { get; set; }
+        public ICollection<Function> Functions { get; set; }
     }
 }

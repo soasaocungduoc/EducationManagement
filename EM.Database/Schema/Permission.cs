@@ -12,7 +12,7 @@ namespace EM.Database.Schema
 
         public int IdFunction { get; set; }
 
-        public bool IdEnable { get; set; }
+        public bool IsEnable { get; set; }
 
         public virtual Function Function { get; set; }
 

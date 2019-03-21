@@ -5,7 +5,7 @@ namespace EM.Database.Schema
 {
 
     [Table("StudentTranscript")]
-    public partial class StudentTranscript : TableHaveIdInt
+    public class StudentTranscript : TableHaveIdInt
     {
 
         public int IdStudent { get; set; }
@@ -14,7 +14,7 @@ namespace EM.Database.Schema
 
         public int IdConduct { get; set; }
 
-        public double GPA { get; set; }
+        public double Gpa { get; set; }
 
         public int IdSemester { get; set; }
 

@@ -6,7 +6,7 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
     [Table("Account")]
-    public partial class Account: TableHaveIdInt
+    public class Account: TableHaveIdInt
     {
         
         [Required]
@@ -17,7 +17,6 @@ namespace EM.Database.Schema
         [StringLength(50)]
         public string Password { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string Token { get; set; }
 

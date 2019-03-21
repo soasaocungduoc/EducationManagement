@@ -13,9 +13,10 @@ using Z.EntityFramework.Plus;
 namespace EM.Database
 {
 
-    public partial class DataContext : DbContext
+    public class DataContext : DbContext
     {
-        private static string ConnectionString = "Server=tcp:educationmanagement.database.windows.net,1433;Initial Catalog=educationmanagement;Persist Security Info=False;Users ID=man.dut;Password=1042107Td;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private static string ConnectionString =
+            "Server=tcp:educationmanagement.database.windows.net,1433;Initial Catalog=educationmanagement;Persist Security Info=False;User ID=man.dut;Password=1042107Td;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public DataContext()
            : base(ConnectionString)
 
@@ -31,48 +32,45 @@ namespace EM.Database
         {
             try
             {
-                if (ChangeTracker.HasChanges())
+                if (!ChangeTracker.HasChanges()) return 0;
+                foreach (var entry
+                    in ChangeTracker.Entries())
                 {
-                    foreach (var entry
-                        in ChangeTracker.Entries())
+                    try
                     {
-                        try
+                        var root = (Table)entry.Entity;
+                        var now = DateTime.Now;
+                        switch (entry.State)
                         {
-                            var root = (Table)entry.Entity;
-                            var now = DateTime.Now;
-                            switch (entry.State)
+                            case EntityState.Added:
                             {
-                                case EntityState.Added:
-                                    {
-                                        root.Created_at = now;
-                                        root.Created_by = DatabaseCreation.GetIdAccount();
-                                        root.Updated_at = null;
-                                        root.Updated_by = null;
-                                        root.DelFlag = false;
-                                        break;
-                                    }
-                                case EntityState.Modified:
-                                    {
-                                        root.Updated_at = now;
-                                        root.Updated_by = DatabaseCreation.GetIdAccount();
-                                        break;
-                                    }
+                                root.Created_at = now;
+                                root.Created_by = DatabaseCreation.GetIdAccount();
+                                root.Updated_at = null;
+                                root.Updated_by = null;
+                                root.DelFlag = false;
+                                break;
+                            }
+                            case EntityState.Modified:
+                            {
+                                root.Updated_at = now;
+                                root.Updated_by = DatabaseCreation.GetIdAccount();
+                                break;
                             }
                         }
-                        catch { }
                     }
-                    var audit = new Audit();
-                    audit.PreSaveChanges(this);
-                    var rowAffecteds = base.SaveChanges();
-                    audit.PostSaveChanges();
-
-                    if (audit.Configuration.AutoSavePreAction != null)
+                    catch
                     {
-                        audit.Configuration.AutoSavePreAction(this, audit);
+                        // ignored
                     }
-                    return base.SaveChanges();
                 }
-                return 0;
+                var audit = new Audit();
+                audit.PreSaveChanges(this);
+                base.SaveChanges();
+                audit.PostSaveChanges();
+
+                audit.Configuration.AutoSavePreAction?.Invoke(this, audit);
+                return base.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
@@ -89,12 +87,12 @@ namespace EM.Database
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Classification> Classifications { get; set; }
         public virtual DbSet<Conduct> Conducts { get; set; }
-        public virtual DbSet<DayLesson> DayLessons { get; set; }
-        public virtual DbSet<ErrorMessage> ErrorMsgs { get; set; }
+        public virtual DbSet<DayOfWeekLesson> DayLessons { get; set; }
+        public virtual DbSet<ErrorMessage> ErrorMessages { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<SchoolInfomation> SchoolInfomations { get; set; }
+        public virtual DbSet<SchoolInformation> SchoolInformation { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }
@@ -103,7 +101,7 @@ namespace EM.Database
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Screen> Screens { get; set; }
         public virtual DbSet<ScheduleSubject> ScheduleSubjects { get; set; }
-        public virtual DbSet<Scholastic> Scholastics { get; set; }
+        public virtual DbSet<SchoolYear> SchoolYears { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Slide> Slides { get; set; }
         public virtual DbSet<Student> Students { get; set; }
@@ -159,9 +157,9 @@ namespace EM.Database
                 .HasForeignKey(e => e.IdConduct)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<DayLesson>()
+            modelBuilder.Entity<DayOfWeekLesson>()
                 .HasMany(e => e.ScheduleSubjects)
-                .WithRequired(e => e.DayLesson)
+                .WithRequired(e => e.DayOfWeekLesson)
                 .HasForeignKey(e => e.IdDayLesson)
                 .WillCascadeOnDelete(false);
 
@@ -207,15 +205,15 @@ namespace EM.Database
                 .HasForeignKey(e => e.IdScreen)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Scholastic>()
+            modelBuilder.Entity<SchoolYear>()
                 .HasMany(e => e.Results)
-                .WithRequired(e => e.Scholastic)
+                .WithRequired(e => e.SchoolYear)
                 .HasForeignKey(e => e.IdScholastic)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Scholastic>()
+            modelBuilder.Entity<SchoolYear>()
                 .HasMany(e => e.Semesters)
-                .WithRequired(e => e.Scholastic)
+                .WithRequired(e => e.SchoolYear)
                 .HasForeignKey(e => e.IdScholastic)
                 .WillCascadeOnDelete(false);
 
@@ -332,12 +330,12 @@ namespace EM.Database
         {
             context.Groups.Add(new Group
             {
-                NameGroup = "Admin"
+                GroupName = "Admin"
             });
 
             context.Groups.Add(new Group
             {
-                NameGroup = "Developer",
+                GroupName = "Developer",
             });
 
             context.Users.Add(new User

@@ -7,7 +7,7 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
     [Table("Semester")]
-    public partial class Semester : TableHaveIdInt
+    public sealed class Semester : TableHaveIdInt
     {
         public Semester()
         {
@@ -17,7 +17,7 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(20)]
-        public string NameSemester { get; set; }
+        public string SemesterName { get; set; }
 
         public DateTime StartTime { get; set; }
 
@@ -25,10 +25,10 @@ namespace EM.Database.Schema
 
         public int IdScholastic { get; set; }
 
-        public virtual Scholastic Scholastic { get; set; }
+        public SchoolYear SchoolYear { get; set; }
 
-        public virtual ICollection<StudentTranscript> StudentTranscripts { get; set; }
+        public ICollection<StudentTranscript> StudentTranscripts { get; set; }
 
-        public virtual ICollection<SubjectMark> SubjectMarks { get; set; }
+        public ICollection<SubjectMark> SubjectMarks { get; set; }
     }
 }

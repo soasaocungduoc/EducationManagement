@@ -6,7 +6,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Student")]
-    public partial class Student : TableHaveIdInt
+    public sealed class Student : TableHaveIdInt
     {
         public Student()
         {
@@ -23,16 +23,16 @@ namespace EM.Database.Schema
 
         public int Status { get; set; }
 
-        public virtual Class Class { get; set; }
+        public Class Class { get; set; }
 
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
-        public virtual Parent Parent { get; set; }
+        public Parent Parent { get; set; }
 
-        public virtual ICollection<Result> Results { get; set; }
+        public ICollection<Result> Results { get; set; }
 
-        public virtual ICollection<StudentTranscript> StudentTranscripts { get; set; }
+        public ICollection<StudentTranscript> StudentTranscripts { get; set; }
 
-        public virtual ICollection<SubjectMark> SubjectMarks { get; set; }
+        public ICollection<SubjectMark> SubjectMarks { get; set; }
     }
 }

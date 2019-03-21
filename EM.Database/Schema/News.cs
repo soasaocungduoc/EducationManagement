@@ -6,7 +6,7 @@ namespace EM.Database.Schema
 {
     [Table("News")]
 
-    public partial class News : TableHaveIdInt
+    public class News : TableHaveIdInt
     {
         
         [Required]
@@ -15,7 +15,7 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(255)]
-        public string UrlImage { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required]
         [StringLength(200)]

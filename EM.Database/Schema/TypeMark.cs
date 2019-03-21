@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("TypeMark")]
-    public partial class TypeMark : TableHaveIdInt
+    public sealed class TypeMark : TableHaveIdInt
     {
         public TypeMark()
         {
@@ -20,6 +20,6 @@ namespace EM.Database.Schema
 
         public double Factor { get; set; }
 
-        public virtual ICollection<SubjectMark> SubjectMarks { get; set; }
+        public ICollection<SubjectMark> SubjectMarks { get; set; }
     }
 }

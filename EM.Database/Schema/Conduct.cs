@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Conduct")]
-    public partial class Conduct : TableHaveIdInt
+    public sealed class Conduct : TableHaveIdInt
     {
         public Conduct()
         {
@@ -17,10 +17,10 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string TypeConduct { get; set; }
+        public string ConductType { get; set; }
 
-        public virtual ICollection<Result> Results { get; set; }
+        public ICollection<Result> Results { get; set; }
 
-        public virtual ICollection<StudentTranscript> StudentTranscripts { get; set; }
+        public ICollection<StudentTranscript> StudentTranscripts { get; set; }
     }
 }

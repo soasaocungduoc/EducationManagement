@@ -20,7 +20,7 @@ namespace EM.Database.Schema
 
         public virtual Class Class { get; set; }
 
-        public virtual DayLesson DayLesson { get; set; }
+        public virtual DayOfWeekLesson DayOfWeekLesson { get; set; }
 
         public virtual Subject Subject { get; set; }
     }

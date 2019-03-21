@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Grade")]
-    public partial class Grade : TableHaveIdInt
+    public sealed class Grade : TableHaveIdInt
     {
         public Grade()
         {
@@ -16,8 +16,8 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameGrade { get; set; }
+        public string GradeName { get; set; }
 
-        public virtual ICollection<Class> Classes { get; set; }
+        public ICollection<Class> Classes { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace EM.Database.Schema
 {
 
     [Table("User")]
-    public partial class User : TableHaveIdInt
+    public sealed class User : TableHaveIdInt
     {
         public User()
         {
@@ -48,16 +48,16 @@ namespace EM.Database.Schema
         [StringLength(12)]
         public string IdentificationNumber { get; set; }
 
-        public virtual ICollection<Account> Accounts { get; set; }
+        public ICollection<Account> Accounts { get; set; }
 
-        public virtual ICollection<Notification> NotificationSenders { get; set; }
+        public ICollection<Notification> NotificationSenders { get; set; }
 
-        public virtual ICollection<Notification> NotificationReceivers { get; set; }
+        public ICollection<Notification> NotificationReceivers { get; set; }
 
-        public virtual ICollection<Parent> Parents { get; set; }
+        public ICollection<Parent> Parents { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; }
 
-        public virtual ICollection<Teacher> Teachers { get; set; }
+        public ICollection<Teacher> Teachers { get; set; }
     }
 }

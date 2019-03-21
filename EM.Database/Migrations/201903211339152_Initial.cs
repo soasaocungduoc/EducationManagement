@@ -3,54 +3,20 @@ namespace EM.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Accounts",
+                "dbo.Account",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         UserName = c.String(nullable: false, maxLength: 50),
                         Password = c.String(nullable: false, maxLength: 50),
                         Token = c.String(nullable: false, maxLength: 100),
                         IdUser = c.Int(nullable: false),
-                        Created_at = c.DateTime(),
-                        Created_by = c.Int(nullable: false),
-                        Updated_at = c.DateTime(),
-                        Updated_by = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.IdUser)
-                .Index(t => t.IdUser);
-            
-            CreateTable(
-                "dbo.Groups",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        NameGroup = c.String(nullable: false, maxLength: 50),
-                        IdAccount = c.Int(nullable: false),
-                        Created_at = c.DateTime(),
-                        Created_by = c.Int(nullable: false),
-                        Updated_at = c.DateTime(),
-                        Updated_by = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Accounts", t => t.IdAccount)
-                .Index(t => t.IdAccount);
-            
-            CreateTable(
-                "dbo.Permissions",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
                         IdGroup = c.Int(nullable: false),
-                        IdFunction = c.Int(nullable: false),
-                        IdEnable = c.Boolean(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -58,38 +24,17 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Functions", t => t.IdFunction)
-                .ForeignKey("dbo.Groups", t => t.IdGroup)
-                .Index(t => t.IdGroup)
-                .Index(t => t.IdFunction);
+                .ForeignKey("dbo.Group", t => t.IdGroup)
+                .ForeignKey("dbo.User", t => t.IdUser)
+                .Index(t => t.IdUser)
+                .Index(t => t.IdGroup);
             
             CreateTable(
-                "dbo.Functions",
+                "dbo.Group",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        IdScreen = c.Int(nullable: false),
-                        NameFunction = c.String(nullable: false, maxLength: 50),
-                        Description = c.String(nullable: false, maxLength: 500),
-                        Area = c.String(nullable: false, maxLength: 50),
-                        NameController = c.String(nullable: false, maxLength: 50),
-                        NameAction = c.String(nullable: false, maxLength: 50),
-                        Created_at = c.DateTime(),
-                        Created_by = c.Int(nullable: false),
-                        Updated_at = c.DateTime(),
-                        Updated_by = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Screens", t => t.IdScreen)
-                .Index(t => t.IdScreen);
-            
-            CreateTable(
-                "dbo.Screens",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        NameScreen = c.String(nullable: false, maxLength: 50),
+                        Id = c.Int(nullable: false, identity: true),
+                        GroupName = c.String(nullable: false, maxLength: 50),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -99,10 +44,65 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Users",
+                "dbo.Permission",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        IdGroup = c.Int(nullable: false),
+                        IdFunction = c.Int(nullable: false),
+                        IsEnable = c.Boolean(nullable: false),
+                        Created_at = c.DateTime(),
+                        Created_by = c.Int(nullable: false),
+                        Updated_at = c.DateTime(),
+                        Updated_by = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Function", t => t.IdFunction)
+                .ForeignKey("dbo.Group", t => t.IdGroup)
+                .Index(t => t.IdGroup)
+                .Index(t => t.IdFunction);
+            
+            CreateTable(
+                "dbo.Function",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        IdScreen = c.Int(nullable: false),
+                        FunctionName = c.String(nullable: false, maxLength: 50),
+                        Description = c.String(nullable: false, maxLength: 500),
+                        Area = c.String(nullable: false, maxLength: 50),
+                        ControllerName = c.String(nullable: false, maxLength: 50),
+                        ActionName = c.String(nullable: false, maxLength: 50),
+                        Created_at = c.DateTime(),
+                        Created_by = c.Int(nullable: false),
+                        Updated_at = c.DateTime(),
+                        Updated_by = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Screen", t => t.IdScreen)
+                .Index(t => t.IdScreen);
+            
+            CreateTable(
+                "dbo.Screen",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ScreenName = c.String(nullable: false, maxLength: 50),
+                        Created_at = c.DateTime(),
+                        Created_by = c.Int(nullable: false),
+                        Updated_at = c.DateTime(),
+                        Updated_by = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.User",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, maxLength: 50),
                         LastName = c.String(nullable: false, maxLength: 50),
                         Avatar = c.String(nullable: false, maxLength: 255),
@@ -110,7 +110,7 @@ namespace EM.Database.Migrations
                         Birthday = c.DateTime(nullable: false),
                         PhoneNumber = c.String(nullable: false, maxLength: 15),
                         Address = c.String(nullable: false, maxLength: 200),
-                        IdentityCard = c.String(nullable: false, maxLength: 12),
+                        IdentificationNumber = c.String(nullable: false, maxLength: 12),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -120,10 +120,10 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Notifications",
+                "dbo.Notification",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 100),
                         Content = c.String(nullable: false),
                         Type = c.String(nullable: false, maxLength: 30),
@@ -137,20 +137,20 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Classes", t => t.IdClassReceiver)
-                .ForeignKey("dbo.Users", t => t.IdReceiver)
-                .ForeignKey("dbo.Users", t => t.IdSender)
+                .ForeignKey("dbo.Class", t => t.IdClassReceiver)
+                .ForeignKey("dbo.User", t => t.IdReceiver)
+                .ForeignKey("dbo.User", t => t.IdSender)
                 .Index(t => t.IdSender)
                 .Index(t => t.IdReceiver)
                 .Index(t => t.IdClassReceiver);
             
             CreateTable(
-                "dbo.Classes",
+                "dbo.Class",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        NameClass = c.String(nullable: false, maxLength: 50),
-                        NumberStudent = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        ClassName = c.String(nullable: false, maxLength: 50),
+                        NumberOfStudents = c.Int(nullable: false),
                         IdGrade = c.Int(nullable: false),
                         IdRoom = c.Int(nullable: false),
                         IdTeacher = c.Int(nullable: false),
@@ -161,19 +161,19 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Grades", t => t.IdGrade)
-                .ForeignKey("dbo.Rooms", t => t.IdRoom)
-                .ForeignKey("dbo.Teachers", t => t.IdTeacher)
+                .ForeignKey("dbo.Grade", t => t.IdGrade)
+                .ForeignKey("dbo.Room", t => t.IdRoom)
+                .ForeignKey("dbo.Teacher", t => t.IdTeacher)
                 .Index(t => t.IdGrade)
                 .Index(t => t.IdRoom)
                 .Index(t => t.IdTeacher);
             
             CreateTable(
-                "dbo.Grades",
+                "dbo.Grade",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        NameGrade = c.String(nullable: false, maxLength: 50),
+                        Id = c.Int(nullable: false, identity: true),
+                        GradeName = c.String(nullable: false, maxLength: 50),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -183,11 +183,11 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Rooms",
+                "dbo.Room",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        NumberRoom = c.String(nullable: false, maxLength: 50),
+                        Id = c.Int(nullable: false, identity: true),
+                        RoomNumber = c.String(nullable: false, maxLength: 50),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -197,10 +197,10 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.ScheduleSubjects",
+                "dbo.ScheduleSubject",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         IdDayLesson = c.Int(nullable: false),
                         IdSubject = c.Int(nullable: false),
                         IdClass = c.Int(nullable: false),
@@ -212,21 +212,21 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.DayLessons", t => t.IdDayLesson)
-                .ForeignKey("dbo.Subjects", t => t.IdSubject)
-                .ForeignKey("dbo.Teachers", t => t.IdTeacher)
-                .ForeignKey("dbo.Classes", t => t.IdClass)
+                .ForeignKey("dbo.DayOfWeekLesson", t => t.IdDayLesson)
+                .ForeignKey("dbo.Subject", t => t.IdSubject)
+                .ForeignKey("dbo.Teacher", t => t.IdTeacher)
+                .ForeignKey("dbo.Class", t => t.IdClass)
                 .Index(t => t.IdDayLesson)
                 .Index(t => t.IdSubject)
                 .Index(t => t.IdClass)
                 .Index(t => t.IdTeacher);
             
             CreateTable(
-                "dbo.DayLessons",
+                "dbo.DayOfWeekLesson",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        Day = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        DayOfWeek = c.Int(nullable: false),
                         Lesson = c.Int(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
@@ -237,11 +237,11 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Subjects",
+                "dbo.Subject",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        NameSubject = c.String(nullable: false, maxLength: 50),
+                        Id = c.Int(nullable: false, identity: true),
+                        SubjectName = c.String(nullable: false, maxLength: 50),
                         IdTeam = c.Int(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
@@ -250,14 +250,14 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Teams", t => t.IdTeam)
+                .ForeignKey("dbo.Team", t => t.IdTeam)
                 .Index(t => t.IdTeam);
             
             CreateTable(
-                "dbo.SubjectMarks",
+                "dbo.SubjectMark",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Mark = c.Double(nullable: false),
                         IdTypeMark = c.Int(nullable: false),
                         IdStudent = c.Int(nullable: false),
@@ -270,21 +270,21 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Students", t => t.IdStudent)
-                .ForeignKey("dbo.Semesters", t => t.IdSemester)
-                .ForeignKey("dbo.TypeMarks", t => t.IdTypeMark)
-                .ForeignKey("dbo.Subjects", t => t.IdSubject)
+                .ForeignKey("dbo.Student", t => t.IdStudent)
+                .ForeignKey("dbo.Semester", t => t.IdSemester)
+                .ForeignKey("dbo.TypeMark", t => t.IdTypeMark)
+                .ForeignKey("dbo.Subject", t => t.IdSubject)
                 .Index(t => t.IdTypeMark)
                 .Index(t => t.IdStudent)
                 .Index(t => t.IdSubject)
                 .Index(t => t.IdSemester);
             
             CreateTable(
-                "dbo.Semesters",
+                "dbo.Semester",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        NameSemester = c.String(nullable: false, maxLength: 20),
+                        Id = c.Int(nullable: false, identity: true),
+                        SemesterName = c.String(nullable: false, maxLength: 20),
                         StartTime = c.DateTime(nullable: false),
                         EndTime = c.DateTime(nullable: false),
                         IdScholastic = c.Int(nullable: false),
@@ -295,14 +295,14 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Scholastics", t => t.IdScholastic)
+                .ForeignKey("dbo.SchoolYear", t => t.IdScholastic)
                 .Index(t => t.IdScholastic);
             
             CreateTable(
-                "dbo.Scholastics",
+                "dbo.SchoolYear",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         StartYear = c.Int(nullable: false),
                         EndYear = c.Int(nullable: false),
                         Created_at = c.DateTime(),
@@ -314,14 +314,14 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Results",
+                "dbo.Result",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         IdStudent = c.Int(nullable: false),
                         IdClassification = c.Int(nullable: false),
                         IdConduct = c.Int(nullable: false),
-                        GPA = c.Double(nullable: false),
+                        Gpa = c.Double(nullable: false),
                         IdScholastic = c.Int(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
@@ -330,23 +330,23 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Classifications", t => t.IdClassification)
-                .ForeignKey("dbo.Conducts", t => t.IdConduct)
-                .ForeignKey("dbo.Students", t => t.IdStudent)
-                .ForeignKey("dbo.Scholastics", t => t.IdScholastic)
+                .ForeignKey("dbo.Classification", t => t.IdClassification)
+                .ForeignKey("dbo.Conduct", t => t.IdConduct)
+                .ForeignKey("dbo.Student", t => t.IdStudent)
+                .ForeignKey("dbo.SchoolYear", t => t.IdScholastic)
                 .Index(t => t.IdStudent)
                 .Index(t => t.IdClassification)
                 .Index(t => t.IdConduct)
                 .Index(t => t.IdScholastic);
             
             CreateTable(
-                "dbo.Classifications",
+                "dbo.Classification",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         NameClassification = c.String(nullable: false, maxLength: 50),
-                        FromGPA = c.Double(nullable: false),
-                        ToGPA = c.Double(nullable: false),
+                        FromGpa = c.Double(nullable: false),
+                        ToGpa = c.Double(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -356,14 +356,14 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.StudentTranscripts",
+                "dbo.StudentTranscript",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         IdStudent = c.Int(nullable: false),
                         IdClassification = c.Int(nullable: false),
                         IdConduct = c.Int(nullable: false),
-                        GPA = c.Double(nullable: false),
+                        Gpa = c.Double(nullable: false),
                         IdSemester = c.Int(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
@@ -372,21 +372,21 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Conducts", t => t.IdConduct)
-                .ForeignKey("dbo.Students", t => t.IdStudent)
-                .ForeignKey("dbo.Classifications", t => t.IdClassification)
-                .ForeignKey("dbo.Semesters", t => t.IdSemester)
+                .ForeignKey("dbo.Conduct", t => t.IdConduct)
+                .ForeignKey("dbo.Student", t => t.IdStudent)
+                .ForeignKey("dbo.Classification", t => t.IdClassification)
+                .ForeignKey("dbo.Semester", t => t.IdSemester)
                 .Index(t => t.IdStudent)
                 .Index(t => t.IdClassification)
                 .Index(t => t.IdConduct)
                 .Index(t => t.IdSemester);
             
             CreateTable(
-                "dbo.Conducts",
+                "dbo.Conduct",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        TypeConduct = c.String(nullable: false, maxLength: 50),
+                        Id = c.Int(nullable: false, identity: true),
+                        ConductType = c.String(nullable: false, maxLength: 50),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -396,10 +396,10 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Students",
+                "dbo.Student",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         IdUser = c.Int(nullable: false),
                         IdClass = c.Int(nullable: false),
                         IdParent = c.Int(nullable: false),
@@ -411,18 +411,18 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Parents", t => t.IdParent)
-                .ForeignKey("dbo.Classes", t => t.IdClass)
-                .ForeignKey("dbo.Users", t => t.IdUser)
+                .ForeignKey("dbo.Parent", t => t.IdParent)
+                .ForeignKey("dbo.Class", t => t.IdClass)
+                .ForeignKey("dbo.User", t => t.IdUser)
                 .Index(t => t.IdUser)
                 .Index(t => t.IdClass)
                 .Index(t => t.IdParent);
             
             CreateTable(
-                "dbo.Parents",
+                "dbo.Parent",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         IdUser = c.Int(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
@@ -431,14 +431,14 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.IdUser)
+                .ForeignKey("dbo.User", t => t.IdUser)
                 .Index(t => t.IdUser);
             
             CreateTable(
-                "dbo.TypeMarks",
+                "dbo.TypeMark",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         NameTypeMark = c.String(nullable: false, maxLength: 50),
                         Factor = c.Double(nullable: false),
                         Created_at = c.DateTime(),
@@ -450,10 +450,10 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Teams",
+                "dbo.Team",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         NameTeam = c.String(nullable: false, maxLength: 50),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
@@ -464,10 +464,10 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Teachers",
+                "dbo.Teacher",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         IdUser = c.Int(nullable: false),
                         IdTeam = c.Int(nullable: false),
                         Created_at = c.DateTime(),
@@ -477,8 +477,8 @@ namespace EM.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Teams", t => t.IdTeam)
-                .ForeignKey("dbo.Users", t => t.IdUser)
+                .ForeignKey("dbo.Team", t => t.IdTeam)
+                .ForeignKey("dbo.User", t => t.IdUser)
                 .Index(t => t.IdUser)
                 .Index(t => t.IdTeam);
             
@@ -512,33 +512,13 @@ namespace EM.Database.Migrations
                 .Index(t => t.AuditEntryID);
             
             CreateTable(
-                "dbo.ErrorMsgs",
+                "dbo.ErrorMessage",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        Msg = c.String(nullable: false, maxLength: 255),
+                        Id = c.Int(nullable: false, identity: true),
+                        Message = c.String(nullable: false, maxLength: 255),
                         Type = c.Int(nullable: false),
                         Title = c.String(nullable: false, maxLength: 50),
-                        Created_at = c.DateTime(),
-                        Created_by = c.Int(nullable: false),
-                        Updated_at = c.DateTime(),
-                        Updated_by = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.InforSchools",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        NameSchool = c.String(nullable: false, maxLength: 200),
-                        Address = c.String(nullable: false, maxLength: 100),
-                        PhoneNumber = c.String(nullable: false, maxLength: 12),
-                        Email = c.String(nullable: false, maxLength: 15),
-                        IntroSchool = c.String(nullable: false),
-                        LinkWebsite = c.String(nullable: false, maxLength: 255),
-                        Fax = c.String(nullable: false, maxLength: 30),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -551,9 +531,9 @@ namespace EM.Database.Migrations
                 "dbo.News",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 200),
-                        UrlImage = c.String(nullable: false, maxLength: 255),
+                        ImageUrl = c.String(nullable: false, maxLength: 255),
                         Summary = c.String(nullable: false, maxLength: 200),
                         Content = c.String(nullable: false),
                         Created_at = c.DateTime(),
@@ -565,14 +545,34 @@ namespace EM.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Slides",
+                "dbo.SchoolInformation",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        SchoolName = c.String(nullable: false, maxLength: 200),
+                        Address = c.String(nullable: false, maxLength: 100),
+                        PhoneNumber = c.String(nullable: false, maxLength: 12),
+                        Email = c.String(nullable: false, maxLength: 15),
+                        SchoolIntroduction = c.String(nullable: false),
+                        WebsiteUrl = c.String(nullable: false, maxLength: 255),
+                        Fax = c.String(nullable: false, maxLength: 30),
+                        Created_at = c.DateTime(),
+                        Created_by = c.Int(nullable: false),
+                        Updated_at = c.DateTime(),
+                        Updated_by = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Slide",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 200),
-                        UrlImage = c.String(nullable: false, maxLength: 255),
+                        ImageUrl = c.String(nullable: false, maxLength: 255),
                         Path = c.String(nullable: false, maxLength: 255),
-                        IsShow = c.Boolean(nullable: false),
+                        IsShown = c.Boolean(nullable: false),
                         Created_at = c.DateTime(),
                         Created_by = c.Int(nullable: false),
                         Updated_at = c.DateTime(),
@@ -586,108 +586,108 @@ namespace EM.Database.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AuditEntryProperties", "AuditEntryID", "dbo.AuditEntries");
-            DropForeignKey("dbo.Teachers", "IdUser", "dbo.Users");
-            DropForeignKey("dbo.Students", "IdUser", "dbo.Users");
-            DropForeignKey("dbo.Parents", "IdUser", "dbo.Users");
-            DropForeignKey("dbo.Notifications", "IdSender", "dbo.Users");
-            DropForeignKey("dbo.Notifications", "IdReceiver", "dbo.Users");
-            DropForeignKey("dbo.Students", "IdClass", "dbo.Classes");
-            DropForeignKey("dbo.ScheduleSubjects", "IdClass", "dbo.Classes");
-            DropForeignKey("dbo.Teachers", "IdTeam", "dbo.Teams");
-            DropForeignKey("dbo.ScheduleSubjects", "IdTeacher", "dbo.Teachers");
-            DropForeignKey("dbo.Classes", "IdTeacher", "dbo.Teachers");
-            DropForeignKey("dbo.Subjects", "IdTeam", "dbo.Teams");
-            DropForeignKey("dbo.SubjectMarks", "IdSubject", "dbo.Subjects");
-            DropForeignKey("dbo.SubjectMarks", "IdTypeMark", "dbo.TypeMarks");
-            DropForeignKey("dbo.SubjectMarks", "IdSemester", "dbo.Semesters");
-            DropForeignKey("dbo.StudentTranscripts", "IdSemester", "dbo.Semesters");
-            DropForeignKey("dbo.Semesters", "IdScholastic", "dbo.Scholastics");
-            DropForeignKey("dbo.Results", "IdScholastic", "dbo.Scholastics");
-            DropForeignKey("dbo.StudentTranscripts", "IdClassification", "dbo.Classifications");
-            DropForeignKey("dbo.SubjectMarks", "IdStudent", "dbo.Students");
-            DropForeignKey("dbo.StudentTranscripts", "IdStudent", "dbo.Students");
-            DropForeignKey("dbo.Results", "IdStudent", "dbo.Students");
-            DropForeignKey("dbo.Students", "IdParent", "dbo.Parents");
-            DropForeignKey("dbo.StudentTranscripts", "IdConduct", "dbo.Conducts");
-            DropForeignKey("dbo.Results", "IdConduct", "dbo.Conducts");
-            DropForeignKey("dbo.Results", "IdClassification", "dbo.Classifications");
-            DropForeignKey("dbo.ScheduleSubjects", "IdSubject", "dbo.Subjects");
-            DropForeignKey("dbo.ScheduleSubjects", "IdDayLesson", "dbo.DayLessons");
-            DropForeignKey("dbo.Classes", "IdRoom", "dbo.Rooms");
-            DropForeignKey("dbo.Notifications", "IdClassReceiver", "dbo.Classes");
-            DropForeignKey("dbo.Classes", "IdGrade", "dbo.Grades");
-            DropForeignKey("dbo.Accounts", "IdUser", "dbo.Users");
-            DropForeignKey("dbo.Groups", "IdAccount", "dbo.Accounts");
-            DropForeignKey("dbo.Permissions", "IdGroup", "dbo.Groups");
-            DropForeignKey("dbo.Functions", "IdScreen", "dbo.Screens");
-            DropForeignKey("dbo.Permissions", "IdFunction", "dbo.Functions");
+            DropForeignKey("dbo.Teacher", "IdUser", "dbo.User");
+            DropForeignKey("dbo.Student", "IdUser", "dbo.User");
+            DropForeignKey("dbo.Parent", "IdUser", "dbo.User");
+            DropForeignKey("dbo.Notification", "IdSender", "dbo.User");
+            DropForeignKey("dbo.Notification", "IdReceiver", "dbo.User");
+            DropForeignKey("dbo.Student", "IdClass", "dbo.Class");
+            DropForeignKey("dbo.ScheduleSubject", "IdClass", "dbo.Class");
+            DropForeignKey("dbo.Teacher", "IdTeam", "dbo.Team");
+            DropForeignKey("dbo.ScheduleSubject", "IdTeacher", "dbo.Teacher");
+            DropForeignKey("dbo.Class", "IdTeacher", "dbo.Teacher");
+            DropForeignKey("dbo.Subject", "IdTeam", "dbo.Team");
+            DropForeignKey("dbo.SubjectMark", "IdSubject", "dbo.Subject");
+            DropForeignKey("dbo.SubjectMark", "IdTypeMark", "dbo.TypeMark");
+            DropForeignKey("dbo.SubjectMark", "IdSemester", "dbo.Semester");
+            DropForeignKey("dbo.StudentTranscript", "IdSemester", "dbo.Semester");
+            DropForeignKey("dbo.Semester", "IdScholastic", "dbo.SchoolYear");
+            DropForeignKey("dbo.Result", "IdScholastic", "dbo.SchoolYear");
+            DropForeignKey("dbo.StudentTranscript", "IdClassification", "dbo.Classification");
+            DropForeignKey("dbo.SubjectMark", "IdStudent", "dbo.Student");
+            DropForeignKey("dbo.StudentTranscript", "IdStudent", "dbo.Student");
+            DropForeignKey("dbo.Result", "IdStudent", "dbo.Student");
+            DropForeignKey("dbo.Student", "IdParent", "dbo.Parent");
+            DropForeignKey("dbo.StudentTranscript", "IdConduct", "dbo.Conduct");
+            DropForeignKey("dbo.Result", "IdConduct", "dbo.Conduct");
+            DropForeignKey("dbo.Result", "IdClassification", "dbo.Classification");
+            DropForeignKey("dbo.ScheduleSubject", "IdSubject", "dbo.Subject");
+            DropForeignKey("dbo.ScheduleSubject", "IdDayLesson", "dbo.DayOfWeekLesson");
+            DropForeignKey("dbo.Class", "IdRoom", "dbo.Room");
+            DropForeignKey("dbo.Notification", "IdClassReceiver", "dbo.Class");
+            DropForeignKey("dbo.Class", "IdGrade", "dbo.Grade");
+            DropForeignKey("dbo.Account", "IdUser", "dbo.User");
+            DropForeignKey("dbo.Permission", "IdGroup", "dbo.Group");
+            DropForeignKey("dbo.Function", "IdScreen", "dbo.Screen");
+            DropForeignKey("dbo.Permission", "IdFunction", "dbo.Function");
+            DropForeignKey("dbo.Account", "IdGroup", "dbo.Group");
             DropIndex("dbo.AuditEntryProperties", new[] { "AuditEntryID" });
-            DropIndex("dbo.Teachers", new[] { "IdTeam" });
-            DropIndex("dbo.Teachers", new[] { "IdUser" });
-            DropIndex("dbo.Parents", new[] { "IdUser" });
-            DropIndex("dbo.Students", new[] { "IdParent" });
-            DropIndex("dbo.Students", new[] { "IdClass" });
-            DropIndex("dbo.Students", new[] { "IdUser" });
-            DropIndex("dbo.StudentTranscripts", new[] { "IdSemester" });
-            DropIndex("dbo.StudentTranscripts", new[] { "IdConduct" });
-            DropIndex("dbo.StudentTranscripts", new[] { "IdClassification" });
-            DropIndex("dbo.StudentTranscripts", new[] { "IdStudent" });
-            DropIndex("dbo.Results", new[] { "IdScholastic" });
-            DropIndex("dbo.Results", new[] { "IdConduct" });
-            DropIndex("dbo.Results", new[] { "IdClassification" });
-            DropIndex("dbo.Results", new[] { "IdStudent" });
-            DropIndex("dbo.Semesters", new[] { "IdScholastic" });
-            DropIndex("dbo.SubjectMarks", new[] { "IdSemester" });
-            DropIndex("dbo.SubjectMarks", new[] { "IdSubject" });
-            DropIndex("dbo.SubjectMarks", new[] { "IdStudent" });
-            DropIndex("dbo.SubjectMarks", new[] { "IdTypeMark" });
-            DropIndex("dbo.Subjects", new[] { "IdTeam" });
-            DropIndex("dbo.ScheduleSubjects", new[] { "IdTeacher" });
-            DropIndex("dbo.ScheduleSubjects", new[] { "IdClass" });
-            DropIndex("dbo.ScheduleSubjects", new[] { "IdSubject" });
-            DropIndex("dbo.ScheduleSubjects", new[] { "IdDayLesson" });
-            DropIndex("dbo.Classes", new[] { "IdTeacher" });
-            DropIndex("dbo.Classes", new[] { "IdRoom" });
-            DropIndex("dbo.Classes", new[] { "IdGrade" });
-            DropIndex("dbo.Notifications", new[] { "IdClassReceiver" });
-            DropIndex("dbo.Notifications", new[] { "IdReceiver" });
-            DropIndex("dbo.Notifications", new[] { "IdSender" });
-            DropIndex("dbo.Functions", new[] { "IdScreen" });
-            DropIndex("dbo.Permissions", new[] { "IdFunction" });
-            DropIndex("dbo.Permissions", new[] { "IdGroup" });
-            DropIndex("dbo.Groups", new[] { "IdAccount" });
-            DropIndex("dbo.Accounts", new[] { "IdUser" });
-            DropTable("dbo.Slides");
+            DropIndex("dbo.Teacher", new[] { "IdTeam" });
+            DropIndex("dbo.Teacher", new[] { "IdUser" });
+            DropIndex("dbo.Parent", new[] { "IdUser" });
+            DropIndex("dbo.Student", new[] { "IdParent" });
+            DropIndex("dbo.Student", new[] { "IdClass" });
+            DropIndex("dbo.Student", new[] { "IdUser" });
+            DropIndex("dbo.StudentTranscript", new[] { "IdSemester" });
+            DropIndex("dbo.StudentTranscript", new[] { "IdConduct" });
+            DropIndex("dbo.StudentTranscript", new[] { "IdClassification" });
+            DropIndex("dbo.StudentTranscript", new[] { "IdStudent" });
+            DropIndex("dbo.Result", new[] { "IdScholastic" });
+            DropIndex("dbo.Result", new[] { "IdConduct" });
+            DropIndex("dbo.Result", new[] { "IdClassification" });
+            DropIndex("dbo.Result", new[] { "IdStudent" });
+            DropIndex("dbo.Semester", new[] { "IdScholastic" });
+            DropIndex("dbo.SubjectMark", new[] { "IdSemester" });
+            DropIndex("dbo.SubjectMark", new[] { "IdSubject" });
+            DropIndex("dbo.SubjectMark", new[] { "IdStudent" });
+            DropIndex("dbo.SubjectMark", new[] { "IdTypeMark" });
+            DropIndex("dbo.Subject", new[] { "IdTeam" });
+            DropIndex("dbo.ScheduleSubject", new[] { "IdTeacher" });
+            DropIndex("dbo.ScheduleSubject", new[] { "IdClass" });
+            DropIndex("dbo.ScheduleSubject", new[] { "IdSubject" });
+            DropIndex("dbo.ScheduleSubject", new[] { "IdDayLesson" });
+            DropIndex("dbo.Class", new[] { "IdTeacher" });
+            DropIndex("dbo.Class", new[] { "IdRoom" });
+            DropIndex("dbo.Class", new[] { "IdGrade" });
+            DropIndex("dbo.Notification", new[] { "IdClassReceiver" });
+            DropIndex("dbo.Notification", new[] { "IdReceiver" });
+            DropIndex("dbo.Notification", new[] { "IdSender" });
+            DropIndex("dbo.Function", new[] { "IdScreen" });
+            DropIndex("dbo.Permission", new[] { "IdFunction" });
+            DropIndex("dbo.Permission", new[] { "IdGroup" });
+            DropIndex("dbo.Account", new[] { "IdGroup" });
+            DropIndex("dbo.Account", new[] { "IdUser" });
+            DropTable("dbo.Slide");
+            DropTable("dbo.SchoolInformation");
             DropTable("dbo.News");
-            DropTable("dbo.InforSchools");
-            DropTable("dbo.ErrorMsgs");
+            DropTable("dbo.ErrorMessage");
             DropTable("dbo.AuditEntryProperties");
             DropTable("dbo.AuditEntries");
-            DropTable("dbo.Teachers");
-            DropTable("dbo.Teams");
-            DropTable("dbo.TypeMarks");
-            DropTable("dbo.Parents");
-            DropTable("dbo.Students");
-            DropTable("dbo.Conducts");
-            DropTable("dbo.StudentTranscripts");
-            DropTable("dbo.Classifications");
-            DropTable("dbo.Results");
-            DropTable("dbo.Scholastics");
-            DropTable("dbo.Semesters");
-            DropTable("dbo.SubjectMarks");
-            DropTable("dbo.Subjects");
-            DropTable("dbo.DayLessons");
-            DropTable("dbo.ScheduleSubjects");
-            DropTable("dbo.Rooms");
-            DropTable("dbo.Grades");
-            DropTable("dbo.Classes");
-            DropTable("dbo.Notifications");
-            DropTable("dbo.Users");
-            DropTable("dbo.Screens");
-            DropTable("dbo.Functions");
-            DropTable("dbo.Permissions");
-            DropTable("dbo.Groups");
-            DropTable("dbo.Accounts");
+            DropTable("dbo.Teacher");
+            DropTable("dbo.Team");
+            DropTable("dbo.TypeMark");
+            DropTable("dbo.Parent");
+            DropTable("dbo.Student");
+            DropTable("dbo.Conduct");
+            DropTable("dbo.StudentTranscript");
+            DropTable("dbo.Classification");
+            DropTable("dbo.Result");
+            DropTable("dbo.SchoolYear");
+            DropTable("dbo.Semester");
+            DropTable("dbo.SubjectMark");
+            DropTable("dbo.Subject");
+            DropTable("dbo.DayOfWeekLesson");
+            DropTable("dbo.ScheduleSubject");
+            DropTable("dbo.Room");
+            DropTable("dbo.Grade");
+            DropTable("dbo.Class");
+            DropTable("dbo.Notification");
+            DropTable("dbo.User");
+            DropTable("dbo.Screen");
+            DropTable("dbo.Function");
+            DropTable("dbo.Permission");
+            DropTable("dbo.Group");
+            DropTable("dbo.Account");
         }
     }
 }

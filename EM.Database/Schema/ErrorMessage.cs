@@ -6,11 +6,11 @@ namespace EM.Database.Schema
 {
 
     [Table("ErrorMessage")]
-    public partial class ErrorMessage : TableHaveIdInt
+    public class ErrorMessage : TableHaveIdInt
     {
         [Required]
         [StringLength(255)]
-        public string Msg { get; set; }
+        public string Message { get; set; }
 
         public int Type { get; set; }
 

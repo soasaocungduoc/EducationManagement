@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Function")]
-    public partial class Function : TableHaveIdInt
+    public sealed class Function : TableHaveIdInt
     {
         public Function()
         {
@@ -18,7 +18,7 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameFunction { get; set; }
+        public string FunctionName { get; set; }
 
         [Required]
         [StringLength(500)]
@@ -30,14 +30,14 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameController { get; set; }
+        public string ControllerName { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string NameAction { get; set; }
+        public string ActionName { get; set; }
 
-        public virtual Screen Screen { get; set; }
+        public Screen Screen { get; set; }
 
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public ICollection<Permission> Permissions { get; set; }
     }
 }

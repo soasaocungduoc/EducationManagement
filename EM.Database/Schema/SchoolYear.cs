@@ -5,10 +5,10 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
 
-    [Table("Scholastic")]
-    public partial class Scholastic : TableHaveIdInt
+    [Table("SchoolYear")]
+    public sealed class SchoolYear : TableHaveIdInt
     {
-        public Scholastic()
+        public SchoolYear()
         {
             Results = new HashSet<Result>();
             Semesters = new HashSet<Semester>();
@@ -18,8 +18,8 @@ namespace EM.Database.Schema
 
         public int EndYear { get; set; }
 
-        public virtual ICollection<Result> Results { get; set; }
+        public ICollection<Result> Results { get; set; }
 
-        public virtual ICollection<Semester> Semesters { get; set; }
+        public ICollection<Semester> Semesters { get; set; }
     }
 }

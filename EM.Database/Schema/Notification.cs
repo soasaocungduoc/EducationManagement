@@ -6,7 +6,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Notification")]
-    public partial class Notification : TableHaveIdInt
+    public class Notification : TableHaveIdInt
     {
 
         [Required]

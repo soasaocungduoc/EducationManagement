@@ -20,7 +20,7 @@ namespace EM.Database.Schema.Bases
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { set; get; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { set; get; } = 0;
     }
 }

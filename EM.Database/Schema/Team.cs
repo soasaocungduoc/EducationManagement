@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Team")]
-    public partial class Team : TableHaveIdInt
+    public sealed class Team : TableHaveIdInt
     {
         public Team()
         {
@@ -19,8 +19,8 @@ namespace EM.Database.Schema
         [StringLength(50)]
         public string NameTeam { get; set; }
 
-        public virtual ICollection<Subject> Subjects { get; set; }
+        public ICollection<Subject> Subjects { get; set; }
 
-        public virtual ICollection<Teacher> Teachers { get; set; }
+        public ICollection<Teacher> Teachers { get; set; }
     }
 }

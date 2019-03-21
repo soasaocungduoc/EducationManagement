@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Classification")]
-    public partial class Classification: TableHaveIdInt
+    public sealed class Classification: TableHaveIdInt
     {
         public Classification()
         {
@@ -19,12 +19,12 @@ namespace EM.Database.Schema
         [StringLength(50)]
         public string NameClassification { get; set; }
 
-        public double FromGPA { get; set; }
+        public double FromGpa { get; set; }
 
-        public double ToGPA { get; set; }
+        public double ToGpa { get; set; }
 
-        public virtual ICollection<Result> Results { get; set; }
+        public ICollection<Result> Results { get; set; }
 
-        public virtual ICollection<StudentTranscript> StudentTranscripts { get; set; }
+        public ICollection<StudentTranscript> StudentTranscripts { get; set; }
     }
 }

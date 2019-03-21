@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Room")]
-    public partial class Room : TableHaveIdInt
+    public sealed class Room : TableHaveIdInt
     {
         public Room()
         {
@@ -16,8 +16,8 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NumberRoom { get; set; }
+        public string RoomNumber { get; set; }
 
-        public virtual ICollection<Class> Classes { get; set; }
+        public ICollection<Class> Classes { get; set; }
     }
 }

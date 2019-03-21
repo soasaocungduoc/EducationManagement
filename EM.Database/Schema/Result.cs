@@ -5,7 +5,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Result")]
-    public partial class Result : TableHaveIdInt
+    public class Result : TableHaveIdInt
     {
 
         public int IdStudent { get; set; }
@@ -14,7 +14,7 @@ namespace EM.Database.Schema
 
         public int IdConduct { get; set; }
 
-        public double GPA { get; set; }
+        public double Gpa { get; set; }
 
         public int IdScholastic { get; set; }
 
@@ -24,6 +24,6 @@ namespace EM.Database.Schema
 
         public virtual Student Student { get; set; }
 
-        public virtual Scholastic Scholastic { get; set; }
+        public virtual SchoolYear SchoolYear { get; set; }
     }
 }

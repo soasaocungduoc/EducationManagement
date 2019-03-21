@@ -5,7 +5,7 @@ namespace EM.Database.Schema
 {
 
     [Table("SubjectMark")]
-    public partial class SubjectMark : TableHaveIdInt
+    public class SubjectMark : TableHaveIdInt
     {
 
         public double Mark { get; set; }

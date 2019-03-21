@@ -4,18 +4,18 @@ using EM.Database.Schema.Bases;
 
 namespace EM.Database.Schema
 {
-    [Table("DayLesson")]
-    public partial class DayLesson: TableHaveIdInt
+    [Table("DayOfWeekLesson")]
+    public sealed class DayOfWeekLesson: TableHaveIdInt
     {
-        public DayLesson()
+        public DayOfWeekLesson()
         {
             ScheduleSubjects = new HashSet<ScheduleSubject>();
         }
 
-        public int Day { get; set; }
+        public int DayOfWeek { get; set; }
 
         public int Lesson { get; set; }
 
-        public virtual ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
+        public ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
     }
 }

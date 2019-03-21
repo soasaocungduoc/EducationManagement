@@ -6,8 +6,8 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
 
-    [Table("Subjects")]
-    public partial class Subject : TableHaveIdInt
+    [Table("Subject")]
+    public sealed class Subject : TableHaveIdInt
     {
         public Subject()
         {
@@ -17,14 +17,14 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameSubject { get; set; }
+        public string SubjectName { get; set; }
 
         public int IdTeam { get; set; }
 
-        public virtual Team Team { get; set; }
+        public Team Team { get; set; }
 
-        public virtual ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
+        public ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
 
-        public virtual ICollection<SubjectMark> SubjectMarks { get; set; }
+        public ICollection<SubjectMark> SubjectMarks { get; set; }
     }
 }

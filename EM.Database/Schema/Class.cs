@@ -6,7 +6,7 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
     [Table("Class")]
-    public partial class Class: TableHaveIdInt
+    public sealed class Class: TableHaveIdInt
     {
         public Class()
         {
@@ -17,9 +17,9 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameClass { get; set; }
+        public string ClassName { get; set; }
 
-        public int NumberStudent { get; set; }
+        public int NumberOfStudents { get; set; }
 
         public int IdGrade { get; set; }
 
@@ -27,16 +27,16 @@ namespace EM.Database.Schema
 
         public int IdTeacher { get; set; }
 
-        public virtual Teacher Teacher { get; set; }
+        public Teacher Teacher { get; set; }
 
-        public virtual Grade Grade { get; set; }
+        public Grade Grade { get; set; }
 
-        public virtual Room Room { get; set; }
+        public Room Room { get; set; }
 
-        public virtual ICollection<Notification> Notifications { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
 
-        public virtual ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
+        public ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Parent")]
-    public partial class Parent : TableHaveIdInt
+    public sealed class Parent : TableHaveIdInt
     {
         public Parent()
         {
@@ -14,8 +14,8 @@ namespace EM.Database.Schema
         }
         public int IdUser { get; set; }
 
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

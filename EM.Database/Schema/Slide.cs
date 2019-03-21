@@ -15,12 +15,12 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(255)]
-        public string UrlImage { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Path { get; set; }
 
-        public bool IsShow { get; set; }
+        public bool IsShown { get; set; }
     }
 }

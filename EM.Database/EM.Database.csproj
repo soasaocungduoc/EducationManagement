@@ -89,9 +89,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201903190905011_InitialCreate.cs" />
-    <Compile Include="Migrations\201903190905011_InitialCreate.Designer.cs">
-      <DependentUpon>201903190905011_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201903211339152_Initial.cs" />
+    <Compile Include="Migrations\201903211339152_Initial.Designer.cs">
+      <DependentUpon>201903211339152_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211342139_Initial1.cs" />
+    <Compile Include="Migrations\201903211342139_Initial1.Designer.cs">
+      <DependentUpon>201903211342139_Initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211424342_Test.cs" />
+    <Compile Include="Migrations\201903211424342_Test.Designer.cs">
+      <DependentUpon>201903211424342_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
@@ -99,12 +107,12 @@
     <Compile Include="Schema\Classification.cs" />
     <Compile Include="Schema\Conduct.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="Schema\DayLesson.cs" />
-    <Compile Include="Schema\ErrorMsg.cs" />
+    <Compile Include="Schema\DayOfWeekLesson.cs" />
+    <Compile Include="Schema\ErrorMessage.cs" />
     <Compile Include="Schema\Function.cs" />
     <Compile Include="Schema\Grade.cs" />
     <Compile Include="Schema\Group.cs" />
-    <Compile Include="Schema\SchoolInfomation.cs" />
+    <Compile Include="Schema\SchoolInformation.cs" />
     <Compile Include="Schema\News.cs" />
     <Compile Include="Schema\Notification.cs" />
     <Compile Include="Schema\Parent.cs" />
@@ -114,7 +122,7 @@
     <Compile Include="Schema\Room.cs" />
     <Compile Include="Schema\ScheduleSubject.cs" />
     <Compile Include="Schema\Bases\Table.cs" />
-    <Compile Include="Schema\Scholastic.cs" />
+    <Compile Include="Schema\SchoolYear.cs" />
     <Compile Include="Schema\Screen.cs" />
     <Compile Include="Schema\Semester.cs" />
     <Compile Include="Schema\Slide.cs" />
@@ -128,8 +136,14 @@
     <Compile Include="Schema\User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903190905011_InitialCreate.resx">
-      <DependentUpon>201903190905011_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903211339152_Initial.resx">
+      <DependentUpon>201903211339152_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211342139_Initial1.resx">
+      <DependentUpon>201903211342139_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211424342_Test.resx">
+      <DependentUpon>201903211424342_Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

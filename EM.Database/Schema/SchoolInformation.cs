@@ -5,13 +5,13 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
 
-    [Table("SchoolInfomation")]
-    public partial class SchoolInfomation : TableHaveIdInt
+    [Table("SchoolInformation")]
+    public class SchoolInformation : TableHaveIdInt
     {
 
         [Required]
         [StringLength(200)]
-        public string NameSchool { get; set; }
+        public string SchoolName { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -26,11 +26,11 @@ namespace EM.Database.Schema
         public string Email { get; set; }
 
         [Required]
-        public string IntroSchool { get; set; }
+        public string SchoolIntroduction { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string LinkWebsite { get; set; }
+        public string WebsiteUrl { get; set; }
 
         [Required]
         [StringLength(30)]

@@ -7,7 +7,7 @@ namespace EM.Database.Schema
 {
 
     [Table("Group")]
-    public partial class Group : TableHaveIdInt
+    public sealed class Group : TableHaveIdInt
     {
         public Group()
         {
@@ -17,10 +17,10 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameGroup { get; set; }
+        public string GroupName { get; set; }
 
-        public virtual ICollection<Account> Accounts { get; set; }
+        public ICollection<Account> Accounts { get; set; }
 
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public ICollection<Permission> Permissions { get; set; }
     }
 }
