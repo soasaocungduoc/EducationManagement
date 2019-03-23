@@ -7,6 +7,6 @@ namespace EducationManagement.Services.Abstractions
     {
         LoginResultDto Login(LoginDto dto);
 
-        string CreateToken();
+        string GetToken();
     }
 }

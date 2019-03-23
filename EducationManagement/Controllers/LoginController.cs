@@ -37,7 +37,7 @@ namespace EducationManagement.Controllers
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
             
-            output.Headers.Add("Token", _loginService.CreateToken());
+            output.Headers.Add("Token", _loginService.GetToken());
 
             return ResponseMessage(output);
         }

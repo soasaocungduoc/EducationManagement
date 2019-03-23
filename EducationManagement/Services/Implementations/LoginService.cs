@@ -10,7 +10,9 @@ namespace EducationManagement.Services.Implementations
 {
     public class LoginService : ILoginService
     {
-        private readonly DataContext db = new DataContext();
+        DataContext db = new DataContext();
+
+        string token = "";
         public LoginResultDto Login(LoginDto dto)
         {
             var result = new LoginResultDto();
@@ -28,7 +30,7 @@ namespace EducationManagement.Services.Implementations
                 return null;
             }
 
-            string token = CreateToken();
+            token = CreateToken() + "_" + result.UserId;
 
             userFromDb.Token = token;
             db.SaveChanges();
@@ -36,6 +38,11 @@ namespace EducationManagement.Services.Implementations
             result.UserId = userFromDb.IdUser;
 
             return result;
+        }
+
+        public string GetToken()
+        {
+            return token;
         }
 
         public string CreateToken()
