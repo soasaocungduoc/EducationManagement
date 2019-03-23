@@ -30,7 +30,7 @@ namespace EducationManagement.Services.Implementations
                 return null;
             }
 
-            token = CreateToken() + "_" + result.UserId;
+            token = CreateToken() + "_" + userFromDb.IdUser;
 
             userFromDb.Token = token;
             db.SaveChanges();
