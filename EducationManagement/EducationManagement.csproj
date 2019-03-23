@@ -166,7 +166,6 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Global.asax.cs">

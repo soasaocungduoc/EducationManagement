@@ -8,12 +8,13 @@ namespace EducationManagement.Controllers
 {
     public class LoginController : ApiController
     {
-        private readonly ILoginService _loginService;
+        private readonly ILoginService loginService;
 
         public LoginController(ILoginService loginService)
         {
-            _loginService = loginService;
+            this.loginService = loginService;
         }
+
         [Route("login")]
         [HttpPost]
         public IHttpActionResult Login([FromBody] LoginDto dto)
@@ -23,7 +24,7 @@ namespace EducationManagement.Controllers
                 return BadRequest();
             }
 
-            var result = _loginService.Login(dto);
+            var result = loginService.Login(dto);
             
             if (result == null)
             {
@@ -37,7 +38,7 @@ namespace EducationManagement.Controllers
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
             
-            output.Headers.Add("Token", _loginService.GetToken());
+            output.Headers.Add("Token", loginService.GetToken());
 
             return ResponseMessage(output);
         }

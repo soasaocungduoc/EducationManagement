@@ -2,7 +2,6 @@
 using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
-using EM.Database.Schema;
 using System;
 using System.Linq;
 
@@ -10,51 +9,43 @@ namespace EducationManagement.Services.Implementations
 {
     public class LoginService : ILoginService
     {
-        DataContext db = new DataContext();
+        private readonly DataContext db = new DataContext();
 
-        string token = "";
+        public string Token { get; private set; } = "";
+
         public LoginResultDto Login(LoginDto dto)
         {
             var result = new LoginResultDto();
-            if (dto == null)
-            {
-                return null;
-            }
 
             dto.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5(dto.Password));
 
-            Account userFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password);
+            var userFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password);
 
             if (userFromDb == null)
             {
                 return null;
             }
 
-            token = CreateToken() + "_" + result.UserId;
-
-            userFromDb.Token = token;
-            db.SaveChanges();
-
             result.UserId = userFromDb.IdUser;
-
+            Token = GenerateToken(result.UserId);
+            userFromDb.Token = Token;
+            db.SaveChanges();
+            
             return result;
         }
 
-        public string GetToken()
-        {
-            return token;
-        }
+        public string GetToken() => Token;
 
-        public string CreateToken()
+        public string GenerateToken(int? userId)
         {
-            string token = "";
-            Random ran = new Random();
-            string tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
-            for (int i = 0; i < 100; i++)
+            var generatedToken = userId.ToString();
+            var ran = new Random();
+            const string tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
+            for (var i = 0; i < 100 - userId.ToString().Length; i++)
             {
-                token += tmp.Substring(ran.Next(0, 63), 1);
+                generatedToken += tmp.Substring(ran.Next(0, 63), 1);
             }
-            return token;
+            return generatedToken;
         }
     }
 }
