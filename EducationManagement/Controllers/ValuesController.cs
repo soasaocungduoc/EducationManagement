@@ -33,7 +33,7 @@ namespace EducationManagement.Controllers
         {
         }
         
-        [Route("login")]
+        [Route("login/test")]
         public HttpResponseMessage Login([FromBody] LoginModel loginModel)
         {
             if (new DataContext().Accounts.Any(u => u.UserName == "admin" && u.Password == "admin")) return Request.CreateResponse(HttpStatusCode.OK, "");

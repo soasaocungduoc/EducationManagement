@@ -1,27 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using EducationManagement.Models;
-using EducationManagement.Service;
-using System.Security.Cryptography;
-using EM.Database;
-using EM.Database.Schema;
-
+using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Services.Abstractions;
 
 namespace EducationManagement.Controllers
 {
     public class LoginController : ApiController
     {
-        [Route("login/check")]
-        [HttpPost]
-        public IHttpActionResult Login([FromBody] Login login)
+        private readonly ILoginService _loginService;
+
+        public LoginController(ILoginService loginService)
         {
-            var result = new LoginService().CheckLogin(login);
+            _loginService = loginService;
+        }
+        [Route("login")]
+        [HttpPost]
+        public IHttpActionResult Login([FromBody] LoginDto dto)
+        {
+            var result = _loginService.Login(dto);
             
-            return Ok(result);
+            if (result == null)
+            {
+                var response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    Content = new StringContent("Invalid username or password")
+                };
+                
+                return ResponseMessage(response);
+            }
+
+            var output = Request.CreateResponse(HttpStatusCode.OK, result);
+            
+            output.Headers.Add("Token", result.Token);
+
+            return ResponseMessage(output);
         }
     }
 }

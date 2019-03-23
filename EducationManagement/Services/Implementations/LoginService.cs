@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
+using EducationManagement.Services.Abstractions;
 using EM.Database;
 using EM.Database.Schema;
-using EducationManagement.Models;
+using System;
+using System.Linq;
 
-namespace EducationManagement.Service
+namespace EducationManagement.Services.Implementations
 {
-    public class LoginService
+    public class LoginService : ILoginService
     {
-        DataContext db = new DataContext();
-        public LoginResult CheckLogin(Login login)
+        private readonly DataContext db = new DataContext();
+        public LoginResultDto Login(LoginDto dto)
         {
-            var result = new LoginResult();
-            if(login == null)
+            var result = new LoginResultDto();
+            if (dto == null)
             {
                 return null;
             }
 
-            login.password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5(login.password));
+            dto.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5(dto.Password));
 
-            Account userFromDb = db.Accounts.FirstOrDefault(x => x.UserName == login.username && x.Password == login.password);
+            Account userFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password);
 
             if (userFromDb == null)
             {
@@ -38,7 +38,7 @@ namespace EducationManagement.Service
 
             return result;
         }
-        
+
         public static string CreateToken()
         {
             string token = "";
