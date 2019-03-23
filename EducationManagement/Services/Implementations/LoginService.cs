@@ -33,13 +33,12 @@ namespace EducationManagement.Services.Implementations
             userFromDb.Token = token;
             db.SaveChanges();
 
-            result.Token = token;
             result.UserId = userFromDb.IdUser;
 
             return result;
         }
 
-        public static string CreateToken()
+        public string CreateToken()
         {
             string token = "";
             Random ran = new Random();

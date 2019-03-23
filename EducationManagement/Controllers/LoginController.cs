@@ -18,6 +18,11 @@ namespace EducationManagement.Controllers
         [HttpPost]
         public IHttpActionResult Login([FromBody] LoginDto dto)
         {
+            if(dto == null)
+            {
+                return BadRequest();
+            }
+
             var result = _loginService.Login(dto);
             
             if (result == null)
@@ -32,7 +37,7 @@ namespace EducationManagement.Controllers
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
             
-            output.Headers.Add("Token", result.Token);
+            output.Headers.Add("Token", _loginService.CreateToken());
 
             return ResponseMessage(output);
         }

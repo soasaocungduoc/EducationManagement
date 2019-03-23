@@ -6,5 +6,7 @@ namespace EducationManagement.Services.Abstractions
     public interface ILoginService
     {
         LoginResultDto Login(LoginDto dto);
+
+        string CreateToken();
     }
 }
