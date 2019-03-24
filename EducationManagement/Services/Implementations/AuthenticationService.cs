@@ -48,6 +48,15 @@ namespace EducationManagement.Services.Implementations
 
         public string GetToken() => Token;
 
+        public bool Logout(string token)
+        {
+            var accountFromDb = db.Accounts.FirstOrDefault(a => a.Token == token);
+            if (accountFromDb == null) return false;
+            accountFromDb.Token = null;
+            db.SaveChanges();
+            return true;
+        }
+
         public string GenerateToken(int? userId)
         {
             var generatedToken = $"{userId}@{DateTime.UtcNow:yyyy MM dd hh:mm}@{Guid.NewGuid()}";
