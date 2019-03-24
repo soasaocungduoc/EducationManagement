@@ -3,7 +3,7 @@ using EducationManagement.Dtos.OutputDtos;
 
 namespace EducationManagement.Services.Abstractions
 {
-    public interface ILoginService
+    public interface IAuthenticationService
     {
         LoginResultDto Login(LoginDto dto);
 

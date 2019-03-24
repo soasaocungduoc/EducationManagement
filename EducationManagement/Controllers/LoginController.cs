@@ -8,9 +8,9 @@ namespace EducationManagement.Controllers
 {
     public class LoginController : ApiController
     {
-        private readonly ILoginService loginService;
+        private readonly IAuthenticationService loginService;
 
-        public LoginController(ILoginService loginService)
+        public LoginController(IAuthenticationService loginService)
         {
             this.loginService = loginService;
         }
