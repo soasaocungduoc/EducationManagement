@@ -6,5 +6,8 @@ namespace EducationManagement.Dtos.OutputDtos
     {
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
+
+        [JsonProperty("group")]
+        public GroupResponseDto Group { get; set; }
     }
 }

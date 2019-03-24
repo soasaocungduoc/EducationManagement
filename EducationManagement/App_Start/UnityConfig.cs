@@ -16,7 +16,7 @@ namespace EducationManagement
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();
-            container.RegisterType<ILoginService, LoginService>();
+            container.RegisterType<IAuthenticationService, AuthenticationService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

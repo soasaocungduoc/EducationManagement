@@ -4,10 +4,11 @@ using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System;
 using System.Linq;
+using System.Text;
 
 namespace EducationManagement.Services.Implementations
 {
-    public class LoginService : ILoginService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly DataContext db = new DataContext();
 
@@ -19,16 +20,27 @@ namespace EducationManagement.Services.Implementations
 
             dto.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5(dto.Password));
 
-            var userFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password);
+            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password);
 
-            if (userFromDb == null)
+            if (accountFromDb == null)
             {
                 return null;
             }
 
-            result.UserId = userFromDb.IdUser;
+            result.UserId = accountFromDb.IdUser;
             Token = GenerateToken(result.UserId);
-            userFromDb.Token = Token;
+            accountFromDb.Token = Token;
+
+            var group = db.Groups.FirstOrDefault(g => g.Id == accountFromDb.IdGroup);
+            if (group != null)
+            {
+                result.Group = new GroupResponseDto
+                {
+                    Id = group.Id,
+                    Name = group.GroupName
+                };
+            }
+            
             db.SaveChanges();
             
             return result;
@@ -38,14 +50,8 @@ namespace EducationManagement.Services.Implementations
 
         public string GenerateToken(int? userId)
         {
-            var generatedToken = userId.ToString();
-            var ran = new Random();
-            const string tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
-            for (var i = 0; i < 100 - userId.ToString().Length; i++)
-            {
-                generatedToken += tmp.Substring(ran.Next(0, 63), 1);
-            }
-            return generatedToken;
+            var generatedToken = $"{userId}@{DateTime.UtcNow:yyyy MM dd hh:mm}@{Guid.NewGuid()}";
+            return Convert.ToBase64String(Encoding.ASCII.GetBytes(generatedToken));
         }
     }
 }
