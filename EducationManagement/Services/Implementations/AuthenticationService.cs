@@ -50,7 +50,7 @@ namespace EducationManagement.Services.Implementations
 
         public string GenerateToken(int? userId)
         {
-            var generatedToken = userId + Guid.NewGuid().ToString();
+            var generatedToken = $"{userId}@{DateTime.UtcNow:yyyy MM dd hh:mm}@{Guid.NewGuid()}";
             return Convert.ToBase64String(Encoding.ASCII.GetBytes(generatedToken));
         }
     }
