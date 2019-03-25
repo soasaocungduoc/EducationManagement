@@ -2,12 +2,13 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Services.Abstractions;
 
 namespace EducationManagement.Controllers
 {
-    public class AuthenticationController : ApiController
+    public class AuthenticationController : BaseApiController
     {
         private readonly IAuthenticationService authenticationService;
 
