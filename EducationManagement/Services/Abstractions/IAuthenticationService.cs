@@ -8,5 +8,7 @@ namespace EducationManagement.Services.Abstractions
         LoginResultDto Login(LoginDto dto);
 
         string GetToken();
+
+        bool Logout(string token);
     }
 }
