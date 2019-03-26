@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 namespace EducationManagement.Controllers
@@ -18,8 +19,7 @@ namespace EducationManagement.Controllers
             this.ProfileService = ProfileService;
         }
 
-        [Route("Users/{id}")]
-        [HttpGet]
+        [Route("users/{id}")]
         public IHttpActionResult GetProfile(int id)
         {
             if (!Request.Headers.Contains("Token"))
@@ -47,6 +47,18 @@ namespace EducationManagement.Controllers
             {
                 Content = new StringContent(message)
             });
+        }
+
+        private int GetUserIdFromToken(string token)
+        {
+            try
+            {
+                return Convert.ToInt32(Encoding.ASCII.GetString(Convert.FromBase64String(token)).Split('@')[0]);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
     }
 }

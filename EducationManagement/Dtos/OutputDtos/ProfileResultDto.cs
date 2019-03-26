@@ -29,7 +29,7 @@ namespace EducationManagement.Dtos.OutputDtos
         [JsonProperty("address")]
         public string Address { get; set; }
 
-        [JsonProperty("indetification_number")]
+        [JsonProperty("identification_number")]
         public string IdentificationNumber { get; set; }
     }
 }
