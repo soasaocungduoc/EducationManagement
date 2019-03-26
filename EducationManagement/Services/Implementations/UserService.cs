@@ -10,20 +10,27 @@ namespace EducationManagement.Services.Implementations
     {
         private readonly DataContext db = new DataContext();
         
-        public void UpdateAvatar(string token, string url)
+        public bool UpdateAvatar(string token, string url)
         {
             var userId = GetCurrentUserId(token);
+
+            if(userId == -1)
+            {
+                return false;
+            }
 
             var userFromDb = db.Users.FirstOrDefault(x => x.Id == userId);
 
             if(userFromDb == null)
             {
-                return;
+                return false;
             }
 
             userFromDb.Avatar = url;
 
             db.SaveChanges();
+
+            return true;
         }
         public int GetCurrentUserId(string token)
         {
@@ -31,13 +38,27 @@ namespace EducationManagement.Services.Implementations
 
             byte[] data = Convert.FromBase64String(token);
 
-            base64Decoded = ASCIIEncoding.ASCII.GetString(data);
+            try
+            {
+                base64Decoded = ASCIIEncoding.ASCII.GetString(data);
 
-            string[] temp = base64Decoded.Split('@');
+                string[] temp = base64Decoded.Split('@');
 
-            var userId = Int32.Parse(temp[0]);
+                int userId;
 
-            return userId;
+                if (!int.TryParse(temp[0], out userId))
+                {
+                    return -1;
+                }
+
+                userId = int.Parse(temp[0]);
+
+                return userId;
+            }
+            catch
+            {
+                return -1;
+            }
         }
     }
 }

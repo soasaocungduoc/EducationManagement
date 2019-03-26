@@ -2,7 +2,7 @@
 {
     public interface IUserService
     {
-        void UpdateAvatar(string token, string url);
+        bool UpdateAvatar(string token, string url);
 
         int GetCurrentUserId(string token);
     }
