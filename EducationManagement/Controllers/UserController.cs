@@ -10,16 +10,17 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    public class ProfileController : ApiController
+    public class UserController : ApiController
     {
-        private readonly IProfileService ProfileService;
+        private readonly IUserService profileService;
 
-        public ProfileController(IProfileService ProfileService)
+        public UserController(IUserService profileService)
         {
-            this.ProfileService = ProfileService;
+            this.profileService = profileService;
         }
 
         [Route("users/{id}")]
+        [HttpGet]
         public IHttpActionResult GetProfile(int id)
         {
             if (!Request.Headers.Contains("Token"))
@@ -27,18 +28,12 @@ namespace EducationManagement.Controllers
 
             var token = Request.Headers.GetValues("Token");
 
-            if (ProfileService.CheckExistToken(token.FirstOrDefault()))
-                return CreateUnauthorizedResponse("Token does not exist in the database");
+            int idUser = GetUserIdFromToken(token.FirstOrDefault());
 
-            int idUser = Convert.ToInt32(Convert.FromBase64String(token.FirstOrDefault()).ToString().Split('@')[0]);
+            if (id != idUser || idUser == 0)
+                return CreateUnauthorizedResponse("Invalid token or user id");
 
-            if (id != idUser)
-                return ResponseMessage(new HttpResponseMessage(HttpStatusCode.Forbidden)
-                {
-                    Content = new StringContent("The input id is not the same as the token string")
-                });
-
-            return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, ProfileService.GetUserInfoBbyId(id)));
+            return Ok(profileService.GetUserInfoBbyId(id));
         }
 
         private IHttpActionResult CreateUnauthorizedResponse(string message)

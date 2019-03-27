@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace EducationManagement.Dtos.OutputDtos
+namespace EducationManagement.Dtos
 {
-    public class ProfileResultDto
+    public class User
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -31,5 +34,19 @@ namespace EducationManagement.Dtos.OutputDtos
 
         [JsonProperty("identification_number")]
         public string IdentificationNumber { get; set; }
+
+        public User(EM.Database.Schema.User user)
+        {
+            Id = user.Id;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Avatar = user.Avatar;
+            Gender = user.Gender;
+            Birthday = user.Birthday;
+            PhoneNumber = user.PhoneNumber;
+            Address = user.Address;
+            IdentificationNumber = user.IdentificationNumber;
+        }
     }
+}
 }
