@@ -1,4 +1,5 @@
-﻿using EducationManagement.Services.Abstractions;
+﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Services.Abstractions;
 using EducationManagement.Services.Implementations;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 
 namespace EducationManagement.Controllers
@@ -33,6 +35,26 @@ namespace EducationManagement.Controllers
             }
 
             return Ok(_userService.GetUserInfoById(id));
+        }
+
+        [Route("{id}")]
+        [HttpPost]
+        public IHttpActionResult UpdateUserById(int id,[FromBody] UserDto user)
+        {
+            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
+
+            if (token == null || token.FirstOrDefault() == "")
+            {
+                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
+            }
+            if(string.IsNullOrEmpty(user.Address) || string.IsNullOrEmpty(user.PhoneNumber) || !IsPhoneNumber(user.PhoneNumber))
+            {
+                return Response(HttpStatusCode.Unauthorized, "Invalid input.");
+            }
+            
+            return _userService.UpdateUser(user,id)
+                ? ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent))
+                : Response(HttpStatusCode.Unauthorized, "Cannot update user");
         }
 
         /// <summary>
@@ -71,6 +93,11 @@ namespace EducationManagement.Controllers
             {
                 Content = new StringContent(message)
             });
+        }
+
+        private bool IsPhoneNumber(string number)
+        {
+            return Regex.Match(number, @"^(\+[0-9]{9})$").Success;
         }
     }
 }

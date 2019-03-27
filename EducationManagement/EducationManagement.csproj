@@ -175,6 +175,7 @@
     <Compile Include="Controllers\Bases\BaseApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
+    <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\User.cs" />
