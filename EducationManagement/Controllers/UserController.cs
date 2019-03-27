@@ -10,50 +10,67 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
-        private readonly IUserService profileService;
 
-        public UserController(IUserService profileService)
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
         {
-            this.profileService = profileService;
+            _userService = userService;
         }
 
-        [Route("users/{id}")]
+        [Route("{id}")]
         [HttpGet]
-        public IHttpActionResult GetProfile(int id)
+        public IHttpActionResult GetUserById(int id)
         {
-            if (!Request.Headers.Contains("Token"))
-                return CreateUnauthorizedResponse("Missing token value in request headers");
+            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
 
-            var token = Request.Headers.GetValues("Token");
+            if (token == null || token.FirstOrDefault() == "")
+            {
+                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
+            }
 
-            int idUser = GetUserIdFromToken(token.FirstOrDefault());
-
-            if (id != idUser || idUser == 0)
-                return CreateUnauthorizedResponse("Invalid token or user id");
-
-            return Ok(profileService.GetUserInfoBbyId(id));
+            return Ok(_userService.GetUserInfoById(id));
         }
 
-        private IHttpActionResult CreateUnauthorizedResponse(string message)
+        /// <summary>
+        /// update user avatar
+        /// </summary>
+        [Route("avatar")]
+        [HttpPost]
+        public IHttpActionResult UpdateAvatar([FromBody] string url)
         {
-            return ResponseMessage(new HttpResponseMessage(HttpStatusCode.Unauthorized)
+            if(url == null)
+            {
+                return Response(HttpStatusCode.BadRequest, "Invalid avatar url.");
+            }
+
+            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
+
+
+            if (token == null || token.FirstOrDefault() == "")
+            {
+                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
+            }
+
+            var result = _userService.UpdateAvatar(token.FirstOrDefault(), url);
+
+            if(result == false)
+            {
+                return Response(HttpStatusCode.BadRequest, "Fail to update.");
+            }
+
+            return Response(HttpStatusCode.OK, "Avatar is updated.");
+        }
+
+        private IHttpActionResult Response(HttpStatusCode statusCode, string message)
+        {
+            return ResponseMessage(new HttpResponseMessage(statusCode)
             {
                 Content = new StringContent(message)
             });
-        }
-
-        private int GetUserIdFromToken(string token)
-        {
-            try
-            {
-                return Convert.ToInt32(Encoding.ASCII.GetString(Convert.FromBase64String(token)).Split('@')[0]);
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
         }
     }
 }

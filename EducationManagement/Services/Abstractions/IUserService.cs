@@ -10,7 +10,10 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface IUserService
     {
-        User GetUserInfoBbyId(int id);
+        User GetUserInfoById(int id);
 
+        bool UpdateAvatar(string token, string url);
+
+        int GetCurrentUserId(string token);
     }
 }
