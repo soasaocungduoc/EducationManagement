@@ -1,20 +1,38 @@
-﻿using EducationManagement.Controllers.Bases;
-using EducationManagement.Services.Abstractions;
+﻿using EducationManagement.Services.Abstractions;
+using EducationManagement.Services.Implementations;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
     [RoutePrefix("api/user")]
-    public class UserController : BaseApiController
+    public class UserController : ApiController
     {
+
         private readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public IHttpActionResult GetUserById(int id)
+        {
+            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
+
+            if (token == null || token.FirstOrDefault() == "")
+            {
+                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
+            }
+
+            return Ok(_userService.GetUserInfoById(id));
         }
 
         /// <summary>
@@ -46,6 +64,7 @@ namespace EducationManagement.Controllers
 
             return Response(HttpStatusCode.OK, "Avatar is updated.");
         }
+
         private IHttpActionResult Response(HttpStatusCode statusCode, string message)
         {
             return ResponseMessage(new HttpResponseMessage(statusCode)

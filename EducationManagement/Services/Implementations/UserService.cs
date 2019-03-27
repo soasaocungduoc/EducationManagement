@@ -1,4 +1,5 @@
-﻿using EducationManagement.Services.Abstractions;
+using EducationManagement.Dtos;
+using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace EducationManagement.Services.Implementations
     public class UserService : IUserService
     {
         private readonly DataContext db = new DataContext();
+
+        public User GetUserInfoById(int id)
+        {
+            return new User(db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag));
+        }
         
         public bool UpdateAvatar(string token, string url)
         {
@@ -19,7 +25,7 @@ namespace EducationManagement.Services.Implementations
                 return false;
             }
 
-            var userFromDb = db.Users.FirstOrDefault(x => x.Id == userId);
+            var userFromDb = db.Users.FirstOrDefault(x => x.Id == userId && !x.DelFlag);
 
             if(userFromDb == null)
             {
