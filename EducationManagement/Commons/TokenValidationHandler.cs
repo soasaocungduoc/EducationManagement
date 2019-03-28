@@ -62,13 +62,9 @@ namespace EducationManagement.Commons
 
                 return base.SendAsync(request, cancellationToken);
             }
-            catch (SecurityTokenValidationException)
-            {
-                statusCode = HttpStatusCode.Unauthorized;
-            }
             catch (Exception)
             {
-                statusCode = HttpStatusCode.InternalServerError;
+                statusCode = HttpStatusCode.Unauthorized;
             }
             return Task<HttpResponseMessage>.Factory.StartNew(() => new HttpResponseMessage(statusCode), cancellationToken);
         }

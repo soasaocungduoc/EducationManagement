@@ -16,15 +16,8 @@ namespace EducationManagement.Services.Implementations
             return new User(db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag));
         }
         
-        public bool UpdateAvatar(string token, string url)
+        public bool UpdateAvatar(int userId, string url)
         {
-            var userId = GetCurrentUserId(token);
-
-            if(userId == -1)
-            {
-                return false;
-            }
-
             var userFromDb = db.Users.FirstOrDefault(x => x.Id == userId && !x.DelFlag);
 
             if(userFromDb == null)
@@ -40,26 +33,15 @@ namespace EducationManagement.Services.Implementations
         }
         public int GetCurrentUserId(string token)
         {
-            string base64Decoded;
-
-            byte[] data = Convert.FromBase64String(token);
+            var data = Convert.FromBase64String(token);
 
             try
             {
-                base64Decoded = ASCIIEncoding.ASCII.GetString(data);
+                var base64Decoded = Encoding.ASCII.GetString(data);
 
-                string[] temp = base64Decoded.Split('@');
+                var temp = base64Decoded.Split('@');
 
-                int userId;
-
-                if (!int.TryParse(temp[0], out userId))
-                {
-                    return -1;
-                }
-
-                userId = int.Parse(temp[0]);
-
-                return userId;
+                return int.Parse(temp[0]);
             }
             catch
             {

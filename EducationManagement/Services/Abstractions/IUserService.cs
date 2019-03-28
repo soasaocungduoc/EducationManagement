@@ -12,7 +12,7 @@ namespace EducationManagement.Services.Abstractions
     {
         User GetUserInfoById(int id);
 
-        bool UpdateAvatar(string token, string url);
+        bool UpdateAvatar(int userId, string url);
 
         int GetCurrentUserId(string token);
     }

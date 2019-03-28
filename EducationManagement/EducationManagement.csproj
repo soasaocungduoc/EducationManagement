@@ -191,6 +191,7 @@
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
+    <Compile Include="Dtos\TokenInformation.cs" />
     <Compile Include="Dtos\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

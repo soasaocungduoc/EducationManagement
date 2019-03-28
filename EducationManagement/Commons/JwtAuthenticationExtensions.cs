@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
+using EducationManagement.Dtos;
 using EducationManagement.Dtos.OutputDtos;
 using Microsoft.IdentityModel.Tokens;
 
@@ -38,6 +40,33 @@ namespace EducationManagement.Commons
                 expires: expires, 
                 signingCredentials: signingCredentials);
             return $"Bearer {tokenHandler.WriteToken(token)}";
+        }
+
+        public static TokenInformation ExtractTokenInformation(string token)
+        {
+            try
+            {
+                if (token.StartsWith("Bearer ")) token = token.Substring(7);
+                var handler = new JwtSecurityTokenHandler();
+
+                var jwtSecurityToken = handler.ReadJwtToken(token);
+
+                return new TokenInformation
+                {
+                    UserId = Convert.ToInt32(jwtSecurityToken.Claims.First(c => c.Type == Constants.UserIdClaimKey).Value),
+
+                    Username = jwtSecurityToken.Claims.First(c => c.Type == Constants.UserIdClaimKey).Value,
+
+                    GroupId = Convert.ToInt32(jwtSecurityToken.Claims.First(c => c.Type == Constants.GroupIdClaimKey).Value),
+
+                    GroupName = jwtSecurityToken.Claims.First(c => c.Type == Constants.GroupNameClaimKey).Value
+                };
+            }
+               
+            catch
+            {
+                return null;
+            }
         }
     }
 }
