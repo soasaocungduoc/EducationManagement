@@ -2,9 +2,7 @@
 using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
-using System;
 using System.Linq;
-using System.Text;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -12,26 +10,26 @@ namespace EducationManagement.Services.Implementations
     {
         private readonly DataContext db = new DataContext();
 
-        public string Token { get; private set; } = "";
-
         public LoginResultDto Login(LoginDto dto)
         {
             var result = new LoginResultDto();
 
             dto.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5(dto.Password));
 
-            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password);
+            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password && !x.DelFlag);
 
             if (accountFromDb == null)
             {
                 return null;
             }
 
-            result.UserId = accountFromDb.IdUser;
-            Token = GenerateToken(result.UserId);
-            accountFromDb.Token = Token;
+            var user = db.Users.FirstOrDefault(u => u.Id == accountFromDb.IdUser && !u.DelFlag);
+            if (user != null)
+            {
+                result.User = new UserInformationResponseDto(user, accountFromDb.UserName);
+            }
 
-            var group = db.Groups.FirstOrDefault(g => g.Id == accountFromDb.IdGroup);
+            var group = db.Groups.FirstOrDefault(g => g.Id == accountFromDb.IdGroup && !g.DelFlag);
             if (group != null)
             {
                 result.Group = new GroupResponseDto
@@ -44,23 +42,6 @@ namespace EducationManagement.Services.Implementations
             db.SaveChanges();
             
             return result;
-        }
-
-        public string GetToken() => Token;
-
-        public bool Logout(string token)
-        {
-            var accountFromDb = db.Accounts.FirstOrDefault(a => a.Token == token);
-            if (accountFromDb == null) return false;
-            accountFromDb.Token = null;
-            db.SaveChanges();
-            return true;
-        }
-
-        public string GenerateToken(int? userId)
-        {
-            var generatedToken = $"{userId}@{DateTime.UtcNow:yyyy MM dd hh:mm}@{Guid.NewGuid()}";
-            return Convert.ToBase64String(Encoding.ASCII.GetBytes(generatedToken));
         }
     }
 }

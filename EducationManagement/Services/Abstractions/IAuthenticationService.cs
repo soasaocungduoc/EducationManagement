@@ -6,9 +6,5 @@ namespace EducationManagement.Services.Abstractions
     public interface IAuthenticationService
     {
         LoginResultDto Login(LoginDto dto);
-
-        string GetToken();
-
-        bool Logout(string token);
     }
 }
