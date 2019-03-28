@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using EducationManagement.Commons;
 
 namespace EducationManagement
 {
@@ -10,6 +11,7 @@ namespace EducationManagement
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            config.MessageHandlers.Add(new TokenValidationHandler());
             config.EnableCors();
 
             config.Routes.MapHttpRoute(
