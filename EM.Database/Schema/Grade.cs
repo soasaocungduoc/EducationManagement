@@ -16,7 +16,7 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string GradeName { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Class> Classes { get; set; }
     }

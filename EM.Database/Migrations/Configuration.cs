@@ -29,17 +29,17 @@ namespace EM.Database.Migrations
             //    IdentificationNumber = "201722516"
             //});
 
-            context.Accounts.Add(new Account
-            {
-                IdUser = 2,
-                IdGroup = 2,
-                UserName = "student",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
-            // Your code...
-            // Could also be before try if you know the exception occurs in SaveChanges
+            //context.Accounts.Add(new Account
+            //{
+            //    UserId = 2,
+            //    GroupId = 2,
+            //    UserName = "student",
+            //    Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
+            //});
+            //// Your code...
+            //// Could also be before try if you know the exception occurs in SaveChanges
 
-            context.SaveChanges();
+            //context.SaveChanges();
 
 
 

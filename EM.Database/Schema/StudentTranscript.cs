@@ -8,15 +8,15 @@ namespace EM.Database.Schema
     public class StudentTranscript : TableHaveIdInt
     {
 
-        public int IdStudent { get; set; }
+        public int StudentId { get; set; }
 
-        public int IdClassification { get; set; }
+        public int ClassificationId { get; set; }
 
-        public int IdConduct { get; set; }
+        public int ConductId { get; set; }
 
         public double Gpa { get; set; }
 
-        public int IdSemester { get; set; }
+        public int SemesterId { get; set; }
 
         public virtual Classification Classification { get; set; }
 

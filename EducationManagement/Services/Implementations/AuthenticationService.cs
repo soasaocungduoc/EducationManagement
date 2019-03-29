@@ -23,19 +23,19 @@ namespace EducationManagement.Services.Implementations
                 return null;
             }
 
-            var user = db.Users.FirstOrDefault(u => u.Id == accountFromDb.IdUser && !u.DelFlag);
+            var user = db.Users.FirstOrDefault(u => u.Id == accountFromDb.UserId && !u.DelFlag);
             if (user != null)
             {
                 result.User = new UserInformationResponseDto(user, accountFromDb.UserName);
             }
 
-            var group = db.Groups.FirstOrDefault(g => g.Id == accountFromDb.IdGroup && !g.DelFlag);
+            var group = db.Groups.FirstOrDefault(g => g.Id == accountFromDb.GroupId && !g.DelFlag);
             if (group != null)
             {
                 result.Group = new GroupResponseDto
                 {
                     Id = group.Id,
-                    Name = group.GroupName
+                    Name = group.Name
                 };
             }
             

@@ -20,16 +20,16 @@ namespace EM.Database.Schema
         [StringLength(30)]
         public string Type { get; set; }
 
-        public int? IdSender { get; set; }
+        public int? SenderId { get; set; }
 
-        public int? IdReceiver { get; set; }
+        public int? ReceiverId { get; set; }
 
-        public int? IdClassReceiver { get; set; }
+        public int? ClassReceiverId { get; set; }
 
         public virtual Class Class { get; set; }
 
-        public virtual User UserSender { get; set; }
+        public virtual User Sender { get; set; }
 
-        public virtual User UserReceiver { get; set; }
+        public virtual User Receiver { get; set; }
     }
 }

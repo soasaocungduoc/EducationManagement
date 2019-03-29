@@ -17,9 +17,9 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string SubjectName { get; set; }
+        public string Name { get; set; }
 
-        public int IdTeam { get; set; }
+        public int TeamId { get; set; }
 
         public Team Team { get; set; }
 
