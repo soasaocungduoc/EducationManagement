@@ -17,7 +17,7 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string GroupName { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Account> Accounts { get; set; }
 

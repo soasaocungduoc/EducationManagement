@@ -103,6 +103,10 @@
     <Compile Include="Migrations\201903211424342_Test.Designer.cs">
       <DependentUpon>201903211424342_Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903290236275_UpdateDatabase.cs" />
+    <Compile Include="Migrations\201903290236275_UpdateDatabase.Designer.cs">
+      <DependentUpon>201903290236275_UpdateDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -146,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903211424342_Test.resx">
       <DependentUpon>201903211424342_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903290236275_UpdateDatabase.resx">
+      <DependentUpon>201903290236275_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -6,13 +6,13 @@ namespace EM.Database.Schema.Bases
 {
     public abstract class Table
     {
-        public DateTime? Created_at { set; get; }
+        public DateTime? CreatedAt { set; get; }
 
-        public int Created_by { set; get; } = 0;
+        public int CreatedBy { set; get; } = 0;
 
-        public DateTime? Updated_at { set; get; }
+        public DateTime? UpdatedAt { set; get; }
 
-        public int? Updated_by { set; get; }
+        public int? UpdatedBy { set; get; } 
 
         public bool DelFlag { set; get; } = false;
     }

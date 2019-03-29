@@ -5,10 +5,8 @@ using EM.Database.Schema.Bases;
 namespace EM.Database.Schema
 {
     [Table("News")]
-
     public class News : TableHaveIdInt
     {
-        
         [Required]
         [StringLength(200)]
         public string Title { get; set; }

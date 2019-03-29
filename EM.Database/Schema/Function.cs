@@ -14,11 +14,11 @@ namespace EM.Database.Schema
             Permissions = new HashSet<Permission>();
         }
 
-        public int IdScreen { get; set; }
+        public int ScreenId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string FunctionName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [StringLength(500)]

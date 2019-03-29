@@ -17,13 +17,13 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(20)]
-        public string SemesterName { get; set; }
+        public string Name { get; set; }
 
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }
 
-        public int IdScholastic { get; set; }
+        public int ScholasticId { get; set; }
 
         public SchoolYear SchoolYear { get; set; }
 

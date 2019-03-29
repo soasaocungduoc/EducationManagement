@@ -15,11 +15,11 @@ namespace EM.Database.Schema
             SubjectMarks = new HashSet<SubjectMark>();
         }
 
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
-        public int IdClass { get; set; }
+        public int ClassId { get; set; }
 
-        public int IdParent { get; set; }
+        public int ParentId { get; set; }
 
         public int Status { get; set; }
 

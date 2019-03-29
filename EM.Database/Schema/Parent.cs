@@ -12,7 +12,7 @@ namespace EM.Database.Schema
         {
             Students = new HashSet<Student>();
         }
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
         public User User { get; set; }
 

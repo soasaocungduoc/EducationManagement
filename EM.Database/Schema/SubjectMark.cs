@@ -10,13 +10,13 @@ namespace EM.Database.Schema
 
         public double Mark { get; set; }
 
-        public int IdTypeMark { get; set; }
+        public int TypeMarkId { get; set; }
 
-        public int IdStudent { get; set; }
+        public int StudentId { get; set; }
 
-        public int IdSubject { get; set; }
+        public int SubjectId { get; set; }
 
-        public int IdSemester { get; set; }
+        public int SemesterId { get; set; }
 
         public virtual Semester Semester { get; set; }
 

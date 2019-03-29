@@ -17,12 +17,9 @@ namespace EM.Database.Schema
         [StringLength(50)]
         public string Password { get; set; }
 
-        [StringLength(100)]
-        public string Token { get; set; }
+        public int UserId { get; set; }
 
-        public int IdUser { get; set; }
-
-        public int IdGroup { get; set; }
+        public int GroupId { get; set; }
 
         public virtual User User { get; set; }
 

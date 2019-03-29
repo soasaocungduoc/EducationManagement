@@ -15,9 +15,9 @@ namespace EM.Database.Schema
             ScheduleSubjects = new HashSet<ScheduleSubject>();
         }
 
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
-        public int IdTeam { get; set; }
+        public int TeamId { get; set; }
 
         public User User { get; set; }
 
