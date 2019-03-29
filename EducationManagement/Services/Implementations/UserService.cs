@@ -13,7 +13,8 @@ namespace EducationManagement.Services.Implementations
 
         public User GetUserInfoById(int id)
         {
-            return new User(db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag));
+            var user = db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            return user == null ? null : new User(user);
         }
         
         public bool UpdateAvatar(int userId, string url)
