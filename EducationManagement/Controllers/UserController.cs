@@ -5,13 +5,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using EducationManagement.Commons;
+using EducationManagement.Controllers.Bases;
 using Newtonsoft.Json;
 
 namespace EducationManagement.Controllers
 {
     [Authorize]
     [RoutePrefix("api/user")]
-    public class UserController : ApiController
+    public class UserController : BaseApiController
     {
         private readonly IUserService _userService;
 
