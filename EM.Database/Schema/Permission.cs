@@ -8,9 +8,9 @@ namespace EM.Database.Schema
     public partial class Permission : TableHaveIdInt
     {
 
-        public int IdGroup { get; set; }
+        public int GroupId { get; set; }
 
-        public int IdFunction { get; set; }
+        public int FunctionId { get; set; }
 
         public bool IsEnable { get; set; }
 

@@ -17,15 +17,15 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string ClassName { get; set; }
+        public string Name { get; set; }
 
         public int NumberOfStudents { get; set; }
 
-        public int IdGrade { get; set; }
+        public int GradeId { get; set; }
 
-        public int IdRoom { get; set; }
+        public int RoomId { get; set; }
 
-        public int IdTeacher { get; set; }
+        public int TeacherId { get; set; }
 
         public Teacher Teacher { get; set; }
 

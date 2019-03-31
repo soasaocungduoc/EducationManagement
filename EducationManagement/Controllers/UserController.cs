@@ -1,21 +1,21 @@
-﻿using EducationManagement.Dtos.InputDtos;
+﻿using System.Drawing.Imaging;
 using EducationManagement.Services.Abstractions;
-using EducationManagement.Services.Implementations;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Web.Http;
+using EducationManagement.Commons;
+using EducationManagement.Controllers.Bases;
+using Newtonsoft.Json;
+using EducationManagement.Dtos.InputDtos;
+using System.Text.RegularExpressions;
 
 namespace EducationManagement.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/user")]
-    public class UserController : ApiController
+    public class UserController : BaseApiController
     {
-
         private readonly IUserService _userService;
 
         public UserController(IUserService userService)
@@ -23,68 +23,64 @@ namespace EducationManagement.Controllers
             _userService = userService;
         }
 
-        [Route("{id}")]
+        [Route("{userId}")]
         [HttpGet]
-        public IHttpActionResult GetUserById(int id)
+        public IHttpActionResult GetUserById(int userId)
         {
-            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
-
-            if (token == null || token.FirstOrDefault() == "")
-            {
-                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
-            }
-
-            return Ok(_userService.GetUserInfoById(id));
+            var token = Request.Headers.GetValues("Authorization").First();
+            return ValidatePermission(token, userId)
+                ? Ok(_userService.GetUserInfoById(userId))
+                : Response(HttpStatusCode.Unauthorized, "Not allowed.");
         }
 
-        [Route("{id}")]
+        [Route("{userId}")]
         [HttpPost]
-        public IHttpActionResult UpdateUserById(int id,[FromBody] UserDto user)
+        public IHttpActionResult UpdateUserById(int userId,[FromBody] UserDto user)
         {
-            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
 
-            if (token == null || token.FirstOrDefault() == "")
+            var token = Request.Headers.GetValues("Authorization").First();
+
+            if (!ValidatePermission(token, userId))
             {
-                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
+                return Response(HttpStatusCode.Unauthorized, "Not allowed.");
             }
-            if(string.IsNullOrEmpty(user.Address) || string.IsNullOrEmpty(user.PhoneNumber) || !IsPhoneNumber(user.PhoneNumber))
+
+            if (!ValidateUserInformation(user))
             {
-                return Response(HttpStatusCode.Unauthorized, "Invalid input.");
+                return Response(HttpStatusCode.BadRequest, "Invalid or missing user information.");
             }
-            
-            return _userService.UpdateUser(user,id)
-                ? ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent))
-                : Response(HttpStatusCode.Unauthorized, "Cannot update user");
+
+            var result = _userService.UpdateUser(user, userId);
+
+            return result == false
+                ? Response(HttpStatusCode.BadRequest, "Fail to update.")
+                : Response(HttpStatusCode.OK, "User information is updated.");
         }
 
         /// <summary>
         /// update user avatar
         /// </summary>
-        [Route("avatar")]
+        [Route("{userId}/avatar")]
         [HttpPost]
-        public IHttpActionResult UpdateAvatar([FromBody] string url)
+        public IHttpActionResult UpdateAvatar(int userId, [JsonProperty("avatar_url")] [FromBody] string url)
         {
             if(url == null)
             {
-                return Response(HttpStatusCode.BadRequest, "Invalid avatar url.");
+                return Response(HttpStatusCode.BadRequest, "Invalid or missing avatar url.");
             }
 
-            var token = Request.Headers.Contains("Token") ? Request.Headers.GetValues("Token") : null;
+            var token = Request.Headers.GetValues("Authorization").First();
 
-
-            if (token == null || token.FirstOrDefault() == "")
+            if (!ValidatePermission(token, userId))
             {
-                return Response(HttpStatusCode.Unauthorized, "Invalid token.");
+                return Response(HttpStatusCode.Unauthorized, "Not allowed.");
             }
 
-            var result = _userService.UpdateAvatar(token.FirstOrDefault(), url);
+            var result = _userService.UpdateAvatar(userId, url);
 
-            if(result == false)
-            {
-                return Response(HttpStatusCode.BadRequest, "Fail to update.");
-            }
-
-            return Response(HttpStatusCode.OK, "Avatar is updated.");
+            return result == false
+                ? Response(HttpStatusCode.BadRequest, "Fail to update.")
+                : Response(HttpStatusCode.OK, "Avatar is updated.");
         }
 
         private IHttpActionResult Response(HttpStatusCode statusCode, string message)
@@ -95,9 +91,24 @@ namespace EducationManagement.Controllers
             });
         }
 
+        private static bool ValidatePermission(string token, int userId)
+        {
+            var tokenInformation = JwtAuthenticationExtensions.ExtractTokenInformation(token);
+            if (tokenInformation == null) return false;
+            return tokenInformation.GroupName == "Admin" ||
+                   tokenInformation.GroupName == "Mod" ||
+                   tokenInformation.UserId == userId;
+        }
+
         private bool IsPhoneNumber(string number)
         {
             return Regex.Match(number, @"^(\+[0-9]{9})$").Success;
+        }
+
+        private bool ValidateUserInformation(UserDto user)
+        {
+            return (!string.IsNullOrEmpty(user.Address) || !string.IsNullOrEmpty(user.PhoneNumber)
+                || user.Address.Length > 200 || user.PhoneNumber.Length > 15 || !IsPhoneNumber(user.PhoneNumber));
         }
     }
 }

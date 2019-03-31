@@ -8,13 +8,13 @@ namespace EM.Database.Schema
     public partial class ScheduleSubject : TableHaveIdInt
     {
 
-        public int IdDayLesson { get; set; }
+        public int DayLessonId { get; set; }
 
-        public int IdSubject { get; set; }
+        public int SubjectId { get; set; }
 
-        public int IdClass { get; set; }
+        public int ClassId { get; set; }
 
-        public int IdTeacher { get; set; }
+        public int TeacherId { get; set; }
 
         public virtual Teacher Teacher { get; set; }
 

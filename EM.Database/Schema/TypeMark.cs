@@ -16,7 +16,7 @@ namespace EM.Database.Schema
 
         [Required]
         [StringLength(50)]
-        public string NameTypeMark { get; set; }
+        public string Name { get; set; }
 
         public double Factor { get; set; }
 
