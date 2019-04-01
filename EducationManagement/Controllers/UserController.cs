@@ -107,8 +107,8 @@ namespace EducationManagement.Controllers
 
         private bool ValidateUserInformation(UserDto user)
         {
-            return (!string.IsNullOrEmpty(user.Address) || !string.IsNullOrEmpty(user.PhoneNumber)
-                || user.Address.Length > 200 || user.PhoneNumber.Length > 15 || !IsPhoneNumber(user.PhoneNumber));
+            return (!string.IsNullOrEmpty(user.Address) && !string.IsNullOrEmpty(user.PhoneNumber)
+                $$ user.Address.Length <= 200 && user.PhoneNumber.Length <= 15 && IsPhoneNumber(user.PhoneNumber));
         }
     }
 }
