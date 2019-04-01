@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EducationManagement.Dtos;
-using EducationManagement.Dtos.OutputDtos;
+using EducationManagement.Dtos.InputDtos;
 
 namespace EducationManagement.Services.Abstractions
 {
@@ -15,5 +15,7 @@ namespace EducationManagement.Services.Abstractions
         bool UpdateAvatar(int userId, string url);
 
         int GetCurrentUserId(string token);
+
+        bool UpdateUser(UserDto user, int id);
     }
 }

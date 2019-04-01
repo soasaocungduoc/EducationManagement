@@ -1,7 +1,9 @@
 using EducationManagement.Dtos;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
@@ -48,6 +50,18 @@ namespace EducationManagement.Services.Implementations
             {
                 return -1;
             }
+        }
+
+        public bool UpdateUser(UserDto user, int id)
+        {
+            DbContextTransaction transaction = db.Database.BeginTransaction();
+            var u = db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            if (u == null) return false;
+            u.Address = user.Address;
+            u.PhoneNumber = user.PhoneNumber;
+            db.SaveChanges();
+            transaction.Commit();
+            return true;
         }
     }
 }

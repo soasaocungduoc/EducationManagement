@@ -7,6 +7,8 @@ using System.Web.Http;
 using EducationManagement.Commons;
 using EducationManagement.Controllers.Bases;
 using Newtonsoft.Json;
+using EducationManagement.Dtos.InputDtos;
+using System.Text.RegularExpressions;
 
 namespace EducationManagement.Controllers
 {
@@ -29,6 +31,30 @@ namespace EducationManagement.Controllers
             return ValidatePermission(token, userId)
                 ? Ok(_userService.GetUserInfoById(userId))
                 : Response(HttpStatusCode.Unauthorized, "Not allowed.");
+        }
+
+        [Route("{userId}")]
+        [HttpPost]
+        public IHttpActionResult UpdateUserById(int userId,[FromBody] UserDto user)
+        {
+
+            var token = Request.Headers.GetValues("Authorization").First();
+
+            if (!ValidatePermission(token, userId))
+            {
+                return Response(HttpStatusCode.Unauthorized, "Not allowed.");
+            }
+
+            if (!ValidateUserInformation(user))
+            {
+                return Response(HttpStatusCode.BadRequest, "Invalid or missing user information.");
+            }
+
+            var result = _userService.UpdateUser(user, userId);
+
+            return result == false
+                ? Response(HttpStatusCode.BadRequest, "Fail to update.")
+                : Response(HttpStatusCode.OK, "User information is updated.");
         }
 
         /// <summary>
@@ -72,6 +98,17 @@ namespace EducationManagement.Controllers
             return tokenInformation.GroupName == "Admin" ||
                    tokenInformation.GroupName == "Mod" ||
                    tokenInformation.UserId == userId;
+        }
+
+        private bool IsPhoneNumber(string number)
+        {
+            return Regex.Match(number, @"^(\+[0-9]{9})$").Success;
+        }
+
+        private bool ValidateUserInformation(UserDto user)
+        {
+            return (!string.IsNullOrEmpty(user.Address) && !string.IsNullOrEmpty(user.PhoneNumber)
+                $$ user.Address.Length <= 200 && user.PhoneNumber.Length <= 15 && IsPhoneNumber(user.PhoneNumber));
         }
     }
 }
