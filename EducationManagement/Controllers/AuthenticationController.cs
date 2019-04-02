@@ -30,8 +30,12 @@ namespace EducationManagement.Controllers
                 return CreateUnauthorizedResponse("Invalid username or password");
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
-            
-            output.Headers.Add("Authorization", JwtAuthenticationExtensions.CreateToken(result));
+
+            var accessToken = JwtAuthenticationExtensions.CreateToken(result);
+
+            result.AccessToken = accessToken;
+
+            output.Headers.Add("Authorization", accessToken);
 
             return ResponseMessage(output);
         }
