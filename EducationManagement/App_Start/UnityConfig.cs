@@ -18,6 +18,7 @@ namespace EducationManagement
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IAuthenticationService, AuthenticationService>();
             container.RegisterType<IUserService, UserService>();
+            container.RegisterType<INewsService, NewsService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
