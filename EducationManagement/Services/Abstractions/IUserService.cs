@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EducationManagement.Dtos;
+﻿using EducationManagement.Dtos;
 using EducationManagement.Dtos.InputDtos;
 
 namespace EducationManagement.Services.Abstractions

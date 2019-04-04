@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace EducationManagement.Dtos.OutputDtos
 {
-    public class NewsDto
+    public class NewsResponseDto
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -23,7 +19,7 @@ namespace EducationManagement.Dtos.OutputDtos
         [JsonProperty("content")]
         public string Content { get; set; }
 
-        public NewsDto(EM.Database.Schema.News news)
+        public NewsResponseDto(EM.Database.Schema.News news)
         {
             Id = news.Id;
             Title = news.Title;
