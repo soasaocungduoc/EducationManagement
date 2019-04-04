@@ -19,6 +19,7 @@ namespace EducationManagement
             container.RegisterType<IAuthenticationService, AuthenticationService>();
             container.RegisterType<IUserService, UserService>();
             container.RegisterType<INewsService, NewsService>();
+            container.RegisterType<ISchoolInformationService, SchoolInformationService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
