@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace EducationManagement.Services.Abstractions
 {
-    public interface INewsService
+    public interface ISlideService
     {
-        List<NewsResponseDto> GetNews();
+        List<SlideResponseDto> GetSlides();
     }
 }
