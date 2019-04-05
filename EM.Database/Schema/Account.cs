@@ -10,11 +10,11 @@ namespace EM.Database.Schema
     {
         
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Password { get; set; }
 
         public int UserId { get; set; }

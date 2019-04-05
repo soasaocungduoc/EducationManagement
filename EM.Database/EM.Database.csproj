@@ -107,6 +107,18 @@
     <Compile Include="Migrations\201903290236275_UpdateDatabase.Designer.cs">
       <DependentUpon>201903290236275_UpdateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904041506436_UpdataDatabasev2.cs" />
+    <Compile Include="Migrations\201904041506436_UpdataDatabasev2.Designer.cs">
+      <DependentUpon>201904041506436_UpdataDatabasev2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041541560_AddUserAndSlide.cs" />
+    <Compile Include="Migrations\201904041541560_AddUserAndSlide.Designer.cs">
+      <DependentUpon>201904041541560_AddUserAndSlide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904050243496_AddAccount.cs" />
+    <Compile Include="Migrations\201904050243496_AddAccount.Designer.cs">
+      <DependentUpon>201904050243496_AddAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -153,6 +165,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903290236275_UpdateDatabase.resx">
       <DependentUpon>201903290236275_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041506436_UpdataDatabasev2.resx">
+      <DependentUpon>201904041506436_UpdataDatabasev2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041541560_AddUserAndSlide.resx">
+      <DependentUpon>201904041541560_AddUserAndSlide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904050243496_AddAccount.resx">
+      <DependentUpon>201904050243496_AddAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,7 +16,7 @@ namespace EM.Database.Schema
         }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         public int TeamId { get; set; }

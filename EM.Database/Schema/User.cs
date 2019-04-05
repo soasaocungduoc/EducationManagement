@@ -29,7 +29,6 @@ namespace EM.Database.Schema
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string Avatar { get; set; }
 
         public bool Gender { get; set; }
