@@ -29,11 +29,11 @@ namespace EM.Database.Schema
         public string Area { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string ControllerName { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string ActionName { get; set; }
 
         public Screen Screen { get; set; }

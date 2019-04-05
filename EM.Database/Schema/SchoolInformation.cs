@@ -22,18 +22,16 @@ namespace EM.Database.Schema
         public string PhoneNumber { get; set; }
 
         [Required]
-        [StringLength(15)]
         public string Email { get; set; }
 
         [Required]
         public string SchoolIntroduction { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string WebsiteUrl { get; set; }
 
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         public string Fax { get; set; }
     }
 }

@@ -9,7 +9,6 @@ namespace EM.Database.Schema
     public class ErrorMessage : TableHaveIdInt
     {
         [Required]
-        [StringLength(255)]
         public string Message { get; set; }
 
         public int Type { get; set; }

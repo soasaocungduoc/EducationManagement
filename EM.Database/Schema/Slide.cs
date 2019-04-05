@@ -14,11 +14,9 @@ namespace EM.Database.Schema
         public string Title { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string ImageUrl { get; set; }
 
         [Required]
-        [StringLength(255)]
         public string Path { get; set; }
 
         public bool IsShown { get; set; }

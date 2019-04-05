@@ -16,7 +16,7 @@ namespace EM.Database.Schema
         }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public DateTime StartTime { get; set; }
