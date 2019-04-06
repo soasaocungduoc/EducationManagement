@@ -11,6 +11,6 @@ namespace EducationManagement.Services.Abstractions
 
         int GetCurrentUserId(string token);
 
-        bool UpdateUser(UserDto user, int id);
+        User UpdateUser(UserDto user, int id);
     }
 }

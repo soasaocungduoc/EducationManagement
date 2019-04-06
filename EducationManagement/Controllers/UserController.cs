@@ -35,7 +35,7 @@ namespace EducationManagement.Controllers
 
         [Route("{userId}")]
         [HttpPost]
-        public IHttpActionResult UpdateUserById(int userId,[FromBody] UserDto user)
+        public IHttpActionResult UpdateUserById(int userId, [FromBody] UserDto user)
         {
 
             var token = Request.Headers.GetValues("Authorization").First();
@@ -45,16 +45,16 @@ namespace EducationManagement.Controllers
                 return Response(HttpStatusCode.Unauthorized, "Not allowed.");
             }
 
-            if (!ValidateUserInformation(user))
+            if (ModelState.IsValid)
             {
-                return Response(HttpStatusCode.BadRequest, "Invalid or missing user information.");
+                var result = _userService.UpdateUser(user, userId);
+
+                return result == null
+                    ? Response(HttpStatusCode.BadRequest, "Fail to update.")
+                    : Ok(result);
+
             }
-
-            var result = _userService.UpdateUser(user, userId);
-
-            return result == false
-                ? Response(HttpStatusCode.BadRequest, "Fail to update.")
-                : Response(HttpStatusCode.OK, "User information is updated.");
+            return BadRequest(ModelState);
         }
 
         /// <summary>
@@ -100,15 +100,6 @@ namespace EducationManagement.Controllers
                    tokenInformation.UserId == userId;
         }
 
-        private bool IsPhoneNumber(string number)
-        {
-            return Regex.Match(number, @"^(\+[0-9]{9})$").Success;
-        }
-
-        private bool ValidateUserInformation(UserDto user)
-        {
-            return (!string.IsNullOrEmpty(user.Address) && !string.IsNullOrEmpty(user.PhoneNumber)
-                && user.Address.Length <= 200 && user.PhoneNumber.Length <= 15 && IsPhoneNumber(user.PhoneNumber));
-        }
+        
     }
 }
