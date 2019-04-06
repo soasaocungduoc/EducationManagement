@@ -52,16 +52,24 @@ namespace EducationManagement.Services.Implementations
             }
         }
 
-        public bool UpdateUser(UserDto user, int id)
+        public User UpdateUser(UserDto user, int id)
         {
-            DbContextTransaction transaction = db.Database.BeginTransaction();
-            var u = db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag);
-            if (u == null) return false;
-            u.Address = user.Address;
-            u.PhoneNumber = user.PhoneNumber;
-            db.SaveChanges();
-            transaction.Commit();
-            return true;
+            try
+            {
+                DbContextTransaction transaction = db.Database.BeginTransaction();
+                var u = db.Users.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+                if (u == null) return null;
+                u.Address = user.Address;
+                u.PhoneNumber = user.PhoneNumber;
+                db.SaveChanges();
+                transaction.Commit();
+                return GetUserInfoById(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
     }
 }

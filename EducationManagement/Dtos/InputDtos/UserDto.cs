@@ -9,6 +9,7 @@ namespace EducationManagement.Dtos.InputDtos
         [JsonProperty("phone_number")]
         [Required]
         [StringLength(15)]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         [JsonProperty("address")]
