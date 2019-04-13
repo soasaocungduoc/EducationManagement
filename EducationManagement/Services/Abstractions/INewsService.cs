@@ -8,5 +8,7 @@ namespace EducationManagement.Services.Abstractions
         List<NewsResponseDto> GetNews();
 
         NewsResponseDto GetNews(int newId);
+
+        bool Delete(int newsId);
     }
 }
