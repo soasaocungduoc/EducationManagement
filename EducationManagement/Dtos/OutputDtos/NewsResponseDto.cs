@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace EducationManagement.Dtos.OutputDtos
 {
@@ -19,13 +20,18 @@ namespace EducationManagement.Dtos.OutputDtos
         [JsonProperty("content")]
         public string Content { get; set; }
 
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt { get; set; }
+
         public NewsResponseDto(EM.Database.Schema.News news)
         {
+            if (news == null) return;
             Id = news.Id;
             Title = news.Title;
             ImageUrl = news.ImageUrl;
             Summary = news.Summary;
             Content = news.Content;
+            CreatedAt = news.CreatedAt;
         }
     }
 }

@@ -19,5 +19,12 @@ namespace EducationManagement.Controllers
         {
             return Ok(_newsService.GetNews());
         }
+
+        [HttpGet]
+        [Route("{newId}")]
+        public IHttpActionResult GetNews(int newId)
+        {
+            return Ok(_newsService.GetNews(newId));
+        }
     }
 }
