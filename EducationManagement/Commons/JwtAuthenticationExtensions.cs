@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using EducationManagement.Dtos;
 using EducationManagement.Dtos.OutputDtos;
@@ -67,6 +68,11 @@ namespace EducationManagement.Commons
             {
                 return null;
             }
+        }
+
+        public static string GetAuthorizationHeader(this HttpRequestMessage request)
+        {
+            return request.Headers.GetValues("Authorization").First();
         }
     }
 }

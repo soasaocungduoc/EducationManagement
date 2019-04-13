@@ -37,8 +37,7 @@ namespace EducationManagement.Controllers
         [HttpPost]
         public IHttpActionResult UpdateUserById(int userId, [FromBody] UserDto user)
         {
-
-            var token = Request.Headers.GetValues("Authorization").First();
+            var token = Request.GetAuthorizationHeader();
 
             if (!ValidatePermission(token, userId))
             {

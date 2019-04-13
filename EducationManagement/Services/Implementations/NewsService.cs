@@ -14,9 +14,18 @@ namespace EducationManagement.Services.Implementations
             return db.News.Where(n => !n.DelFlag).ToList().Select(x => new NewsResponseDto(x)).ToList();
         }
 
-        public NewsResponseDto GetNews(int newId)
+        public NewsResponseDto GetNews(int newsId)
         {
-            return new NewsResponseDto(db.News.FirstOrDefault(n => !n.DelFlag && n.Id == newId));
+            return new NewsResponseDto(db.News.FirstOrDefault(n => !n.DelFlag && n.Id == newsId));
+        }
+
+        public bool Delete(int newsId)
+        {
+            var newsFromDb = db.News.FirstOrDefault(n => !n.DelFlag && n.Id == newsId);
+            if (newsFromDb == null) return false;
+            newsFromDb.DelFlag = true;
+            db.SaveChanges();
+            return true;
         }
     }
 }
