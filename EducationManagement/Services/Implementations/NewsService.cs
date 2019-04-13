@@ -11,9 +11,12 @@ namespace EducationManagement.Services.Implementations
         private readonly DataContext db = new DataContext();
         public List<NewsResponseDto> GetNews()
         {
-            if (db.News.ToList() == null)
-                return new List<NewsResponseDto>();
             return db.News.Where(n => !n.DelFlag).ToList().Select(x => new NewsResponseDto(x)).ToList();
+        }
+
+        public NewsResponseDto GetNews(int newId)
+        {
+            return new NewsResponseDto(db.News.FirstOrDefault(n => !n.DelFlag && n.Id == newId));
         }
     }
 }
