@@ -1,4 +1,5 @@
-﻿using EducationManagement.Dtos.OutputDtos;
+﻿using System;
+using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System.Collections.Generic;
@@ -48,6 +49,18 @@ namespace EducationManagement.Services.Implementations
             {
                 return false;
             }
+        }
+
+        public bool UpdateNews(int newsId, NewsDto news)
+        {
+            var newsFromDb = db.News.FirstOrDefault(n => n.Id == newsId);
+            if (newsFromDb == null) return false;
+            newsFromDb.Title = news.Title;
+            newsFromDb.Summary = news.Summary;
+            newsFromDb.ImageUrl = news.ImageUrl;
+            newsFromDb.Content = news.Content;
+            db.SaveChanges();
+            return true;
         }
     }
 }
