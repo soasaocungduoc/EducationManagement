@@ -61,9 +61,27 @@ namespace EducationManagement.Controllers
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_newsService.AddNews(news)) return Ok("News created");
+            if (_newsService.AddNews(news)) return Ok("News created.");
 
             return BadRequest("An error occurred when adding news. Please try again.");
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("{newsId}")]
+        public IHttpActionResult UpdateNews(int newsId, [FromBody] NewsDto news)
+        {
+            var token = Request.GetAuthorizationHeader();
+
+            if (!AuthenticationValidation.IsAdminOrMod(token))
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.Forbidden,
+                    "Only admin or mod can modify a news."));
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_newsService.UpdateNews(newsId, news)) return Ok("News updated.");
+
+            return BadRequest("Invalid news id.");
         }
     }
 }
