@@ -3,6 +3,8 @@ using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System.Collections.Generic;
 using System.Linq;
+using EducationManagement.Dtos.InputDtos;
+using EM.Database.Schema;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -26,6 +28,26 @@ namespace EducationManagement.Services.Implementations
             newsFromDb.DelFlag = true;
             db.SaveChanges();
             return true;
+        }
+
+        public bool AddNews(NewsDto news)
+        {
+            try
+            {
+                db.News.Add(new News
+                {
+                    Title = news.Title,
+                    Summary = news.Summary,
+                    Content = news.Content,
+                    ImageUrl = news.ImageUrl
+                });
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

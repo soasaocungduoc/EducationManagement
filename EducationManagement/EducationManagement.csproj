@@ -192,6 +192,7 @@
     <Compile Include="Controllers\SlideController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
+    <Compile Include="Dtos\InputDtos\NewsDto.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />

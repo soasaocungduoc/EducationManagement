@@ -4,6 +4,7 @@ using EducationManagement.Controllers.Bases;
 using EducationManagement.Services.Abstractions;
 using System.Web.Http;
 using EducationManagement.Commons;
+using EducationManagement.Dtos.InputDtos;
 
 namespace EducationManagement.Controllers
 {
@@ -46,6 +47,23 @@ namespace EducationManagement.Controllers
 
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.Forbidden,
                 "Only admin or mod can delete a news."));
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IHttpActionResult AddNews([FromBody] NewsDto news)
+        {
+            var token = Request.GetAuthorizationHeader();
+
+            if (!AuthenticationValidation.IsAdminOrMod(token))
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.Forbidden,
+                    "Only admin or mod can create a news."));
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_newsService.AddNews(news)) return Ok("News created");
+
+            return BadRequest("An error occurred when adding news. Please try again.");
         }
     }
 }

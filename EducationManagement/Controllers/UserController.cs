@@ -1,5 +1,4 @@
-﻿using System.Drawing.Imaging;
-using EducationManagement.Services.Abstractions;
+﻿using EducationManagement.Services.Abstractions;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -8,7 +7,6 @@ using EducationManagement.Commons;
 using EducationManagement.Controllers.Bases;
 using Newtonsoft.Json;
 using EducationManagement.Dtos.InputDtos;
-using System.Text.RegularExpressions;
 
 namespace EducationManagement.Controllers
 {
