@@ -17,6 +17,23 @@ namespace EM.Database.Migrations
         {
             base.Seed(context);
 
+            context.Screens.Add(new Screen
+            {
+                Name = "List of news"
+            });
+            context.Screens.Add(new Screen
+            {
+                Name = "Add or Edit news"
+            });
+            context.Screens.Add(new Screen
+            {
+                Name = "List of teachers"
+            });
+            context.Screens.Add(new Screen
+            {
+                Name = "List of slides"
+            });
+
             //context.Users.Add(new User
             //{
             //    FirstName = "Tram",
@@ -29,37 +46,14 @@ namespace EM.Database.Migrations
             //    IdentificationNumber = "123456789",
             //});
 
-            context.Accounts.Add(new Account
-            {
-                UserId = 5,
-                GroupId = 3,
-                UserName = "developer5",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
+            //context.Accounts.Add(new Account
+            //{
+            //    UserId = 5,
+            //    GroupId = 3,
+            //    UserName = "developer5",
+            //    Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
+            //});
 
-            context.Accounts.Add(new Account
-            {
-                UserId = 3,
-                GroupId = 6,
-                UserName = "teacher3",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
-
-            context.Accounts.Add(new Account
-            {
-                UserId = 4,
-                GroupId = 5,
-                UserName = "parent4",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
-
-            context.Accounts.Add(new Account
-            {
-                UserId = 6,
-                GroupId = 5,
-                UserName = "mod4",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
 
             //// Your code...
             //// Could also be before try if you know the exception occurs in SaveChanges
