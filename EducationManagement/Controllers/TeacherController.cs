@@ -19,7 +19,7 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetList()
+        public IHttpActionResult GetTeachers()
         {
             return Ok(_teacherService.GetListOfTeachers());
         }

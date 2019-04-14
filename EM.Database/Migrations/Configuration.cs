@@ -17,21 +17,60 @@ namespace EM.Database.Migrations
         {
             base.Seed(context);
 
-            context.Screens.Add(new Screen
+            context.Functions.Add(new Function
             {
-                Name = "List of news"
+                ScreenId = 1,
+                Name = "Get list of news",
+                Description = "Lay danh sach tin tuc",
+                Area = "Home",
+                ControllerName = "NewsController",
+                ActionName = "GetNews",
             });
-            context.Screens.Add(new Screen
+            context.Functions.Add(new Function
             {
-                Name = "Add or Edit news"
+                ScreenId = 1,
+                Name = "Delete news",
+                Description = "Xoa tin tuc",
+                Area = "Admin",
+                ControllerName = "NewsController",
+                ActionName = "DeleteNews",
             });
-            context.Screens.Add(new Screen
+            context.Functions.Add(new Function
             {
-                Name = "List of teachers"
+                ScreenId = 2,
+                Name = "Add news",
+                Description = "Them tin tuc",
+                Area = "Admin",
+                ControllerName = "NewsController",
+                ActionName = "AddNews",
             });
-            context.Screens.Add(new Screen
+            context.Functions.Add(new Function
             {
-                Name = "List of slides"
+                ScreenId = 2,
+                Name = "Edit news",
+                Description = "Chinh sua tin tuc",
+                Area = "Admin",
+                ControllerName = "NewsController",
+                ActionName = "UpdateNews",
+            });
+
+            context.Functions.Add(new Function
+            {
+                ScreenId = 3,
+                Name = "Get list of teachers",
+                Description = "Lay danh sach giao vien",
+                Area = "Admin",
+                ControllerName = "TeacherController",
+                ActionName = "GetTeachers",
+            });
+            context.Functions.Add(new Function
+            {
+                ScreenId = 4,
+                Name = "Get list of slides",
+                Description = "Lay danh sach slide",
+                Area = "Admin",
+                ControllerName = "SlideController",
+                ActionName = "GetSlides",
             });
 
             //context.Users.Add(new User

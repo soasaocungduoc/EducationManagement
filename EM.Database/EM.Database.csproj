@@ -123,6 +123,10 @@
     <Compile Include="Migrations\201904140124234_AddDataScreen.Designer.cs">
       <DependentUpon>201904140124234_AddDataScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904140139152_AddDataFunction.cs" />
+    <Compile Include="Migrations\201904140139152_AddDataFunction.Designer.cs">
+      <DependentUpon>201904140139152_AddDataFunction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -181,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904140124234_AddDataScreen.resx">
       <DependentUpon>201904140124234_AddDataScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904140139152_AddDataFunction.resx">
+      <DependentUpon>201904140139152_AddDataFunction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
