@@ -16,62 +16,57 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
+            for (int i = 1; i < 7; i++)
+            {
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 1,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 2,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 3,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 4,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 5,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 6,
+                    IsEnable = false,
+                });
+            }
+            
 
-            context.Functions.Add(new Function
-            {
-                ScreenId = 1,
-                Name = "Get list of news",
-                Description = "Lay danh sach tin tuc",
-                Area = "Home",
-                ControllerName = "NewsController",
-                ActionName = "GetNews",
-            });
-            context.Functions.Add(new Function
-            {
-                ScreenId = 1,
-                Name = "Delete news",
-                Description = "Xoa tin tuc",
-                Area = "Admin",
-                ControllerName = "NewsController",
-                ActionName = "DeleteNews",
-            });
-            context.Functions.Add(new Function
-            {
-                ScreenId = 2,
-                Name = "Add news",
-                Description = "Them tin tuc",
-                Area = "Admin",
-                ControllerName = "NewsController",
-                ActionName = "AddNews",
-            });
-            context.Functions.Add(new Function
-            {
-                ScreenId = 2,
-                Name = "Edit news",
-                Description = "Chinh sua tin tuc",
-                Area = "Admin",
-                ControllerName = "NewsController",
-                ActionName = "UpdateNews",
-            });
 
-            context.Functions.Add(new Function
-            {
-                ScreenId = 3,
-                Name = "Get list of teachers",
-                Description = "Lay danh sach giao vien",
-                Area = "Admin",
-                ControllerName = "TeacherController",
-                ActionName = "GetTeachers",
-            });
-            context.Functions.Add(new Function
-            {
-                ScreenId = 4,
-                Name = "Get list of slides",
-                Description = "Lay danh sach slide",
-                Area = "Admin",
-                ControllerName = "SlideController",
-                ActionName = "GetSlides",
-            });
+            //context.Functions.Add(new Function
+            //{
+            //    ScreenId = 4,
+            //    Name = "Get list of slides",
+            //    Description = "Lay danh sach slide",
+            //    Area = "Home",
+            //    ControllerName = "SlideController",
+            //    ActionName = "GetSlides",
+            //});
 
             //context.Users.Add(new User
             //{
