@@ -16,6 +16,57 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
+            for (int i = 1; i < 7; i++)
+            {
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 1,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 2,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 3,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 4,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 5,
+                    IsEnable = false,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 6,
+                    IsEnable = false,
+                });
+            }
+            
+
+
+            //context.Functions.Add(new Function
+            //{
+            //    ScreenId = 4,
+            //    Name = "Get list of slides",
+            //    Description = "Lay danh sach slide",
+            //    Area = "Home",
+            //    ControllerName = "SlideController",
+            //    ActionName = "GetSlides",
+            //});
 
             //context.Users.Add(new User
             //{
@@ -29,37 +80,14 @@ namespace EM.Database.Migrations
             //    IdentificationNumber = "123456789",
             //});
 
-            context.Accounts.Add(new Account
-            {
-                UserId = 5,
-                GroupId = 3,
-                UserName = "developer5",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
+            //context.Accounts.Add(new Account
+            //{
+            //    UserId = 5,
+            //    GroupId = 3,
+            //    UserName = "developer5",
+            //    Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
+            //});
 
-            context.Accounts.Add(new Account
-            {
-                UserId = 3,
-                GroupId = 6,
-                UserName = "teacher3",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
-
-            context.Accounts.Add(new Account
-            {
-                UserId = 4,
-                GroupId = 5,
-                UserName = "parent4",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
-
-            context.Accounts.Add(new Account
-            {
-                UserId = 6,
-                GroupId = 5,
-                UserName = "mod4",
-                Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-            });
 
             //// Your code...
             //// Could also be before try if you know the exception occurs in SaveChanges
