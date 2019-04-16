@@ -40,8 +40,8 @@ namespace EducationManagement.Commons
             {
                 DataContext context = new DataContext();
                 int GroupId = JwtAuthenticationExtensions.ExtractTokenInformation(token).GroupId;
-                Permission permission = context.Permissions.FirstOrDefault(x => !x.DelFlag && x.GroupId == GroupId && x.Function.ControllerName == controller && x.Function.ActionName == action);
-                if (permission != null && !permission.IsEnable)
+                Permission permission = context.Permissions.FirstOrDefault(x => !x.DelFlag && x.GroupId == GroupId && x.Function.ControllerName.Equals(controller) && x.Function.ActionName.Equals(action));
+                if (permission == null || !permission.IsEnable)
                 {
                     return false;
                 }

@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Routing;
 using EducationManagement.Commons;
 
 namespace EducationManagement
@@ -16,9 +18,19 @@ namespace EducationManagement
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            //<-- Teacher controller -->
+            config.Routes.MapHttpRoute(
+                name: "GetTeachersApi",
+                routeTemplate: "api/teacher",
+                defaults: new { controller = "Teacher", action = "GetTeachers", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
         }
     }
 }
