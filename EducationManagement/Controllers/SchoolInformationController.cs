@@ -15,6 +15,7 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
+        [ActionName("GetSchoolInformation")]
         public IHttpActionResult GetSchoolInformation()
         {
             return Ok(_schoolInformationService.GetSchoolInformation());

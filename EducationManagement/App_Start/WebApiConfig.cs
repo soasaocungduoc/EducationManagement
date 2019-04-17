@@ -22,13 +22,31 @@ namespace EducationManagement
                 
                 defaults: new { id = RouteParameter.Optional }
             );
-
+            //<-- SchoolInformation controller -->
+            config.Routes.MapHttpRoute(
+                name: "GetSchoolInformationApi",
+                routeTemplate: "api/schoolinformation",
+                defaults: new { controller = "SchoolInformation", action = "GetSchoolInformation", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
 
             //<-- Teacher controller -->
             config.Routes.MapHttpRoute(
                 name: "GetTeachersApi",
                 routeTemplate: "api/teacher",
                 defaults: new { controller = "Teacher", action = "GetTeachers", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            //<-- Slide controller -->
+            config.Routes.MapHttpRoute(
+                name: "GetSlidesApi",
+                routeTemplate: "api/slide",
+                defaults: new { controller = "SLide", action = "GetSlides", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GetSlideByIdApi",
+                routeTemplate: "api/slide",
+                defaults: new { controller = "SLide", action = "GetSlideById", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
         }
