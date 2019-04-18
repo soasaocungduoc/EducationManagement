@@ -12,9 +12,45 @@ namespace EducationManagement.Services.Implementations
     public class NewsService : INewsService
     {
         private readonly DataContext db = new DataContext();
-        public List<NewsResponseDto> GetNews()
+        public ListOfNewsResponseDto GetNews(NewsConditionSearch conditionSearch)
         {
-            return db.News.Where(n => !n.DelFlag).ToList().Select(x => new NewsResponseDto(x)).ToList();
+            try
+            {
+                // Nếu không tồn tại điều kiện tìm kiếm thì khởi tạo giá trị tìm kiếm ban đầu
+                if (conditionSearch == null)
+                {
+                    conditionSearch = new NewsConditionSearch();
+                }
+
+                ListOfNewsResponseDto listOfNews = new ListOfNewsResponseDto();
+                // Lấy các thông tin dùng để phân trang
+                listOfNews.Paging = new Commons.Paging(db.News.Count(x => !x.DelFlag &&
+                    (conditionSearch.KeySearch == null ||
+                    (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
+                    , conditionSearch.CurrentPage, conditionSearch.PageSize);
+
+                // Tìm kiếm và lấy dữ liệu theo trang
+                listOfNews.ListOfNews = db.News.Where(x => !x.DelFlag &&
+                    (conditionSearch.KeySearch == null ||
+                    (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
+                    .OrderBy(x => x.Id)
+                    .Skip((listOfNews.Paging.CurrentPage - 1) * listOfNews.Paging.NumberOfRecord)
+                    .Take(listOfNews.Paging.NumberOfRecord).Select(x => new NewsResponseDto
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        ImageUrl = x.ImageUrl,
+                        Summary = x.Summary,
+                        Content = x.Content,
+                        CreatedAt = x.CreatedAt
+                    }).ToList();
+                listOfNews.Condition = conditionSearch;
+                return listOfNews;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public NewsResponseDto GetNews(int newsId)

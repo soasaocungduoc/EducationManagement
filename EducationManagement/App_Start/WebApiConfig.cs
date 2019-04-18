@@ -48,6 +48,19 @@ namespace EducationManagement
                 defaults: new { controller = "News", action = "AddNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
+
+            config.Routes.MapHttpRoute(
+                name: "UpdateNewsApi",
+                routeTemplate: "api/news",
+                defaults: new { controller = "News", action = "UpdateNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "DeleteNewsApi",
+                routeTemplate: "api/news",
+                defaults: new { controller = "News", action = "DeleteNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+            );
+
             //<-- Teacher controller -->
             config.Routes.MapHttpRoute(
                 name: "GetTeachersApi",

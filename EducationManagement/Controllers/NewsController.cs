@@ -19,10 +19,18 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
+        [Route]
         [ActionName("GetNews")]
-        public IHttpActionResult GetNews()
+        public IHttpActionResult GetNews(NewsConditionSearch conditionSearch)
         {
-            return Ok(_newsService.GetNews());
+            try
+            {
+                return Ok(_newsService.GetNews(conditionSearch));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
 
         [HttpGet]

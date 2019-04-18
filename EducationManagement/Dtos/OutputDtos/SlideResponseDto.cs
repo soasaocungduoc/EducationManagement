@@ -27,6 +27,7 @@ namespace EducationManagement.Dtos.OutputDtos
 
         public SlideResponseDto(Slide slide)
         {
+            if (slide == null) return;
             Id = slide.Id;
             Title = slide.Title;
             ImageUrl = slide.ImageUrl;
