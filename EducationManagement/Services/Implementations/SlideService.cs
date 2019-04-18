@@ -74,7 +74,13 @@ namespace EducationManagement.Services.Implementations
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     .OrderBy(x => x.Id)
                     .Skip((listOfSlide.Paging.CurrentPage - 1) * listOfSlide.Paging.NumberOfRecord)
-                    .Take(listOfSlide.Paging.NumberOfRecord).Select(x => new SlideResponseDto(x)).ToList();
+                    .Take(listOfSlide.Paging.NumberOfRecord).Select(x => new SlideResponseDto{
+                        Id = x.Id,
+                        Title = x.Title,
+                        ImageUrl = x.ImageUrl,
+                        Path = x.Path,
+                        IsShown = x.IsShown
+                    }).ToList();
                 listOfSlide.Condition = conditionSearch;
                 return listOfSlide;
             }

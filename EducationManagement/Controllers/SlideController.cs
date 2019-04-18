@@ -18,15 +18,6 @@ namespace EducationManagement.Controllers
             _slideService = slideService;
         }
 
-        //[HttpOptions]
-        //public HttpResponseMessage Options()
-        //{
-        //    return new HttpResponseMessage
-        //    {
-        //        StatusCode = HttpStatusCode.OK
-        //    };
-        //}
-
         [HttpGet]
         [ActionName("GetSlides")]
         public IHttpActionResult GetSlides([FromBody]SlideConditionSearch conditionSearch)
@@ -58,8 +49,8 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
-
         [HttpPost]
+        [Route]
         [ActionName("AddSlide")]
         public IHttpActionResult AddSlide([FromBody] SlideDto slideDto)
         {

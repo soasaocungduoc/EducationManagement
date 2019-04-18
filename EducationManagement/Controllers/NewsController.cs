@@ -53,6 +53,7 @@ namespace EducationManagement.Controllers
 
         [Authorize]
         [HttpPost]
+        [Route]
         [ActionName("AddNews")]
         public IHttpActionResult AddNews([FromBody] NewsDto news)
         {
