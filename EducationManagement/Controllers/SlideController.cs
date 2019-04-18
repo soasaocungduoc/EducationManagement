@@ -88,5 +88,22 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        [ActionName("DeleteSlide")]
+        public IHttpActionResult DeleteSlide(int id)
+        {
+            try
+            {
+                return ResponseMessage(_slideService.DeleteSlide(id)
+                    ? Request.CreateResponse(HttpStatusCode.OK, "slide is deleted.")
+                    : Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid slide id."));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

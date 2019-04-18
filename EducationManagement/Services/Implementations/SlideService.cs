@@ -38,6 +38,25 @@ namespace EducationManagement.Services.Implementations
 
         }
 
+        public bool DeleteSlide(int id)
+        {
+            DbContextTransaction transaction = db.Database.BeginTransaction();
+            try
+            {
+                var slideFromDb = db.Slides.FirstOrDefault(n => !n.DelFlag && n.Id == id);
+                if (slideFromDb == null) return false;
+                slideFromDb.DelFlag = true;
+                db.SaveChanges();
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                throw e;
+            }
+        }
+
         public SlideResponseDto GetSlideById(int id)
         {
             try

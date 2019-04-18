@@ -10,6 +10,7 @@ namespace EducationManagement.Services.Abstractions
         SlideResponseDto GetSlideById(int id);
         SlideResponseDto AddSlide(SlideDto slide);
         SlideResponseDto UpdateSlide(int id, SlideDto slide);
+        bool DeleteSlide(int id);
 
     }
 }
