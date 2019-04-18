@@ -19,6 +19,7 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
+        [ActionName("GetNews")]
         public IHttpActionResult GetNews()
         {
             return Ok(_newsService.GetNews());
@@ -26,6 +27,7 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [Route("{newsId}")]
+        [ActionName("GetNewsById")]
         public IHttpActionResult GetNews(int newsId)
         {
             return Ok(_newsService.GetNews(newsId));
@@ -51,6 +53,7 @@ namespace EducationManagement.Controllers
 
         [Authorize]
         [HttpPost]
+        [ActionName("AddNews")]
         public IHttpActionResult AddNews([FromBody] NewsDto news)
         {
             var token = Request.GetAuthorizationHeader();

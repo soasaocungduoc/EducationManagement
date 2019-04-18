@@ -1,6 +1,9 @@
 ﻿using EducationManagement.Controllers.Bases;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace EducationManagement.Controllers
@@ -14,6 +17,15 @@ namespace EducationManagement.Controllers
         {
             _slideService = slideService;
         }
+
+        //[HttpOptions]
+        //public HttpResponseMessage Options()
+        //{
+        //    return new HttpResponseMessage
+        //    {
+        //        StatusCode = HttpStatusCode.OK
+        //    };
+        //}
 
         [HttpGet]
         [ActionName("GetSlides")]
@@ -39,6 +51,25 @@ namespace EducationManagement.Controllers
                 var result = _slideService.GetSlideById(id);
                 if (result == null)
                     return BadRequest("Cannot found");
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("AddSlide")]
+        public IHttpActionResult AddSlide([FromBody] SlideDto slideDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                var result = _slideService.AddSlide(slideDto);
+                if (result == null)
+                    return BadRequest("An error occurred when adding slide. Please try again.");
                 return Ok(result);
             }
             catch (System.Exception e)

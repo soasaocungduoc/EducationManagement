@@ -1,4 +1,5 @@
-﻿using EducationManagement.Dtos.OutputDtos;
+﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using System.Collections.Generic;
 
 namespace EducationManagement.Services.Abstractions
@@ -7,5 +8,6 @@ namespace EducationManagement.Services.Abstractions
     {
         ListOfSlideResponseDto GetSlides(SlideConditionSearch conditionSearch);
         SlideResponseDto GetSlideById(int id);
+        SlideResponseDto AddSlide(SlideDto slide);
     }
 }
