@@ -89,5 +89,28 @@ namespace EducationManagement.Services.Implementations
                 throw e;
             }
         }
+
+        public SlideResponseDto UpdateSlide(int id, SlideDto slide)
+        {
+            
+            DbContextTransaction transaction = db.Database.BeginTransaction();
+            try
+            {
+                var slideFromDb = db.Slides.FirstOrDefault(n => !n.DelFlag && n.Id == id);
+                if (slide == null) return null;
+                slideFromDb.Title = slide.Title;
+                slideFromDb.Path = slide.Path;
+                slideFromDb.ImageUrl = slide.ImageUrl;
+                slideFromDb.IsShown = slide.IsShown;
+                db.SaveChanges();
+                transaction.Commit();
+                return new SlideResponseDto(slideFromDb);
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return null;
+            }
+        }
     }
 }

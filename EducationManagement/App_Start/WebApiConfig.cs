@@ -74,6 +74,11 @@ namespace EducationManagement
                 defaults: new { controller = "Slide", action = "AddSlide", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "UpdateSlideApi",
+                routeTemplate: "api/slide",
+                defaults: new { controller = "Slide", action = "UpdateSlide", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+            );
         }
     }
 }

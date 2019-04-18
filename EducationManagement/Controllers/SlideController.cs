@@ -68,5 +68,25 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpPut]
+        [Route("{id}")]
+        [ActionName("UpdateSlide")]
+        public IHttpActionResult UpdateSlide(int id, [FromBody] SlideDto slideDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                var result = _slideService.UpdateSlide(id,slideDto);
+                if (result == null)
+                    return BadRequest("An error occurred when updating slide. Please try again.");
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
