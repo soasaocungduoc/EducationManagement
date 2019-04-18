@@ -9,5 +9,7 @@ namespace EducationManagement.Services.Abstractions
         ListOfSlideResponseDto GetSlides(SlideConditionSearch conditionSearch);
         SlideResponseDto GetSlideById(int id);
         SlideResponseDto AddSlide(SlideDto slide);
+        SlideResponseDto UpdateSlide(int id, SlideDto slide);
+
     }
 }
