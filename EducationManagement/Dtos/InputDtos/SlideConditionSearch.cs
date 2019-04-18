@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EducationManagement.Dtos.OutputDtos
+namespace EducationManagement.Dtos.InputDtos
 {
     public class SlideConditionSearch
     {
-        [JsonProperty("key_search")]
+        [JsonProperty("key_search_for_title")]
         public string KeySearch { set; get; }
         [JsonProperty("current_page")]
         public int CurrentPage { set; get; }

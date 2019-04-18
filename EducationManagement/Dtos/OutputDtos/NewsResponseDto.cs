@@ -23,6 +23,11 @@ namespace EducationManagement.Dtos.OutputDtos
         [JsonProperty("created_at")]
         public DateTime? CreatedAt { get; set; }
 
+        public NewsResponseDto()
+        {
+
+        }
+
         public NewsResponseDto(EM.Database.Schema.News news)
         {
             if (news == null) return;

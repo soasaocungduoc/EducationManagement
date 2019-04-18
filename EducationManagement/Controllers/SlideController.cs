@@ -1,6 +1,5 @@
 ﻿using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
-using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using System.Net;
 using System.Net.Http;
@@ -19,6 +18,7 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
+        [Route]
         [ActionName("GetSlides")]
         public IHttpActionResult GetSlides([FromBody]SlideConditionSearch conditionSearch)
         {
