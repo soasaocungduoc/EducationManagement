@@ -29,6 +29,25 @@ namespace EducationManagement
                 defaults: new { controller = "SchoolInformation", action = "GetSchoolInformation", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            //<-- News controller -->
+            config.Routes.MapHttpRoute(
+                name: "GetNewsApi",
+                routeTemplate: "api/news",
+                defaults: new { controller = "News", action = "GetNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GetNewsByIdApi",
+                routeTemplate: "api/news",
+                defaults: new { controller = "News", action = "GetNewsById", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AddNewsApi",
+                routeTemplate: "api/news",
+                defaults: new { controller = "News", action = "AddNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
             //<-- Teacher controller -->
             config.Routes.MapHttpRoute(
                 name: "GetTeachersApi",
@@ -40,13 +59,19 @@ namespace EducationManagement
             config.Routes.MapHttpRoute(
                 name: "GetSlidesApi",
                 routeTemplate: "api/slide",
-                defaults: new { controller = "SLide", action = "GetSlides", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "Slide", action = "GetSlides", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
                 name: "GetSlideByIdApi",
                 routeTemplate: "api/slide",
-                defaults: new { controller = "SLide", action = "GetSlideById", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AddSlideApi",
+                routeTemplate: "api/slide",
+                defaults: new { controller = "Slide", action = "AddSlide", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
         }

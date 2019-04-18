@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
@@ -10,6 +12,31 @@ namespace EducationManagement.Services.Implementations
     public class SlideService : ISlideService
     {
         private readonly DataContext db = new DataContext();
+
+        public SlideResponseDto AddSlide(SlideDto slide)
+        {
+            DbContextTransaction transaction = db.Database.BeginTransaction();
+            try
+            {
+                var newslide = db.Slides.Add(new EM.Database.Schema.Slide
+                {
+                    Title = slide.Title,
+                    ImageUrl = slide.ImageUrl,
+                    Path = slide.Path,
+                    IsShown = slide.IsShown == null ? true : slide.IsShown
+                });
+               
+                db.SaveChanges();
+                transaction.Commit();
+                return new SlideResponseDto(newslide);
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return null;
+            }
+
+        }
 
         public SlideResponseDto GetSlideById(int id)
         {
@@ -47,7 +74,13 @@ namespace EducationManagement.Services.Implementations
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     .OrderBy(x => x.Id)
                     .Skip((listOfSlide.Paging.CurrentPage - 1) * listOfSlide.Paging.NumberOfRecord)
-                    .Take(listOfSlide.Paging.NumberOfRecord).Select(x => new SlideResponseDto(x)).ToList();
+                    .Take(listOfSlide.Paging.NumberOfRecord).Select(x => new SlideResponseDto{
+                        Id = x.Id,
+                        Title = x.Title,
+                        ImageUrl = x.ImageUrl,
+                        Path = x.Path,
+                        IsShown = x.IsShown
+                    }).ToList();
                 listOfSlide.Condition = conditionSearch;
                 return listOfSlide;
             }
