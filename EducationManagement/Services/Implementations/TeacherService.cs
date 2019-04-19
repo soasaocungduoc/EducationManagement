@@ -15,7 +15,7 @@ namespace EducationManagement.Services.Implementations
     {
         private readonly DataContext db = new DataContext();
 
-        public ListOfTeacherResponseDto GetListOfTeachers(TeacherConditionSearch conditionSearch)
+        public List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch)
         {
             try
             {
@@ -25,35 +25,29 @@ namespace EducationManagement.Services.Implementations
                     conditionSearch = new TeacherConditionSearch();
                 }
 
-                ListOfTeacherResponseDto listOfTeacher = new ListOfTeacherResponseDto();
                 // Lấy các thông tin dùng để phân trang
-                listOfTeacher.Paging = new Commons.Paging(db.Teachers.Count(x => !x.DelFlag &&
+                var paging = new Commons.Paging(db.Teachers.Count(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && ((x.User.FirstName.Contains(conditionSearch.KeySearch)) || 
                     (x.User.LastName.Contains(conditionSearch.KeySearch))))))
                     , conditionSearch.CurrentPage, conditionSearch.PageSize);
 
                 // Tìm kiếm và lấy dữ liệu theo trang
-                var listTeacher = db.Teachers.Include(u => u.User).Include(y=>y.Team).Where(x => !x.DelFlag &&
+                var listTeacherFromDb = db.Teachers.Include(u => u.User).Include(y=>y.Team).Where(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && ((x.User.FirstName.Contains(conditionSearch.KeySearch)) ||
                     (x.User.LastName.Contains(conditionSearch.KeySearch))))))
                     .OrderBy(x => x.Id)
-                    .Skip((listOfTeacher.Paging.CurrentPage - 1) * listOfTeacher.Paging.NumberOfRecord)
-                    .Take(listOfTeacher.Paging.NumberOfRecord).ToList();
-                if (listTeacher == null)
-                    listOfTeacher.ListOfTeacher = null;
-                else
+                    .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
+                    .Take(paging.NumberOfRecord).ToList();
+                if (listTeacherFromDb == null)
+                    return null;
+                var listOfTeacher = listTeacherFromDb.Select(t => new TeacherResponseDto
                 {
-                    listOfTeacher.ListOfTeacher = listTeacher.Select(t => new TeacherResponseDto
-                    {
-                        Id = t.Id,
-                        TeamName = t.Team.Name,
-                        UserInfo = new UserResponseDto(t.User)
-                    }).ToList();
-                }
-                    
-                listOfTeacher.Condition = conditionSearch;
+                    Id = t.Id,
+                    TeamName = t.Team.Name,
+                    UserInfo = new UserResponseDto(t.User)
+                }).ToList();
                 return listOfTeacher;
             }
             catch (Exception e)
