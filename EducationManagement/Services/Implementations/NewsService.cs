@@ -12,7 +12,7 @@ namespace EducationManagement.Services.Implementations
     public class NewsService : INewsService
     {
         private readonly DataContext db = new DataContext();
-        public ListOfNewsResponseDto GetNews(NewsConditionSearch conditionSearch)
+        public List<NewsResponseDto> GetNews(NewsConditionSearch conditionSearch)
         {
             try
             {
@@ -22,20 +22,19 @@ namespace EducationManagement.Services.Implementations
                     conditionSearch = new NewsConditionSearch();
                 }
 
-                ListOfNewsResponseDto listOfNews = new ListOfNewsResponseDto();
                 // Lấy các thông tin dùng để phân trang
-                listOfNews.Paging = new Commons.Paging(db.News.Count(x => !x.DelFlag &&
+                var paging = new Commons.Paging(db.News.Count(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     , conditionSearch.CurrentPage, conditionSearch.PageSize);
 
                 // Tìm kiếm và lấy dữ liệu theo trang
-                listOfNews.ListOfNews = db.News.Where(x => !x.DelFlag &&
+                var listOfNews = db.News.Where(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     .OrderBy(x => x.Id)
-                    .Skip((listOfNews.Paging.CurrentPage - 1) * listOfNews.Paging.NumberOfRecord)
-                    .Take(listOfNews.Paging.NumberOfRecord).Select(x => new NewsResponseDto
+                    .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
+                    .Take(paging.NumberOfRecord).Select(x => new NewsResponseDto
                     {
                         Id = x.Id,
                         Title = x.Title,
@@ -44,8 +43,7 @@ namespace EducationManagement.Services.Implementations
                         Content = x.Content,
                         CreatedAt = x.CreatedAt
                     }).ToList();
-                listOfNews.Condition = conditionSearch;
-                return listOfNews;
+                return listOfNews == null ? null : listOfNews;
             }
             catch (Exception e)
             {
