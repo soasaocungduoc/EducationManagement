@@ -23,7 +23,7 @@ namespace EducationManagement.Services.Implementations
                     Title = slide.Title,
                     ImageUrl = slide.ImageUrl,
                     Path = slide.Path,
-                    IsShown = slide.IsShown == null ? true : slide.IsShown
+                    IsShown = slide.IsShown
                 });
                
                 db.SaveChanges();
