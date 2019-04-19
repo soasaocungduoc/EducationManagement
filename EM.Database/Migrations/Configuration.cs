@@ -16,57 +16,98 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            for (int i = 1; i < 7; i++)
-            {
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 1,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 2,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 3,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 4,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 5,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 6,
-                    IsEnable = false,
-                });
-            }
-            
 
 
-            //context.Functions.Add(new Function
+            //for (int i = 1; i < 7; i++)
             //{
-            //    ScreenId = 4,
-            //    Name = "Get list of slides",
-            //    Description = "Lay danh sach slide",
-            //    Area = "Home",
-            //    ControllerName = "SlideController",
-            //    ActionName = "GetSlides",
-            //});
+            //    context.Permissions.Add(new Permission
+            //    {
+            //        GroupId = i,
+            //        FunctionId = 1,
+            //        IsEnable = false,
+            //    });
+            //    context.Permissions.Add(new Permission
+            //    {
+            //        GroupId = i,
+            //        FunctionId = 2,
+            //        IsEnable = false,
+            //    });
+            //    context.Permissions.Add(new Permission
+            //    {
+            //        GroupId = i,
+            //        FunctionId = 3,
+            //        IsEnable = false,
+            //    });
+            //    context.Permissions.Add(new Permission
+            //    {
+            //        GroupId = i,
+            //        FunctionId = 4,
+            //        IsEnable = false,
+            //    });
+            //    context.Permissions.Add(new Permission
+            //    {
+            //        GroupId = i,
+            //        FunctionId = 5,
+            //        IsEnable = false,
+            //    });
+            //    context.Permissions.Add(new Permission
+            //    {
+            //        GroupId = i,
+            //        FunctionId = 6,
+            //        IsEnable = false,
+            //    });
+            //}
+
+
+
+            context.Functions.Add(new Function
+            {
+                ScreenId = 2,
+                Name = "Get news by id",
+                Description = "Lay mot tin tuc",
+                Area = "Home",
+                ControllerName = "News",
+                ActionName = "GetNewsById",
+            });
+
+            context.Functions.Add(new Function
+            {
+                ScreenId = 5,
+                Name = "Get slide by id",
+                Description = "Lay mot slide",
+                Area = "Home",
+                ControllerName = "Slide",
+                ActionName = "GetSlideById",
+            });
+
+            context.Functions.Add(new Function
+            {
+                ScreenId = 5,
+                Name = "Add slide",
+                Description = "Them slide",
+                Area = "Admin",
+                ControllerName = "Slide",
+                ActionName = "AddSlide",
+            });
+            context.Functions.Add(new Function
+            {
+                ScreenId = 5,
+                Name = "UpdateSlide",
+                Description = "Chinh sua slide",
+                Area = "Admin",
+                ControllerName = "Slide",
+                ActionName = "UpdateSlide",
+            });
+
+            context.Functions.Add(new Function
+            {
+                ScreenId = 4,
+                Name = "DeleteSlide",
+                Description = "Xoa slide",
+                Area = "Admin",
+                ControllerName = "Slide",
+                ActionName = "DeleteSlide",
+            });
 
             //context.Users.Add(new User
             //{
