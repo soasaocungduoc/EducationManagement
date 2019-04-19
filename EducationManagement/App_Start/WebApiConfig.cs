@@ -31,6 +31,12 @@ namespace EducationManagement
                 defaults: new { controller = "Teacher", action = "GetTeachers", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "AddStudentsApi",
+                routeTemplate: "api/student",
+                defaults: new { controller = "Student", action = "AddStudents", httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
         }
     }
 }
