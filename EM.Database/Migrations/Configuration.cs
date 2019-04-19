@@ -18,24 +18,18 @@ namespace EM.Database.Migrations
             base.Seed(context);
 
 
-            for (int i = 7; i < 12; i++)
+            for (int i = 4; i < 7; i++)
             {
                 context.Permissions.Add(new Permission
                 {
-                    GroupId = 1,
-                    FunctionId = i,
+                    GroupId = i,
+                    FunctionId = 7,
                     IsEnable = true,
                 });
                 context.Permissions.Add(new Permission
                 {
-                    GroupId = 2,
-                    FunctionId = i,
-                    IsEnable = true,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = 3,
-                    FunctionId = i,
+                    GroupId = i,
+                    FunctionId = 8,
                     IsEnable = true,
                 });
             }
