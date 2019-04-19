@@ -32,7 +32,7 @@ namespace EducationManagement.Controllers
         }
 
         [Route("{userId}")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult UpdateUserById(int userId, [FromBody] UserDto user)
         {
             var token = Request.GetAuthorizationHeader();

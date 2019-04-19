@@ -5,10 +5,11 @@ using EducationManagement.Services.Abstractions;
 using System.Web.Http;
 using EducationManagement.Commons;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Fillters;
 
 namespace EducationManagement.Controllers
 {
-    [RoutePrefix("api/news")]
+    [AdminAuthorization]
     public class NewsController : BaseApiController
     {
         private readonly INewsService _newsService;
@@ -19,9 +20,8 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        [Route]
         [ActionName("GetNews")]
-        public IHttpActionResult GetNews(NewsConditionSearch conditionSearch)
+        public IHttpActionResult GetNews([FromBody]NewsConditionSearch conditionSearch)
         {
             try
             {
@@ -34,16 +34,15 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        [Route("{newsId}")]
         [ActionName("GetNewsById")]
-        public IHttpActionResult GetNews(int newsId)
+        public IHttpActionResult GetNewsById(int newsId)
         {
             return Ok(_newsService.GetNews(newsId));
         }
 
         [Authorize]
         [HttpDelete]
-        [Route("{newsId}")]
+        [ActionName("DeleteNews")]
         public IHttpActionResult DeleteNews(int newsId)
         {
             var token = Request.GetAuthorizationHeader();
@@ -61,7 +60,6 @@ namespace EducationManagement.Controllers
 
         [Authorize]
         [HttpPost]
-        [Route]
         [ActionName("AddNews")]
         public IHttpActionResult AddNews([FromBody] NewsDto news)
         {
@@ -79,8 +77,8 @@ namespace EducationManagement.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        [Route("{newsId}")]
+        [HttpPut]
+        [ActionName("UpdateNews")]
         public IHttpActionResult UpdateNews(int newsId, [FromBody] NewsDto news)
         {
             var token = Request.GetAuthorizationHeader();

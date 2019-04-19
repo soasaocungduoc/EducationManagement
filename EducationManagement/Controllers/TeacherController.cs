@@ -1,4 +1,5 @@
 ﻿using EducationManagement.Controllers.Bases;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System;
@@ -11,7 +12,6 @@ using System.Web.Http;
 namespace EducationManagement.Controllers
 {
     [AdminAuthorization]
-    [RoutePrefix("api/teacher")]
     public class TeacherController : BaseApiController
     {
         private readonly ITeacherService _teacherService;
@@ -22,9 +22,16 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetTeachers")]
-        public IHttpActionResult GetTeachers()
+        public IHttpActionResult GetTeachers([FromBody]TeacherConditionSearch conditionSearch)
         {
-            return Ok(_teacherService.GetListOfTeachers());
+            try
+            {
+                return Ok(_teacherService.GetListOfTeachers(conditionSearch));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
     }
 }

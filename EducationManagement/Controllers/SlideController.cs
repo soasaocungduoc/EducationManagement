@@ -1,5 +1,6 @@
 ﻿using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +8,7 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    [RoutePrefix("api/slide")]
+    [AdminAuthorization]
     public class SlideController : BaseApiController
     {
         private readonly ISlideService _slideService;
@@ -18,7 +19,6 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        [Route]
         [ActionName("GetSlides")]
         public IHttpActionResult GetSlides([FromBody]SlideConditionSearch conditionSearch)
         {
@@ -33,7 +33,6 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        [Route("{Id}")]
         [ActionName("GetSlideById")]
         public IHttpActionResult GetSlideById(int id)
         {
@@ -50,7 +49,6 @@ namespace EducationManagement.Controllers
             }
         }
         [HttpPost]
-        [Route]
         [ActionName("AddSlide")]
         public IHttpActionResult AddSlide([FromBody] SlideDto slideDto)
         {
@@ -70,7 +68,6 @@ namespace EducationManagement.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
         [ActionName("UpdateSlide")]
         public IHttpActionResult UpdateSlide(int id, [FromBody] SlideDto slideDto)
         {
@@ -90,7 +87,6 @@ namespace EducationManagement.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
         [ActionName("DeleteSlide")]
         public IHttpActionResult DeleteSlide(int id)
         {
