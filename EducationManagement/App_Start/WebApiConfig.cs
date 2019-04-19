@@ -80,7 +80,7 @@ namespace EducationManagement
             config.Routes.MapHttpRoute(
                 "GetSlideApi",
                 "api/slide",
-                new { controller = "Slide", action = "GetSlide" },
+                new { controller = "Slide", action = "GetSlides" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
