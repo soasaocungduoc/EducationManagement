@@ -9,7 +9,6 @@ using EducationManagement.Fillters;
 
 namespace EducationManagement.Controllers
 {
-    [AdminAuthorization]
     public class NewsController : BaseApiController
     {
         private readonly INewsService _newsService;
@@ -40,7 +39,7 @@ namespace EducationManagement.Controllers
             return Ok(_newsService.GetNews(newsId));
         }
 
-        [Authorize]
+        [AdminAuthorization]
         [HttpDelete]
         [ActionName("DeleteNews")]
         public IHttpActionResult DeleteNews(int newsId)
@@ -58,7 +57,7 @@ namespace EducationManagement.Controllers
                 "Only admin or mod can delete a news."));
         }
 
-        [Authorize]
+        [AdminAuthorization]
         [HttpPost]
         [ActionName("AddNews")]
         public IHttpActionResult AddNews([FromBody] NewsDto news)
@@ -76,7 +75,7 @@ namespace EducationManagement.Controllers
             return BadRequest("An error occurred when adding news. Please try again.");
         }
 
-        [Authorize]
+        [AdminAuthorization]
         [HttpPut]
         [ActionName("UpdateNews")]
         public IHttpActionResult UpdateNews(int newsId, [FromBody] NewsDto news)
