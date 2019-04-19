@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201904190426502_AddFunctionDatabase.Designer.cs">
       <DependentUpon>201904190426502_AddFunctionDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904190431531_AddPermissionDatabasev1.cs" />
+    <Compile Include="Migrations\201904190431531_AddPermissionDatabasev1.Designer.cs">
+      <DependentUpon>201904190431531_AddPermissionDatabasev1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -202,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904190426502_AddFunctionDatabase.resx">
       <DependentUpon>201904190426502_AddFunctionDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190431531_AddPermissionDatabasev1.resx">
+      <DependentUpon>201904190431531_AddPermissionDatabasev1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

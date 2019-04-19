@@ -18,96 +18,38 @@ namespace EM.Database.Migrations
             base.Seed(context);
 
 
-            //for (int i = 1; i < 7; i++)
+            for (int i = 7; i < 12; i++)
+            {
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = 1,
+                    FunctionId = i,
+                    IsEnable = true,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = 2,
+                    FunctionId = i,
+                    IsEnable = true,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = 3,
+                    FunctionId = i,
+                    IsEnable = true,
+                });
+            }
+
+
+            //context.Functions.Add(new Function
             //{
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 1,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 2,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 3,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 4,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 5,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 6,
-            //        IsEnable = false,
-            //    });
-            //}
-
-
-
-            context.Functions.Add(new Function
-            {
-                ScreenId = 2,
-                Name = "Get news by id",
-                Description = "Lay mot tin tuc",
-                Area = "Home",
-                ControllerName = "News",
-                ActionName = "GetNewsById",
-            });
-
-            context.Functions.Add(new Function
-            {
-                ScreenId = 5,
-                Name = "Get slide by id",
-                Description = "Lay mot slide",
-                Area = "Home",
-                ControllerName = "Slide",
-                ActionName = "GetSlideById",
-            });
-
-            context.Functions.Add(new Function
-            {
-                ScreenId = 5,
-                Name = "Add slide",
-                Description = "Them slide",
-                Area = "Admin",
-                ControllerName = "Slide",
-                ActionName = "AddSlide",
-            });
-            context.Functions.Add(new Function
-            {
-                ScreenId = 5,
-                Name = "UpdateSlide",
-                Description = "Chinh sua slide",
-                Area = "Admin",
-                ControllerName = "Slide",
-                ActionName = "UpdateSlide",
-            });
-
-            context.Functions.Add(new Function
-            {
-                ScreenId = 4,
-                Name = "DeleteSlide",
-                Description = "Xoa slide",
-                Area = "Admin",
-                ControllerName = "Slide",
-                ActionName = "DeleteSlide",
-            });
+            //    ScreenId = 4,
+            //    Name = "DeleteSlide",
+            //    Description = "Xoa slide",
+            //    Area = "Admin",
+            //    ControllerName = "Slide",
+            //    ActionName = "DeleteSlide",
+            //});
 
             //context.Users.Add(new User
             //{
