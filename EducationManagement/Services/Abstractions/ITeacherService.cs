@@ -11,6 +11,6 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface ITeacherService
     {
-        ListOfTeacherResponseDto GetListOfTeachers(TeacherConditionSearch conditionSearch);
+        List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch);
     }
 }
