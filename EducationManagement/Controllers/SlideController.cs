@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    [AdminAuthorization]
+    
     public class SlideController : BaseApiController
     {
         private readonly ISlideService _slideService;
@@ -48,6 +48,8 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [AdminAuthorization]
         [HttpPost]
         [ActionName("AddSlide")]
         public IHttpActionResult AddSlide([FromBody] SlideDto slideDto)
@@ -67,6 +69,7 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [AdminAuthorization]
         [HttpPut]
         [ActionName("UpdateSlide")]
         public IHttpActionResult UpdateSlide(int id, [FromBody] SlideDto slideDto)
@@ -86,6 +89,7 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [AdminAuthorization]
         [HttpDelete]
         [ActionName("DeleteSlide")]
         public IHttpActionResult DeleteSlide(int id)
