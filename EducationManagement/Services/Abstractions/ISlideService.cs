@@ -6,7 +6,7 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface ISlideService
     {
-        ListOfSlideResponseDto GetSlides(SlideConditionSearch conditionSearch);
+        List<SlideResponseDto> GetSlides(SlideConditionSearch conditionSearch);
         SlideResponseDto GetSlideById(int id);
         SlideResponseDto AddSlide(SlideDto slide);
         SlideResponseDto UpdateSlide(int id, SlideDto slide);

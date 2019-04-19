@@ -203,8 +203,6 @@
     <Compile Include="Dtos\InputDtos\TeacherConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
-    <Compile Include="Dtos\OutputDtos\ListOfNewsResponseDto.cs" />
-    <Compile Include="Dtos\OutputDtos\ListOfSlideResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ListOfTeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />

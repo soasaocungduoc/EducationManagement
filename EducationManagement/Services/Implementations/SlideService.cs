@@ -70,7 +70,7 @@ namespace EducationManagement.Services.Implementations
             }
         }
 
-        public ListOfSlideResponseDto GetSlides(SlideConditionSearch conditionSearch)
+        public List<SlideResponseDto> GetSlides(SlideConditionSearch conditionSearch)
         {
             try
             {
@@ -80,28 +80,26 @@ namespace EducationManagement.Services.Implementations
                     conditionSearch = new SlideConditionSearch();
                 }
 
-                ListOfSlideResponseDto listOfSlide = new ListOfSlideResponseDto();
                 // Lấy các thông tin dùng để phân trang
-                listOfSlide.Paging = new Commons.Paging(db.Slides.Count(x => !x.DelFlag &&
+                var paging = new Commons.Paging(db.Slides.Count(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     , conditionSearch.CurrentPage, conditionSearch.PageSize);
 
                 // Tìm kiếm và lấy dữ liệu theo trang
-                listOfSlide.ListOfSlide = db.Slides.Where(x => !x.DelFlag &&
+                var listOfSlide = db.Slides.Where(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     .OrderBy(x => x.Id)
-                    .Skip((listOfSlide.Paging.CurrentPage - 1) * listOfSlide.Paging.NumberOfRecord)
-                    .Take(listOfSlide.Paging.NumberOfRecord).Select(x => new SlideResponseDto{
+                    .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
+                    .Take(paging.NumberOfRecord).Select(x => new SlideResponseDto{
                         Id = x.Id,
                         Title = x.Title,
                         ImageUrl = x.ImageUrl,
                         Path = x.Path,
                         IsShown = x.IsShown
                     }).ToList();
-                listOfSlide.Condition = conditionSearch;
-                return listOfSlide;
+                return listOfSlide == null ? null:listOfSlide;
             }
             catch (Exception e)
             {
