@@ -11,7 +11,7 @@ namespace EducationManagement.Services.Implementations
     public class SemesterService : ISemesterService
     {
         private readonly DataContext db = new DataContext();
-        public List<SemesterResponseDto> GetSemesters(int id)
+        public List<SemesterResponseDto> GetSemestersByYearId(int id)
         {
             try
             {
