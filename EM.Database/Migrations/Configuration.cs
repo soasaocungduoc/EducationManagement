@@ -17,17 +17,18 @@ namespace EM.Database.Migrations
         {
             base.Seed(context);
 
-            context.Subjects.Add(new Subject
-            {
-                Name = "Sinh hoạt"
-            });
-            //context.ScheduleSubjects.Add(new ScheduleSubject
+            //context.Subjects.Add(new Subject
             //{
-            //    ClassId = 3,
-            //    SubjectId = 20,
-            //    TeacherId = 12,
-            //    DayLessonId = 54
+            //    Name = "Sinh hoạt",
+            //    TeamId = 26
             //});
+            context.ScheduleSubjects.Add(new ScheduleSubject
+            {
+                ClassId = 3,
+                SubjectId = 32,
+                TeacherId = 1,
+                DayLessonId = 55
+            });
 
             //context.Functions.Add(new Function
             //{

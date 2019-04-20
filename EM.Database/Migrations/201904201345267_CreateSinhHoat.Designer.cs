@@ -13,7 +13,7 @@ namespace EM.Database.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201904201343097_CreateSinhHoat"; }
+            get { return "201904201345267_CreateSinhHoat"; }
         }
         
         string IMigrationMetadata.Source

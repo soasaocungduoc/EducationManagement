@@ -183,9 +183,13 @@
     <Compile Include="Migrations\201904201339404_CreateScheduleSubjects.Designer.cs">
       <DependentUpon>201904201339404_CreateScheduleSubjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904201343097_CreateSinhHoat.cs" />
-    <Compile Include="Migrations\201904201343097_CreateSinhHoat.Designer.cs">
-      <DependentUpon>201904201343097_CreateSinhHoat.cs</DependentUpon>
+    <Compile Include="Migrations\201904201345267_CreateSinhHoat.cs" />
+    <Compile Include="Migrations\201904201345267_CreateSinhHoat.Designer.cs">
+      <DependentUpon>201904201345267_CreateSinhHoat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201347151_CreateScheduleSubjectsv2.cs" />
+    <Compile Include="Migrations\201904201347151_CreateScheduleSubjectsv2.Designer.cs">
+      <DependentUpon>201904201347151_CreateScheduleSubjectsv2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
@@ -291,8 +295,11 @@
     <EmbeddedResource Include="Migrations\201904201339404_CreateScheduleSubjects.resx">
       <DependentUpon>201904201339404_CreateScheduleSubjects.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904201343097_CreateSinhHoat.resx">
-      <DependentUpon>201904201343097_CreateSinhHoat.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904201345267_CreateSinhHoat.resx">
+      <DependentUpon>201904201345267_CreateSinhHoat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201347151_CreateScheduleSubjectsv2.resx">
+      <DependentUpon>201904201347151_CreateScheduleSubjectsv2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
