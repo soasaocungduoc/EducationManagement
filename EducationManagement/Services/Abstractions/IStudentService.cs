@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EducationManagement.Dtos.OutputDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace EducationManagement.Services.Abstractions
 {
-    interface IStudentService
+    public interface IStudentService
     {
+        List<StudentResponseDto> GetStudentsByParentId(int parentId);
     }
 }

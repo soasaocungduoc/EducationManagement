@@ -24,6 +24,7 @@ namespace EducationManagement
             container.RegisterType<ITeacherService, TeacherService>();
             container.RegisterType<ISchoolYearService, SchoolYearService>();
             container.RegisterType<ISemesterService, SemesterService>();
+            container.RegisterType<IStudentService, StudentService>();
 
 
 

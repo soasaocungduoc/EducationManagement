@@ -195,6 +195,7 @@
     <Compile Include="Controllers\SchoolYearController.cs" />
     <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Controllers\SlideController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Dtos\OutputDtos\SchoolYearResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SemesterResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\StudentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Services\Abstractions\ISchoolYearService.cs" />
     <Compile Include="Services\Abstractions\ISemesterService.cs" />
     <Compile Include="Services\Abstractions\ISlideService.cs" />
+    <Compile Include="Services\Abstractions\IStudentService.cs" />
     <Compile Include="Services\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\Abstractions\IUserService.cs" />
     <Compile Include="Services\Implementations\AuthenticationService.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="Services\Implementations\SchoolYearService.cs" />
     <Compile Include="Services\Implementations\SemesterService.cs" />
     <Compile Include="Services\Implementations\SlideService.cs" />
+    <Compile Include="Services\Implementations\StudentService.cs" />
     <Compile Include="Services\Implementations\TeacherService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
   </ItemGroup>
