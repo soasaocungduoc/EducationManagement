@@ -119,6 +119,14 @@ namespace EducationManagement
                 new { controller = "SchoolYear", action = "GetSchoolYears" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- Semester controller -->
+            config.Routes.MapHttpRoute(
+                "GetSemestersApi",
+                "api/semester/{id}",
+                new { controller = "Semester", action = "GetSemesters", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
