@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201904201339404_CreateScheduleSubjects.Designer.cs">
       <DependentUpon>201904201339404_CreateScheduleSubjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904201343097_CreateSinhHoat.cs" />
+    <Compile Include="Migrations\201904201343097_CreateSinhHoat.Designer.cs">
+      <DependentUpon>201904201343097_CreateSinhHoat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -286,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904201339404_CreateScheduleSubjects.resx">
       <DependentUpon>201904201339404_CreateScheduleSubjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201343097_CreateSinhHoat.resx">
+      <DependentUpon>201904201343097_CreateSinhHoat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
