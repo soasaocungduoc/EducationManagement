@@ -50,5 +50,22 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetTeachingSchedulesByTeacherId")]
+        public IHttpActionResult GetTeachingSchedulesByTeacherId(int id)
+        {
+            try
+            {
+                if (_scheduleSubjectService.GetTeachingScheduleByTeacherId(id) == null)
+                    return BadRequest("Cannot found");
+                return Ok(_scheduleSubjectService.GetTeachingScheduleByTeacherId(id));
+
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
