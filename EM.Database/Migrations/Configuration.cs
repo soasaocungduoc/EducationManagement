@@ -18,75 +18,37 @@ namespace EM.Database.Migrations
             base.Seed(context);
 
 
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ I",
-                StartTime = Convert.ToDateTime("20/08/2014"),
-                EndTime = Convert.ToDateTime("31/12/2014"),
-                ScholasticId = 1
+                Name = "Toán - Tin"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ II",
-                StartTime = Convert.ToDateTime("01/01/2015"),
-                EndTime = Convert.ToDateTime("31/05/2015"),
-                ScholasticId = 1
+                Name = "Vật lý - Công nghệ"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ I",
-                StartTime = Convert.ToDateTime("20/08/2015"),
-                EndTime = Convert.ToDateTime("31/12/2015"),
-                ScholasticId = 2
+                Name = "Hóa - Sinh"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ II",
-                StartTime = Convert.ToDateTime("01/01/2016"),
-                EndTime = Convert.ToDateTime("31/05/2016"),
-                ScholasticId = 2
+                Name = "Ngữ văn"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ I",
-                StartTime = Convert.ToDateTime("20/08/2016"),
-                EndTime = Convert.ToDateTime("31/12/2016"),
-                ScholasticId = 3
+                Name = "Sử - Địa - GDCD"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ II",
-                StartTime = Convert.ToDateTime("01/01/2017"),
-                EndTime = Convert.ToDateTime("31/05/2017"),
-                ScholasticId = 3
+                Name = "Ngoại ngữ"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ I",
-                StartTime = Convert.ToDateTime("20/08/2017"),
-                EndTime = Convert.ToDateTime("31/12/2017"),
-                ScholasticId = 4
+                Name = "TD- GDQP"
             });
-            context.Semesters.Add(new Semester
+            context.Teams.Add(new Team
             {
-                Name = "Học kỳ II",
-                StartTime = Convert.ToDateTime("01/01/2018"),
-                EndTime = Convert.ToDateTime("31/05/2018"),
-                ScholasticId = 4
-            });
-            context.Semesters.Add(new Semester
-            {
-                Name = "Học kỳ I",
-                StartTime = Convert.ToDateTime("20/08/2018"),
-                EndTime = Convert.ToDateTime("31/12/2018"),
-                ScholasticId = 5
-            });
-            context.Semesters.Add(new Semester
-            {
-                Name = "Học kỳ II",
-                StartTime = Convert.ToDateTime("01/01/2019"),
-                EndTime = Convert.ToDateTime("31/05/2019"),
-                ScholasticId = 5
+                Name = "Văn phòng"
             });
 
 
