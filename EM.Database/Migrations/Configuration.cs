@@ -1,4 +1,4 @@
-using EM.Database.Schema;
+﻿using EM.Database.Schema;
 using System;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
@@ -18,14 +18,76 @@ namespace EM.Database.Migrations
             base.Seed(context);
 
 
-            for (int i = 2014; i < 2019; i++)
+            context.Semesters.Add(new Semester
             {
-                context.SchoolYears.Add(new SchoolYear
-                {
-                    StartYear = i,
-                    EndYear = i + 1
-                });
-            }
+                Name = "Học kỳ I",
+                StartTime = Convert.ToDateTime("20/08/2014"),
+                EndTime = Convert.ToDateTime("31/12/2014"),
+                ScholasticId = 1
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ II",
+                StartTime = Convert.ToDateTime("01/01/2015"),
+                EndTime = Convert.ToDateTime("31/05/2015"),
+                ScholasticId = 1
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ I",
+                StartTime = Convert.ToDateTime("20/08/2015"),
+                EndTime = Convert.ToDateTime("31/12/2015"),
+                ScholasticId = 2
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ II",
+                StartTime = Convert.ToDateTime("01/01/2016"),
+                EndTime = Convert.ToDateTime("31/05/2016"),
+                ScholasticId = 2
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ I",
+                StartTime = Convert.ToDateTime("20/08/2016"),
+                EndTime = Convert.ToDateTime("31/12/2016"),
+                ScholasticId = 3
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ II",
+                StartTime = Convert.ToDateTime("01/01/2017"),
+                EndTime = Convert.ToDateTime("31/05/2017"),
+                ScholasticId = 3
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ I",
+                StartTime = Convert.ToDateTime("20/08/2017"),
+                EndTime = Convert.ToDateTime("31/12/2017"),
+                ScholasticId = 4
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ II",
+                StartTime = Convert.ToDateTime("01/01/2018"),
+                EndTime = Convert.ToDateTime("31/05/2018"),
+                ScholasticId = 4
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ I",
+                StartTime = Convert.ToDateTime("20/08/2018"),
+                EndTime = Convert.ToDateTime("31/12/2018"),
+                ScholasticId = 5
+            });
+            context.Semesters.Add(new Semester
+            {
+                Name = "Học kỳ II",
+                StartTime = Convert.ToDateTime("01/01/2019"),
+                EndTime = Convert.ToDateTime("31/05/2019"),
+                ScholasticId = 5
+            });
 
 
             //context.Functions.Add(new Function

@@ -147,6 +147,10 @@
     <Compile Include="Migrations\201904200402481_CreateSchoolYearDatabase.Designer.cs">
       <DependentUpon>201904200402481_CreateSchoolYearDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904200417093_CreateSemesterDatabase.cs" />
+    <Compile Include="Migrations\201904200417093_CreateSemesterDatabase.Designer.cs">
+      <DependentUpon>201904200417093_CreateSemesterDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -223,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904200402481_CreateSchoolYearDatabase.resx">
       <DependentUpon>201904200402481_CreateSchoolYearDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200417093_CreateSemesterDatabase.resx">
+      <DependentUpon>201904200417093_CreateSemesterDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
