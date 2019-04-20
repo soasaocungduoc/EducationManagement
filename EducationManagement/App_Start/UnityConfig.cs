@@ -22,6 +22,8 @@ namespace EducationManagement
             container.RegisterType<ISchoolInformationService, SchoolInformationService>();
             container.RegisterType<ISlideService, SlideService>();
             container.RegisterType<ITeacherService, TeacherService>();
+            container.RegisterType<ISchoolYearService, SchoolYearService>();
+
 
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

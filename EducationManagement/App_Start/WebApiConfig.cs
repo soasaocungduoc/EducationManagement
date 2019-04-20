@@ -111,6 +111,14 @@ namespace EducationManagement
                 new { controller = "Slide", action = "DeleteSlide", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
             );
+
+            //<-- SchoolYear controller -->
+            config.Routes.MapHttpRoute(
+                "GetSchoolYearsApi",
+                "api/schoolyear",
+                new { controller = "SchoolYear", action = "GetSchoolYears" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
