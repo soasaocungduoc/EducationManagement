@@ -122,16 +122,16 @@ namespace EducationManagement
 
             //<-- Semester controller -->
             config.Routes.MapHttpRoute(
-                "GetSemestersApi",
-                "api/semester/{id}",
-                new { controller = "Semester", action = "GetSemesters", id = RouteParameter.Optional },
+                "GetSemestersByYearIdApi",
+                "api/semester/get-list-semesters-by-yearid/{id}",
+                new { controller = "Semester", action = "GetSemestersByYearId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             //<-- Student controller -->
             config.Routes.MapHttpRoute(
                 "GetStudentsByParentIdApi",
-                "api/student/get-list-students-by-parentId/{id}",
+                "api/student/get-list-students-by-parentid/{id}",
                 new { controller = "Student", action = "GetStudentsByParentId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
