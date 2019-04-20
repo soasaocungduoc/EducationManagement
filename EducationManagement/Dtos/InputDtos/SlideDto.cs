@@ -23,6 +23,6 @@ namespace EducationManagement.Dtos.InputDtos
         public string Path { get; set; }
 
         [JsonProperty("is_shown")]
-        public bool IsShown { get; set; }
+        public bool IsShown { get; set; } = true;
     }
 }

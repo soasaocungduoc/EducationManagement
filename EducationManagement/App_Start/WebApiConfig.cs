@@ -16,87 +16,100 @@ namespace EducationManagement
             config.MessageHandlers.Add(new TokenValidationHandler());
             config.EnableCors();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{action}/{id}",
                 
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+
             //<-- SchoolInformation controller -->
             config.Routes.MapHttpRoute(
-                name: "GetSchoolInformationApi",
-                routeTemplate: "api/schoolinformation",
-                defaults: new { controller = "SchoolInformation", action = "GetSchoolInformation", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                "GetSchoolInformationApi",
+                "api/schoolinformation",
+                new { controller = "SchoolInformation", action = "GetSchoolInformation" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             //<-- News controller -->
             config.Routes.MapHttpRoute(
-                name: "GetNewsApi",
-                routeTemplate: "api/news",
-                defaults: new { controller = "News", action = "GetNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                "GetNewsApi",
+                "api/news",
+                new { controller = "News", action = "GetNews"},
+                constraints : new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "GetNewsByIdApi",
-                routeTemplate: "api/news",
-                defaults: new { controller = "News", action = "GetNewsById", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                "GetNewsByIdApi",
+                "api/news/{newsId}",
+                new { controller = "News", action = "GetNewsById", newsId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "AddNewsApi",
-                routeTemplate: "api/news",
-                defaults: new { controller = "News", action = "AddNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
-            );
-
-
-            config.Routes.MapHttpRoute(
-                name: "UpdateNewsApi",
-                routeTemplate: "api/news",
-                defaults: new { controller = "News", action = "UpdateNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+                "AddNewsApi",
+                "api/news",
+                new { controller = "News", action = "AddNews" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "DeleteNewsApi",
-                routeTemplate: "api/news",
-                defaults: new { controller = "News", action = "DeleteNews", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+                "UpdateNewsApi",
+                "api/news/{newsId}",
+                new { controller = "News", action = "UpdateNews", newsId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+            );
+
+            config.Routes.MapHttpRoute(
+                "DeleteNewsApi",
+                "api/news/{newsId}",
+                new { controller = "News", action = "DeleteNews", newsId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
             );
 
             //<-- Teacher controller -->
             config.Routes.MapHttpRoute(
-                name: "GetTeachersApi",
-                routeTemplate: "api/teacher",
-                defaults: new { controller = "Teacher", action = "GetTeachers", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                "GetTeachersApi",
+                "api/teacher",
+                new { controller = "Teacher", action = "GetTeachers"},
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             //<-- Slide controller -->
+
             config.Routes.MapHttpRoute(
-                name: "GetSlidesApi",
-                routeTemplate: "api/slide",
-                defaults: new { controller = "Slide", action = "GetSlides", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                "GetSlideApi",
+                "api/slide",
+                new { controller = "Slide", action = "GetSlides" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "GetSlideByIdApi",
-                routeTemplate: "api/slide",
-                defaults: new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                "GetSlideByIdApi",
+                "api/slide/{id}",
+                new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "AddSlideApi",
-                routeTemplate: "api/slide",
-                defaults: new { controller = "Slide", action = "AddSlide", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+                "AddSlideApi",
+                "api/slide",
+                new { controller = "Slide", action = "AddSlide" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "UpdateSlideApi",
-                routeTemplate: "api/slide",
-                defaults: new { controller = "Slide", action = "UpdateSlide", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+                "UpdateSlideApi",
+                "api/slide/{id}",
+                new { controller = "Slide", action = "UpdateSlide", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
             );
 
             config.Routes.MapHttpRoute(
-                name: "DeleteSlideApi",
-                routeTemplate: "api/slide",
-                defaults: new { controller = "Slide", action = "DeleteSlide", id = RouteParameter.Optional, httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+                "DeleteSlideApi",
+                "api/slide/{id}",
+                new { controller = "Slide", action = "DeleteSlide", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
             );
         }
     }
