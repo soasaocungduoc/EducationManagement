@@ -217,6 +217,7 @@
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\StudentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\TeachingScheduleResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserResponseDto.cs" />
