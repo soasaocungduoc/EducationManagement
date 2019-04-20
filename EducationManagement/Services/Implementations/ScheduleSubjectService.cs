@@ -35,5 +35,19 @@ namespace EducationManagement.Services.Implementations
                 throw e;
             }
         }
+
+        public List<ScheduleSubjectResponseDto> GetScheduleSubjectsByStudentId(int id)
+        {
+            try
+            {
+                var classId = db.Students.FirstOrDefault(x => !x.DelFlag && x.Id == id).ClassId;
+                return GetScheduleSubjectsByClassId(classId);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }
