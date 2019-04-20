@@ -143,6 +143,10 @@
     <Compile Include="Migrations\201904190437304_AddPermissionDatabase.Designer.cs">
       <DependentUpon>201904190437304_AddPermissionDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904200402481_CreateSchoolYearDatabase.cs" />
+    <Compile Include="Migrations\201904200402481_CreateSchoolYearDatabase.Designer.cs">
+      <DependentUpon>201904200402481_CreateSchoolYearDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904190437304_AddPermissionDatabase.resx">
       <DependentUpon>201904190437304_AddPermissionDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200402481_CreateSchoolYearDatabase.resx">
+      <DependentUpon>201904200402481_CreateSchoolYearDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

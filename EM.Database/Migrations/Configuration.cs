@@ -18,19 +18,12 @@ namespace EM.Database.Migrations
             base.Seed(context);
 
 
-            for (int i = 4; i < 7; i++)
+            for (int i = 2014; i < 2019; i++)
             {
-                context.Permissions.Add(new Permission
+                context.SchoolYears.Add(new SchoolYear
                 {
-                    GroupId = i,
-                    FunctionId = 7,
-                    IsEnable = true,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 8,
-                    IsEnable = true,
+                    StartYear = i,
+                    EndYear = i + 1
                 });
             }
 
