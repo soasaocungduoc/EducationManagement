@@ -9,21 +9,21 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    public class SemesterController : BaseApiController
+    public class StudentController : BaseApiController
     {
-        private readonly ISemesterService _semesterService;
-        public SemesterController(ISemesterService semesterService)
+        private readonly IStudentService _studentService;
+        public StudentController(IStudentService studentService)
         {
-            _semesterService = semesterService;
+            _studentService = studentService;
         }
 
         [HttpGet]
-        [ActionName("GetSemesters")]
-        public IHttpActionResult GetSemesters(int id)
+        [ActionName("GetStudentsByParentId")]
+        public IHttpActionResult GetStudentsByParentId(int id)
         {
             try
             {
-                return Ok(_semesterService.GetSemesters(id));
+                return Ok(_studentService.GetStudentsByParentId(id));
             }
             catch (Exception e)
             {
