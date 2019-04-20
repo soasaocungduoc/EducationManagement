@@ -17,71 +17,17 @@ namespace EM.Database.Migrations
         {
             base.Seed(context);
 
-            context.Teachers.Add(new Teacher
+            for (int i = 2; i < 8; i++)
             {
-                UserId = 33,
-                TeamId = 19
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 34,
-                TeamId = 19
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 35,
-                TeamId = 20
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 36,
-                TeamId = 20
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 37,
-                TeamId = 21
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 38,
-                TeamId = 21
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 39,
-                TeamId = 22
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 40,
-                TeamId = 23
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 41,
-                TeamId = 23
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 42,
-                TeamId = 23
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 43,
-                TeamId = 24
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 44,
-                TeamId = 25
-            });
-            context.Teachers.Add(new Teacher
-            {
-                UserId = 45,
-                TeamId = 25
-            });
+                for (int j = 1; j < 11; j++)
+                {
+                    context.DayLessons.Add(new DayOfWeekLesson
+                    {
+                        DayOfWeek = i,
+                        Lesson = j
+                    });
+                }
+            }
 
             //context.Functions.Add(new Function
             //{

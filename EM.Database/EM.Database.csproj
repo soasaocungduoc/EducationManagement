@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201904201240476_CreateTeacherDatabase.Designer.cs">
       <DependentUpon>201904201240476_CreateTeacherDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904201249090_CreateDayOfWeekDatabase.cs" />
+    <Compile Include="Migrations\201904201249090_CreateDayOfWeekDatabase.Designer.cs">
+      <DependentUpon>201904201249090_CreateDayOfWeekDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904201240476_CreateTeacherDatabase.resx">
       <DependentUpon>201904201240476_CreateTeacherDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201249090_CreateDayOfWeekDatabase.resx">
+      <DependentUpon>201904201249090_CreateDayOfWeekDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
