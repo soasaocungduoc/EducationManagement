@@ -17,7 +17,71 @@ namespace EM.Database.Migrations
         {
             base.Seed(context);
 
-
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 33,
+                TeamId = 19
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 34,
+                TeamId = 19
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 35,
+                TeamId = 20
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 36,
+                TeamId = 20
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 37,
+                TeamId = 21
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 38,
+                TeamId = 21
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 39,
+                TeamId = 22
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 40,
+                TeamId = 23
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 41,
+                TeamId = 23
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 42,
+                TeamId = 23
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 43,
+                TeamId = 24
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 44,
+                TeamId = 25
+            });
+            context.Teachers.Add(new Teacher
+            {
+                UserId = 45,
+                TeamId = 25
+            });
 
             //context.Functions.Add(new Function
             //{
@@ -42,16 +106,13 @@ namespace EM.Database.Migrations
             //    IdentificationNumber = "123456789",
             //});
 
-            for (int i = 33; i < 46; i++)
-            {
-                context.Accounts.Add(new Account
-                {
-                    UserId = i,
-                    GroupId = 6,
-                    UserName = "teacher" + i,
-                    Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
-                });
-            }
+            //context.Accounts.Add(new Account
+            //{
+            //    UserId = i,
+            //    GroupId = 6,
+            //    UserName = "teacher" + i,
+            //    Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
+            //});
 
 
             //// Your code...
