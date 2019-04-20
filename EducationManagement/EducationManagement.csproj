@@ -192,6 +192,7 @@
     <Compile Include="Controllers\Bases\BaseApiController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\SchoolInformationController.cs" />
+    <Compile Include="Controllers\SchoolYearController.cs" />
     <Compile Include="Controllers\SlideController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -207,12 +208,12 @@
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SchoolInformationDto.cs" />
+    <Compile Include="Dtos\OutputDtos\SchoolYearResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserResponseDto.cs" />
-    <Compile Include="Dtos\Teacher.cs" />
     <Compile Include="Dtos\TokenInformation.cs" />
     <Compile Include="Dtos\User.cs" />
     <Compile Include="Fillters\AdminAuthorization.cs" />
@@ -223,12 +224,14 @@
     <Compile Include="Services\Abstractions\IAuthenticationService.cs" />
     <Compile Include="Services\Abstractions\INewsService.cs" />
     <Compile Include="Services\Abstractions\ISchoolInformationService.cs" />
+    <Compile Include="Services\Abstractions\ISchoolYearService.cs" />
     <Compile Include="Services\Abstractions\ISlideService.cs" />
     <Compile Include="Services\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\Abstractions\IUserService.cs" />
     <Compile Include="Services\Implementations\AuthenticationService.cs" />
     <Compile Include="Services\Implementations\NewsService.cs" />
     <Compile Include="Services\Implementations\SchoolInformationService.cs" />
+    <Compile Include="Services\Implementations\SchoolYearService.cs" />
     <Compile Include="Services\Implementations\SlideService.cs" />
     <Compile Include="Services\Implementations\TeacherService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
