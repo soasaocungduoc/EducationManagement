@@ -155,6 +155,14 @@
     <Compile Include="Migrations\201904201156428_CreateTeamDatabase.Designer.cs">
       <DependentUpon>201904201156428_CreateTeamDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904201203577_CreateSubjectDatabase.cs" />
+    <Compile Include="Migrations\201904201203577_CreateSubjectDatabase.Designer.cs">
+      <DependentUpon>201904201203577_CreateSubjectDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201216534_CreateUserDatabase.cs" />
+    <Compile Include="Migrations\201904201216534_CreateUserDatabase.Designer.cs">
+      <DependentUpon>201904201216534_CreateUserDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -237,6 +245,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904201156428_CreateTeamDatabase.resx">
       <DependentUpon>201904201156428_CreateTeamDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201203577_CreateSubjectDatabase.resx">
+      <DependentUpon>201904201203577_CreateSubjectDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201216534_CreateUserDatabase.resx">
+      <DependentUpon>201904201216534_CreateUserDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,39 +18,6 @@ namespace EM.Database.Migrations
             base.Seed(context);
 
 
-            context.Teams.Add(new Team
-            {
-                Name = "Toán - Tin"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "Vật lý - Công nghệ"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "Hóa - Sinh"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "Ngữ văn"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "Sử - Địa - GDCD"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "Ngoại ngữ"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "TD- GDQP"
-            });
-            context.Teams.Add(new Team
-            {
-                Name = "Văn phòng"
-            });
-
 
             //context.Functions.Add(new Function
             //{
@@ -62,17 +29,151 @@ namespace EM.Database.Migrations
             //    ActionName = "DeleteSlide",
             //});
 
-            //context.Users.Add(new User
-            //{
-            //    FirstName = "Tram",
-            //    LastName = "Huynh",
-            //    Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
-            //    Gender = false,
-            //    Birthday = new DateTime(1997, 10, 30),
-            //    PhoneNumber = "0789456123",
-            //    Address = "123 Nguyen Luong Bang",
-            //    IdentificationNumber = "123456789",
-            //});
+            context.Users.Add(new User
+            {
+                FirstName = "Toán",
+                LastName = "Huỳnh",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Tin",
+                LastName = "Huỳnh",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Lý",
+                LastName = "Huỳnh",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Công",
+                LastName = "Huỳnh Văn",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Hoa",
+                LastName = "Huỳnh",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = false,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Nhi",
+                LastName = "Huỳnh",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = false,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Quỳnh",
+                LastName = "Huỳnh Xuân",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = false,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Trung",
+                LastName = "Huỳnh",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Thế",
+                LastName = "Huỳnh Văn",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Dân",
+                LastName = "Lý Văn",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Anh",
+                LastName = "Nguyễn Thị",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = false,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Lực",
+                LastName = "Nguyễn Văn",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+            context.Users.Add(new User
+            {
+                FirstName = "Thông",
+                LastName = "Trần Văn",
+                Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
+                Gender = true,
+                Birthday = new DateTime(1997, 10, 30),
+                PhoneNumber = "0789456123",
+                Address = "123 Nguyễn Lương Bằng",
+                IdentificationNumber = "123456789",
+            });
+
+
 
             //context.Accounts.Add(new Account
             //{
