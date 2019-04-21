@@ -1,4 +1,5 @@
 ﻿using EM.Database.Schema;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,12 @@ namespace EducationManagement.Dtos.OutputDtos
 {
     public class TeamResponseDto
     {
+        [JsonProperty("id")]
         public int Id { get; set; }
+
+        [JsonProperty("name")]
         public string Name { get; set; }
+
         public TeamResponseDto()
         {
 
