@@ -18,7 +18,7 @@ namespace EducationManagement.Dtos.InputDtos
         public SlideConditionSearch()
         {
             this.KeySearch = "";
-            this.PageSize = 10;
+            this.PageSize = 100;
             this.CurrentPage = 1;
         }
     }

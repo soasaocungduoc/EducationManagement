@@ -18,7 +18,7 @@ namespace EducationManagement.Dtos.InputDtos
         public TeacherConditionSearch()
         {
             this.KeySearch = "";
-            this.PageSize = 10;
+            this.PageSize = 200;
             this.CurrentPage = 1;
         }
     }
