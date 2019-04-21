@@ -45,7 +45,7 @@ namespace EducationManagement.Services.Implementations
                 var listOfTeacher = listTeacherFromDb.Select(t => new TeacherResponseDto
                 {
                     Id = t.Id,
-                    TeamName = t.Team.Name,
+                    TeamInfo = new TeamResponseDto(t.Team),
                     UserInfo = new UserResponseDto(t.User)
                 }).ToList();
                 return listOfTeacher;
