@@ -23,22 +23,15 @@ namespace EducationManagement.Controllers
         }
 
         [HttpPost]
-        [Route("addstudents")]
-        [ActionName("")]
+        [ActionName("AddStudents")]
         public IHttpActionResult AddStudents([FromBody] StudentDto[] dtos)
         {
             if (dtos == null)
             {
                 return BadRequest("invalid input dto");
             }
-
-            var token = Request.Headers.GetValues("Authorization").First();
-
-            var tokenInformation = JwtAuthenticationExtensions.ExtractTokenInformation(token);
-
-            int curentUserId = tokenInformation.UserId;
-
-            var result = _studentService.AddStudents(dtos, curentUserId);
+            
+            var result = _studentService.AddStudents(dtos);
 
             if (result == null)
             {

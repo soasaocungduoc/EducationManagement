@@ -25,8 +25,8 @@ namespace EducationManagement.Dtos.InputDtos
         public string LastName { get; set; }
 
         [Required]
-        [JsonProperty("isman")]
-        public bool IsMan { get; set; }
+        [JsonProperty("gender")]
+        public bool Gender { get; set; }
 
         [Required]
         [JsonProperty("birthday")]
@@ -42,6 +42,12 @@ namespace EducationManagement.Dtos.InputDtos
         [JsonProperty("phonenumber")]
         public string PhoneNumber { get; set; }
 
+        [JsonProperty("avatar")]
+        public string Avatar { get; set; } = "https://res.cloudinary.com/dw0yzvsvn/image/upload/v1537351431/Images/9b06a7b3-142b-429e-945a-37f6f026e823.jpg";
 
+        [Required]
+        [StringLength(12)]
+        [JsonProperty("identificationnumber")]
+        public string IdentificationNumber { get; set; }
     }
 }

@@ -4,6 +4,6 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface IStudentService
     {
-        int[] AddStudents(StudentDto[] dtos, int currentUserId);
+        int[] AddStudents(StudentDto[] dtos);
     }
 }

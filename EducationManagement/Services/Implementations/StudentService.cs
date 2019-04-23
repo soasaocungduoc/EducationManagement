@@ -11,7 +11,7 @@ namespace EducationManagement.Services.Implementations
     public class StudentService : IStudentService
     {
         private readonly DataContext db = new DataContext();
-        public void AddStudent(StudentDto dto, int currentUserId)
+        public void AddStudent(StudentDto dto)
         {
             var user = new User();
             var account = new Account();
@@ -21,23 +21,19 @@ namespace EducationManagement.Services.Implementations
             {
                 user.FirstName = dto.FirstName;
                 user.LastName = dto.LastName;
-                user.Avatar = "https://res.cloudinary.com/dw0yzvsvn/image/upload/v1537351431/Images/9b06a7b3-142b-429e-945a-37f6f026e823.jpg";
-                user.Gender = dto.IsMan;
+                user.Avatar = dto.Avatar;
+                user.Gender = dto.Gender;
                 user.Birthday = Convert.ToDateTime(dto.Birthday);
                 user.PhoneNumber = dto.PhoneNumber;
                 user.Address = dto.Address;
-                user.IdentificationNumber = "123456789";
-                user.DelFlag = false;
-                user.CreatedBy = currentUserId;
+                user.IdentificationNumber = dto.IdentificationNumber;
 
                 db.Users.Add(user);
 
                 account.UserName = "student_account" + db.Accounts.Max(x => x.Id).ToString();
                 account.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("12345678"));
                 account.UserId = user.Id;
-                account.GroupId = 1;
-                account.DelFlag = false;
-                account.CreatedBy = currentUserId;
+                account.GroupId = 4;
 
                 db.Accounts.Add(account);
 
@@ -45,8 +41,6 @@ namespace EducationManagement.Services.Implementations
                 student.ClassId = dto.ClassId;
                 student.ParentId = dto.ParentId;
                 student.Status = 0;
-                student.DelFlag = false;
-                student.CreatedBy = currentUserId;
 
                 db.Students.Add(student);
 
@@ -59,7 +53,7 @@ namespace EducationManagement.Services.Implementations
             db.SaveChanges();
         }
 
-        public int[] AddStudents(StudentDto[] dtos, int currentUserId)
+        public int[] AddStudents(StudentDto[] dtos)
         {
             var errorIndexs = new List<int>();
 
@@ -69,7 +63,7 @@ namespace EducationManagement.Services.Implementations
             {
                 try
                 {
-                    AddStudent(dto, currentUserId);
+                    AddStudent(dto);
                 }
                 catch
                 {
