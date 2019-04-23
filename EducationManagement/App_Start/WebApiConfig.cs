@@ -123,7 +123,7 @@ namespace EducationManagement
             //<-- Semester controller -->
             config.Routes.MapHttpRoute(
                 "GetSemestersByYearIdApi",
-                "api/semester/get-list-semesters-by-yearid/{id}",
+                "api/year/{id}/semesters",
                 new { controller = "Semester", action = "GetSemestersByYearId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
@@ -131,7 +131,7 @@ namespace EducationManagement
             //<-- Student controller -->
             config.Routes.MapHttpRoute(
                 "GetStudentsByParentIdApi",
-                "api/student/get-list-students-by-parentid/{id}",
+                "api/parent/{id}/students",
                 new { controller = "Student", action = "GetStudentsByParentId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
@@ -139,21 +139,21 @@ namespace EducationManagement
             //<-- ScheduleSubject controller -->
             config.Routes.MapHttpRoute(
                 "GetScheduleSubjectsByClassIdApi",
-                "api/schedulesubject/get-list-schedule-subject-by-classid/{id}",
+                "api/class/{id}/schedulers",
                 new { controller = "ScheduleSubject", action = "GetScheduleSubjectsByClassId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
                 "GetScheduleSubjectsByStudentIdApi",
-                "api/schedulesubject/get-list-schedule-subject-by-studentid/{id}",
+                "api/student/{id}/schedulers",
                 new { controller = "ScheduleSubject", action = "GetScheduleSubjectsByStudentId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
             config.Routes.MapHttpRoute(
                 "GetTeachingSchedulesByTeacherIdApi",
-                "api/schedulesubject/get-list-teaching-schedule-by-teacherid/{id}",
+                "api/teacher/{id}/schedulers",
                 new { controller = "ScheduleSubject", action = "GetTeachingSchedulesByTeacherId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
