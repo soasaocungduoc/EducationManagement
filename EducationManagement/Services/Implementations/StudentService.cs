@@ -78,11 +78,11 @@ namespace EducationManagement.Services.Implementations
         }
 
 
-        public List<StudentResponseDto> GetStudentsByParentId(int parentId)
+        public List<StudentResponseDto> GetStudentsByParentId(int id)
         {
             try
             {
-                return db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.ParentId == parentId).ToList()
+                return db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.Parent.UserId == id).ToList()
                     .Select(s => new StudentResponseDto
                     {
                         Id = s.Id,
