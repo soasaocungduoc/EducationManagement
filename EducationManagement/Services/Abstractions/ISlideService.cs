@@ -1,10 +1,16 @@
-﻿using EducationManagement.Dtos.OutputDtos;
+﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using System.Collections.Generic;
 
 namespace EducationManagement.Services.Abstractions
 {
     public interface ISlideService
     {
-        List<SlideResponseDto> GetSlides();
+        List<SlideResponseDto> GetSlides(SlideConditionSearch conditionSearch);
+        SlideResponseDto GetSlideById(int id);
+        SlideResponseDto AddSlide(SlideDto slide);
+        SlideResponseDto UpdateSlide(int id, SlideDto slide);
+        bool DeleteSlide(int id);
+
     }
 }

@@ -5,6 +5,8 @@ namespace EducationManagement.Dtos.OutputDtos
 {
     public class SlideResponseDto
     {
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -25,6 +27,8 @@ namespace EducationManagement.Dtos.OutputDtos
 
         public SlideResponseDto(Slide slide)
         {
+            if (slide == null) return;
+            Id = slide.Id;
             Title = slide.Title;
             ImageUrl = slide.ImageUrl;
             Path = slide.Path;

@@ -1,13 +1,8 @@
-﻿using EducationManagement.Commons;
 using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace EducationManagement.Controllers
@@ -48,5 +43,18 @@ namespace EducationManagement.Controllers
         }
 
         
+        [HttpGet]
+        [ActionName("GetStudentsByParentId")]
+        public IHttpActionResult GetStudentsByParentId(int id)
+        {
+            try
+            {
+                return Ok(_studentService.GetStudentsByParentId(id));
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

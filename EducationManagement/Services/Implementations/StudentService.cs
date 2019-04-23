@@ -1,10 +1,12 @@
-﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
 using EM.Database.Schema;
-using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Data.Entity;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -75,5 +77,25 @@ namespace EducationManagement.Services.Implementations
             return errorIndexs.ToArray();
         }
 
+
+        public List<StudentResponseDto> GetStudentsByParentId(int parentId)
+        {
+            try
+            {
+                return db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.ParentId == parentId).ToList()
+                    .Select(s => new StudentResponseDto
+                    {
+                        Id = s.Id,
+                        ClassName = s.Class.Name,
+                        UserInfo = new UserResponseDto(s.User),
+                        ParentName = db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == s.ParentId).User.FirstName
+                    }).ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }

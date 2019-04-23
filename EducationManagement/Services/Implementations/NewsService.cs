@@ -12,9 +12,43 @@ namespace EducationManagement.Services.Implementations
     public class NewsService : INewsService
     {
         private readonly DataContext db = new DataContext();
-        public List<NewsResponseDto> GetNews()
+        public List<NewsResponseDto> GetNews(NewsConditionSearch conditionSearch)
         {
-            return db.News.Where(n => !n.DelFlag).ToList().Select(x => new NewsResponseDto(x)).ToList();
+            try
+            {
+                // Nếu không tồn tại điều kiện tìm kiếm thì khởi tạo giá trị tìm kiếm ban đầu
+                if (conditionSearch == null)
+                {
+                    conditionSearch = new NewsConditionSearch();
+                }
+
+                // Lấy các thông tin dùng để phân trang
+                var paging = new Commons.Paging(db.News.Count(x => !x.DelFlag &&
+                    (conditionSearch.KeySearch == null ||
+                    (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
+                    , conditionSearch.CurrentPage, conditionSearch.PageSize);
+
+                // Tìm kiếm và lấy dữ liệu theo trang
+                var listOfNews = db.News.Where(x => !x.DelFlag &&
+                    (conditionSearch.KeySearch == null ||
+                    (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
+                    .OrderBy(x => x.Id)
+                    .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
+                    .Take(paging.NumberOfRecord).Select(x => new NewsResponseDto
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        ImageUrl = x.ImageUrl,
+                        Summary = x.Summary,
+                        Content = x.Content,
+                        CreatedAt = x.CreatedAt
+                    }).ToList();
+                return listOfNews == null ? null : listOfNews;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public NewsResponseDto GetNews(int newsId)

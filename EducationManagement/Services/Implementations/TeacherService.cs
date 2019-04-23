@@ -1,4 +1,6 @@
 ﻿using EducationManagement.Dtos;
+using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System;
@@ -13,13 +15,45 @@ namespace EducationManagement.Services.Implementations
     {
         private readonly DataContext db = new DataContext();
 
-        public List<Teacher> GetListOfTeachers()
+        public List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch)
         {
-            return db.Teachers.Include(u => u.User).Where(x => !x.DelFlag).ToList().Select(t => new Teacher {
-                Id = t.Id,
-                TeamId = t.TeamId,
-                User = new User(t.User)
-            } ).ToList();
+            try
+            {
+                // Nếu không tồn tại điều kiện tìm kiếm thì khởi tạo giá trị tìm kiếm ban đầu
+                if (conditionSearch == null)
+                {
+                    conditionSearch = new TeacherConditionSearch();
+                }
+
+                // Lấy các thông tin dùng để phân trang
+                var paging = new Commons.Paging(db.Teachers.Count(x => !x.DelFlag &&
+                    (conditionSearch.KeySearch == null ||
+                    (conditionSearch.KeySearch != null && ((x.User.FirstName.Contains(conditionSearch.KeySearch)) || 
+                    (x.User.LastName.Contains(conditionSearch.KeySearch))))))
+                    , conditionSearch.CurrentPage, conditionSearch.PageSize);
+
+                // Tìm kiếm và lấy dữ liệu theo trang
+                var listTeacherFromDb = db.Teachers.Include(u => u.User).Include(y=>y.Team).Where(x => !x.DelFlag &&
+                    (conditionSearch.KeySearch == null ||
+                    (conditionSearch.KeySearch != null && ((x.User.FirstName.Contains(conditionSearch.KeySearch)) ||
+                    (x.User.LastName.Contains(conditionSearch.KeySearch))))))
+                    .OrderBy(x => x.Id)
+                    .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
+                    .Take(paging.NumberOfRecord).ToList();
+                if (listTeacherFromDb == null)
+                    return null;
+                var listOfTeacher = listTeacherFromDb.Select(t => new TeacherResponseDto
+                {
+                    Id = t.Id,
+                    TeamInfo = new TeamResponseDto(t.Team),
+                    UserInfo = new UserResponseDto(t.User)
+                }).ToList();
+                return listOfTeacher;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

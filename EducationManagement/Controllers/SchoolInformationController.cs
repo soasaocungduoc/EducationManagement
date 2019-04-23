@@ -4,7 +4,6 @@ using EducationManagement.Services.Abstractions;
 
 namespace EducationManagement.Controllers
 {
-    [RoutePrefix("api/schoolinformation")]
     public class SchoolInformationController : BaseApiController
     {
         private readonly ISchoolInformationService _schoolInformationService;
@@ -15,6 +14,7 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
+        [ActionName("GetSchoolInformation")]
         public IHttpActionResult GetSchoolInformation()
         {
             return Ok(_schoolInformationService.GetSchoolInformation());

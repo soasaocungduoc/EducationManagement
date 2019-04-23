@@ -17,9 +17,9 @@ namespace EducationManagement.Commons
     /// </remarks>
     public class Paging
     {
-        public int CurrentPage { set; get; }
+        public int CurrentPage { set; get; } = 1;
         public int TotalPages { set; get; }
-        public int NumberOfRecord { set; get; }
+        public int NumberOfRecord { set; get; } = 200;
         public int TotalRecord { set; get; }
         /// <summary>
         /// Hàm khởi tạo mặc định để gán các tham số mặc định khi khởi tạo 1 biến để lưu phân trang.
@@ -27,7 +27,7 @@ namespace EducationManagement.Commons
         /// </summary>
         public Paging()
         {
-            this.NumberOfRecord = 10;
+            this.NumberOfRecord = 100;
             this.TotalPages = 1;
             this.CurrentPage = 1;
             this.TotalRecord = 0;

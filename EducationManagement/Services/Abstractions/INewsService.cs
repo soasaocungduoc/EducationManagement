@@ -6,7 +6,7 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface INewsService
     {
-        List<NewsResponseDto> GetNews();
+        List<NewsResponseDto> GetNews(NewsConditionSearch conditionSearch);
 
         NewsResponseDto GetNews(int newId);
 
