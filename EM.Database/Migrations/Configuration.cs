@@ -16,9 +16,14 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            context.Screens.Add(new Screen
+            context.Functions.Add(new Function
             {
-                Name = "Add or edit students"
+                ScreenId = 6,
+                Description = "Them danh sach hoc sinh",
+                Area = "Admin",
+                ControllerName = "Student",
+                ActionName = "AddStudents",
+                Name = "Add list of Student"
             });
 
 

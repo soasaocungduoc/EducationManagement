@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201904230300429_CreateAddStudentScreen.Designer.cs">
       <DependentUpon>201904230300429_CreateAddStudentScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904230313247_CreateAddStudentFunction.cs" />
+    <Compile Include="Migrations\201904230313247_CreateAddStudentFunction.Designer.cs">
+      <DependentUpon>201904230313247_CreateAddStudentFunction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -202,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904230300429_CreateAddStudentScreen.resx">
       <DependentUpon>201904230300429_CreateAddStudentScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904230313247_CreateAddStudentFunction.resx">
+      <DependentUpon>201904230313247_CreateAddStudentFunction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
