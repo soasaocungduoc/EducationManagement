@@ -18,12 +18,12 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        [ActionName("GetSemesters")]
-        public IHttpActionResult GetSemesters(int id)
+        [ActionName("GetSemestersByYearId")]
+        public IHttpActionResult GetSemestersByYearId(int id)
         {
             try
             {
-                return Ok(_semesterService.GetSemesters(id));
+                return Ok(_semesterService.GetSemestersByYearId(id));
             }
             catch (Exception e)
             {

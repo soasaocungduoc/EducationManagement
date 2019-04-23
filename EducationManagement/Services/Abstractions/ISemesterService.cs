@@ -9,6 +9,6 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface ISemesterService
     {
-        List<SemesterResponseDto> GetSemesters(int id);
+        List<SemesterResponseDto> GetSemestersByYearId(int id);
     }
 }

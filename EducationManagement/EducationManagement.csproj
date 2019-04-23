@@ -207,7 +207,6 @@
     <Compile Include="Dtos\InputDtos\TeacherConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
-    <Compile Include="Dtos\OutputDtos\ListOfTeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ScheduleSubjectResponseDto.cs" />
@@ -217,6 +216,7 @@
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\StudentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\TeachingScheduleResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserResponseDto.cs" />
