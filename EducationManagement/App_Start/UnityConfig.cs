@@ -22,7 +22,11 @@ namespace EducationManagement
             container.RegisterType<ISchoolInformationService, SchoolInformationService>();
             container.RegisterType<ISlideService, SlideService>();
             container.RegisterType<ITeacherService, TeacherService>();
-
+            container.RegisterType<IStudentService, StudentService>();
+            container.RegisterType<ISchoolYearService, SchoolYearService>();
+            container.RegisterType<ISemesterService, SemesterService>();
+            container.RegisterType<IStudentService, StudentService>();
+            container.RegisterType<IScheduleSubjectService, ScheduleSubjectService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

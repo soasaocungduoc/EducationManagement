@@ -17,7 +17,7 @@ namespace EducationManagement.Services.Implementations
             dto.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5(dto.Password));
 
             var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password && !x.DelFlag);
-
+            
             if (accountFromDb == null)
             {
                 return null;
