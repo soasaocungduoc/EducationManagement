@@ -27,7 +27,7 @@ namespace EducationManagement.Services.Implementations
                         TeacherName = db.Teachers.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == y.TeacherId).User.FirstName,
                         DayOfWeek = y.DayOfWeekLesson.DayOfWeek,
                         Lesson = y.DayOfWeekLesson.Lesson
-                    }).ToList();
+                    }).OrderBy(x=> x.DayOfWeek).OrderBy(x=>x.Lesson).ToList();
             }
             catch (Exception e)
             {
