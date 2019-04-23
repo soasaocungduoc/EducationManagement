@@ -16,46 +16,10 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            for (int i = 1; i < 7; i++)
+            context.Screens.Add(new Screen
             {
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 1,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 2,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 3,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 4,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 5,
-                    IsEnable = false,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 6,
-                    IsEnable = false,
-                });
-            }
-            
+                Name = "Add or edit students"
+            });
 
 
             //context.Functions.Add(new Function
