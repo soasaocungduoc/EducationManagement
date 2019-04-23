@@ -16,15 +16,16 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            context.Functions.Add(new Function
+            for (int i = 1; i < 4; i++)
             {
-                ScreenId = 6,
-                Description = "Them danh sach hoc sinh",
-                Area = "Admin",
-                ControllerName = "Student",
-                ActionName = "AddStudents",
-                Name = "Add list of Student"
-            });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 12,
+                    IsEnable = true,
+                });
+            }
+            
 
 
             //context.Functions.Add(new Function
