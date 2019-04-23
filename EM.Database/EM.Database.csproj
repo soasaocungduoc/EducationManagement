@@ -203,6 +203,18 @@
     <Compile Include="Migrations\201904201347151_CreateScheduleSubjectsv2.Designer.cs">
       <DependentUpon>201904201347151_CreateScheduleSubjectsv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904230939436_CreateListStudentAndListScheduleSubjectScreen.cs" />
+    <Compile Include="Migrations\201904230939436_CreateListStudentAndListScheduleSubjectScreen.Designer.cs">
+      <DependentUpon>201904230939436_CreateListStudentAndListScheduleSubjectScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904231048180_CreateListStudentAndListScheduleSubjectFunction.cs" />
+    <Compile Include="Migrations\201904231048180_CreateListStudentAndListScheduleSubjectFunction.Designer.cs">
+      <DependentUpon>201904231048180_CreateListStudentAndListScheduleSubjectFunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904231055526_CreateListStudentAndListScheduleSubjectPermission.cs" />
+    <Compile Include="Migrations\201904231055526_CreateListStudentAndListScheduleSubjectPermission.Designer.cs">
+      <DependentUpon>201904231055526_CreateListStudentAndListScheduleSubjectPermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -321,6 +333,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904201347151_CreateScheduleSubjectsv2.resx">
       <DependentUpon>201904201347151_CreateScheduleSubjectsv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904230939436_CreateListStudentAndListScheduleSubjectScreen.resx">
+      <DependentUpon>201904230939436_CreateListStudentAndListScheduleSubjectScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904231048180_CreateListStudentAndListScheduleSubjectFunction.resx">
+      <DependentUpon>201904231048180_CreateListStudentAndListScheduleSubjectFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904231055526_CreateListStudentAndListScheduleSubjectPermission.resx">
+      <DependentUpon>201904231055526_CreateListStudentAndListScheduleSubjectPermission.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

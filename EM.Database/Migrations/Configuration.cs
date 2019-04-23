@@ -16,27 +16,45 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i < 7; i++)
             {
                 context.Permissions.Add(new Permission
                 {
                     GroupId = i,
-                    FunctionId = 12,
+                    FunctionId = 13,
+                    IsEnable = true,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 14,
+                    IsEnable = true,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 15,
+                    IsEnable = true,
+                });
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 16,
                     IsEnable = true,
                 });
             }
-            
+
+
 
             //context.Functions.Add(new Function
             //{
-            //    ScreenId = 4,
-            //    Name = "DeleteSlide",
-            //    Description = "Xoa slide",
+            //    ScreenId = 8,
+            //    Name = "GetTeachingSchedulesByTeacherId",
+            //    Description = "Get list teaching schedule by teacherid",
             //    Area = "Admin",
-            //    ControllerName = "Slide",
-            //    ActionName = "DeleteSlide",
+            //    ControllerName = "ScheduleSubject",
+            //    ActionName = "GetTeachingSchedulesByTeacherId",
             //});
-
 
             //context.Users.Add(new User
             //{
