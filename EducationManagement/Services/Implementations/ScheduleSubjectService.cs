@@ -40,7 +40,7 @@ namespace EducationManagement.Services.Implementations
         {
             try
             {
-                var classId = db.Students.FirstOrDefault(x => !x.DelFlag && x.Id == id).ClassId;
+                var classId = db.Students.FirstOrDefault(x => !x.DelFlag && x.UserId == id).ClassId;
                 return GetScheduleSubjectsByClassId(classId);
             }
             catch (Exception e)
@@ -55,7 +55,7 @@ namespace EducationManagement.Services.Implementations
             try
             {
                 return db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
-                    .Where(x => !x.DelFlag && x.TeacherId == id).ToList()
+                    .Where(x => !x.DelFlag && x.Teacher.UserId == id).ToList()
                     .Select(y => new TeachingScheduleResponseDto
                     {
                         Id = y.Id,
@@ -63,7 +63,7 @@ namespace EducationManagement.Services.Implementations
                         Room = db.Classes.Include(u => u.Room).FirstOrDefault(x => !x.DelFlag && x.Id == y.ClassId).Room.RoomNumber,
                         DayOfWeek = y.DayOfWeekLesson.DayOfWeek,
                         Lesson = y.DayOfWeekLesson.Lesson
-                    }).ToList();
+                    }).OrderBy(x => x.DayOfWeek).OrderBy(x => x.Lesson).ToList();
             }
             catch (Exception e)
             {
