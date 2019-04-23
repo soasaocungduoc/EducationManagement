@@ -63,7 +63,7 @@ namespace EducationManagement.Services.Implementations
                         Room = db.Classes.Include(u => u.Room).FirstOrDefault(x => !x.DelFlag && x.Id == y.ClassId).Room.RoomNumber,
                         DayOfWeek = y.DayOfWeekLesson.DayOfWeek,
                         Lesson = y.DayOfWeekLesson.Lesson
-                    }).OrderBy(x => x.DayOfWeek).OrderBy(x => x.Lesson).ToList();
+                    }).OrderBy(x => x.DayOfWeek).ToList();
             }
             catch (Exception e)
             {
