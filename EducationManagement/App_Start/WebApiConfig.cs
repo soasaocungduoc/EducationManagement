@@ -99,6 +99,12 @@ namespace EducationManagement
             );
 
             config.Routes.MapHttpRoute(
+                name: "AddStudentsApi",
+                routeTemplate: "api/student",
+                defaults: new { controller = "Student", action = "AddStudents", httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
+            config.Routes.MapHttpRoute(
                 "UpdateSlideApi",
                 "api/slide/{id}",
                 new { controller = "Slide", action = "UpdateSlide", id = RouteParameter.Optional },

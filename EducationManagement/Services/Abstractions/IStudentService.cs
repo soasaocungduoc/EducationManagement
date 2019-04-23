@@ -1,14 +1,12 @@
-﻿using EducationManagement.Dtos.OutputDtos;
-using System;
+using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EducationManagement.Services.Abstractions
 {
     public interface IStudentService
     {
+        int[] AddStudents(StudentDto[] dtos);
         List<StudentResponseDto> GetStudentsByParentId(int parentId);
     }
 }
