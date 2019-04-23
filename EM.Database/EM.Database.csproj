@@ -143,6 +143,66 @@
     <Compile Include="Migrations\201904230325566_CreateAddStudentPermission.Designer.cs">
       <DependentUpon>201904230325566_CreateAddStudentPermission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904190426502_AddFunctionDatabase.cs" />
+    <Compile Include="Migrations\201904190426502_AddFunctionDatabase.Designer.cs">
+      <DependentUpon>201904190426502_AddFunctionDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904190431531_AddPermissionDatabasev1.cs" />
+    <Compile Include="Migrations\201904190431531_AddPermissionDatabasev1.Designer.cs">
+      <DependentUpon>201904190431531_AddPermissionDatabasev1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904190437304_AddPermissionDatabase.cs" />
+    <Compile Include="Migrations\201904190437304_AddPermissionDatabase.Designer.cs">
+      <DependentUpon>201904190437304_AddPermissionDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904200402481_CreateSchoolYearDatabase.cs" />
+    <Compile Include="Migrations\201904200402481_CreateSchoolYearDatabase.Designer.cs">
+      <DependentUpon>201904200402481_CreateSchoolYearDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904200417093_CreateSemesterDatabase.cs" />
+    <Compile Include="Migrations\201904200417093_CreateSemesterDatabase.Designer.cs">
+      <DependentUpon>201904200417093_CreateSemesterDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201156428_CreateTeamDatabase.cs" />
+    <Compile Include="Migrations\201904201156428_CreateTeamDatabase.Designer.cs">
+      <DependentUpon>201904201156428_CreateTeamDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201203577_CreateSubjectDatabase.cs" />
+    <Compile Include="Migrations\201904201203577_CreateSubjectDatabase.Designer.cs">
+      <DependentUpon>201904201203577_CreateSubjectDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201216534_CreateUserDatabase.cs" />
+    <Compile Include="Migrations\201904201216534_CreateUserDatabase.Designer.cs">
+      <DependentUpon>201904201216534_CreateUserDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201223220_CreateAccountDatabase.cs" />
+    <Compile Include="Migrations\201904201223220_CreateAccountDatabase.Designer.cs">
+      <DependentUpon>201904201223220_CreateAccountDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201240476_CreateTeacherDatabase.cs" />
+    <Compile Include="Migrations\201904201240476_CreateTeacherDatabase.Designer.cs">
+      <DependentUpon>201904201240476_CreateTeacherDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201249090_CreateDayOfWeekDatabase.cs" />
+    <Compile Include="Migrations\201904201249090_CreateDayOfWeekDatabase.Designer.cs">
+      <DependentUpon>201904201249090_CreateDayOfWeekDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201311021_CreateChaoCo.cs" />
+    <Compile Include="Migrations\201904201311021_CreateChaoCo.Designer.cs">
+      <DependentUpon>201904201311021_CreateChaoCo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201339404_CreateScheduleSubjects.cs" />
+    <Compile Include="Migrations\201904201339404_CreateScheduleSubjects.Designer.cs">
+      <DependentUpon>201904201339404_CreateScheduleSubjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201345267_CreateSinhHoat.cs" />
+    <Compile Include="Migrations\201904201345267_CreateSinhHoat.Designer.cs">
+      <DependentUpon>201904201345267_CreateSinhHoat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201347151_CreateScheduleSubjectsv2.cs" />
+    <Compile Include="Migrations\201904201347151_CreateScheduleSubjectsv2.Designer.cs">
+      <DependentUpon>201904201347151_CreateScheduleSubjectsv2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -216,6 +276,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904230325566_CreateAddStudentPermission.resx">
       <DependentUpon>201904230325566_CreateAddStudentPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190426502_AddFunctionDatabase.resx">
+      <DependentUpon>201904190426502_AddFunctionDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190431531_AddPermissionDatabasev1.resx">
+      <DependentUpon>201904190431531_AddPermissionDatabasev1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190437304_AddPermissionDatabase.resx">
+      <DependentUpon>201904190437304_AddPermissionDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200402481_CreateSchoolYearDatabase.resx">
+      <DependentUpon>201904200402481_CreateSchoolYearDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904200417093_CreateSemesterDatabase.resx">
+      <DependentUpon>201904200417093_CreateSemesterDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201156428_CreateTeamDatabase.resx">
+      <DependentUpon>201904201156428_CreateTeamDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201203577_CreateSubjectDatabase.resx">
+      <DependentUpon>201904201203577_CreateSubjectDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201216534_CreateUserDatabase.resx">
+      <DependentUpon>201904201216534_CreateUserDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201223220_CreateAccountDatabase.resx">
+      <DependentUpon>201904201223220_CreateAccountDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201240476_CreateTeacherDatabase.resx">
+      <DependentUpon>201904201240476_CreateTeacherDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201249090_CreateDayOfWeekDatabase.resx">
+      <DependentUpon>201904201249090_CreateDayOfWeekDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201311021_CreateChaoCo.resx">
+      <DependentUpon>201904201311021_CreateChaoCo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201339404_CreateScheduleSubjects.resx">
+      <DependentUpon>201904201339404_CreateScheduleSubjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201345267_CreateSinhHoat.resx">
+      <DependentUpon>201904201345267_CreateSinhHoat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201347151_CreateScheduleSubjectsv2.resx">
+      <DependentUpon>201904201347151_CreateScheduleSubjectsv2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

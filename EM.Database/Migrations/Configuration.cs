@@ -1,4 +1,4 @@
-using EM.Database.Schema;
+﻿using EM.Database.Schema;
 using System;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
@@ -27,34 +27,34 @@ namespace EM.Database.Migrations
             }
             
 
-
             //context.Functions.Add(new Function
             //{
             //    ScreenId = 4,
-            //    Name = "Get list of slides",
-            //    Description = "Lay danh sach slide",
-            //    Area = "Home",
-            //    ControllerName = "SlideController",
-            //    ActionName = "GetSlides",
+            //    Name = "DeleteSlide",
+            //    Description = "Xoa slide",
+            //    Area = "Admin",
+            //    ControllerName = "Slide",
+            //    ActionName = "DeleteSlide",
             //});
+
 
             //context.Users.Add(new User
             //{
-            //    FirstName = "Tram",
-            //    LastName = "Huynh",
+            //    FirstName = "Thông",
+            //    LastName = "Trần Văn",
             //    Avatar = "https://i.pinimg.com/originals/78/7f/27/787f271113b6fae60a7144dbff2b394a.jpg",
-            //    Gender = false,
+            //    Gender = true,
             //    Birthday = new DateTime(1997, 10, 30),
             //    PhoneNumber = "0789456123",
-            //    Address = "123 Nguyen Luong Bang",
+            //    Address = "123 Nguyễn Lương Bằng",
             //    IdentificationNumber = "123456789",
             //});
 
             //context.Accounts.Add(new Account
             //{
-            //    UserId = 5,
-            //    GroupId = 3,
-            //    UserName = "developer5",
+            //    UserId = i,
+            //    GroupId = 6,
+            //    UserName = "teacher" + i,
             //    Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("123456")),
             //});
 

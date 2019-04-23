@@ -181,9 +181,12 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Commons\AccountVerification.cs" />
     <Compile Include="Commons\AuthenticationValidation.cs" />
     <Compile Include="Commons\Constants.cs" />
+    <Compile Include="Commons\FunctionCommon.cs" />
     <Compile Include="Commons\JwtAuthenticationExtensions.cs" />
+    <Compile Include="Commons\Paging.cs" />
     <Compile Include="Commons\TokenValidationHandler.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\Bases\BaseApiController.cs" />
@@ -193,17 +196,26 @@
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
+    <Compile Include="Dtos\InputDtos\NewsConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\NewsDto.cs" />
+    <Compile Include="Dtos\InputDtos\SlideConditionSearch.cs" />
+    <Compile Include="Dtos\InputDtos\SlideDto.cs" />
+    <Compile Include="Dtos\InputDtos\TeacherConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\ListOfTeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SchoolInformationDto.cs" />
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\UserResponseDto.cs" />
     <Compile Include="Dtos\Teacher.cs" />
     <Compile Include="Dtos\TokenInformation.cs" />
     <Compile Include="Dtos\User.cs" />
+    <Compile Include="Fillters\AdminAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

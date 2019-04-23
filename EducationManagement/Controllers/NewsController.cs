@@ -5,10 +5,10 @@ using EducationManagement.Services.Abstractions;
 using System.Web.Http;
 using EducationManagement.Commons;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Fillters;
 
 namespace EducationManagement.Controllers
 {
-    [RoutePrefix("api/news")]
     public class NewsController : BaseApiController
     {
         private readonly INewsService _newsService;
@@ -19,21 +19,29 @@ namespace EducationManagement.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetNews()
+        [ActionName("GetNews")]
+        public IHttpActionResult GetNews([FromBody]NewsConditionSearch conditionSearch)
         {
-            return Ok(_newsService.GetNews());
+            try
+            {
+                return Ok(_newsService.GetNews(conditionSearch));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
 
         [HttpGet]
-        [Route("{newsId}")]
-        public IHttpActionResult GetNews(int newsId)
+        [ActionName("GetNewsById")]
+        public IHttpActionResult GetNewsById(int newsId)
         {
             return Ok(_newsService.GetNews(newsId));
         }
 
-        [Authorize]
+        [AdminAuthorization]
         [HttpDelete]
-        [Route("{newsId}")]
+        [ActionName("DeleteNews")]
         public IHttpActionResult DeleteNews(int newsId)
         {
             var token = Request.GetAuthorizationHeader();
@@ -49,8 +57,9 @@ namespace EducationManagement.Controllers
                 "Only admin or mod can delete a news."));
         }
 
-        [Authorize]
+        [AdminAuthorization]
         [HttpPost]
+        [ActionName("AddNews")]
         public IHttpActionResult AddNews([FromBody] NewsDto news)
         {
             var token = Request.GetAuthorizationHeader();
@@ -66,9 +75,9 @@ namespace EducationManagement.Controllers
             return BadRequest("An error occurred when adding news. Please try again.");
         }
 
-        [Authorize]
-        [HttpPost]
-        [Route("{newsId}")]
+        [AdminAuthorization]
+        [HttpPut]
+        [ActionName("UpdateNews")]
         public IHttpActionResult UpdateNews(int newsId, [FromBody] NewsDto news)
         {
             var token = Request.GetAuthorizationHeader();
