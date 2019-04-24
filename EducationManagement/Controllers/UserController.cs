@@ -58,10 +58,10 @@ namespace EducationManagement.Controllers
         /// update user avatar
         /// </summary>
         [Route("{userId}/avatar")]
-        [HttpPost]
-        public IHttpActionResult UpdateAvatar(int userId, [JsonProperty("avatar_url")] [FromBody] string url)
+        [HttpPut]
+        public IHttpActionResult UpdateAvatar(int userId, [JsonProperty("avatar_url")] [FromBody] UrlDto dto)
         {
-            if(url == null)
+            if(dto == null)
             {
                 return Response(HttpStatusCode.BadRequest, "Invalid or missing avatar url.");
             }
@@ -73,7 +73,7 @@ namespace EducationManagement.Controllers
                 return Response(HttpStatusCode.Unauthorized, "Not allowed.");
             }
 
-            var result = _userService.UpdateAvatar(userId, url);
+            var result = _userService.UpdateAvatar(userId, dto);
 
             return result == false
                 ? Response(HttpStatusCode.BadRequest, "Fail to update.")

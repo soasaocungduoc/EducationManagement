@@ -19,7 +19,7 @@ namespace EducationManagement.Services.Implementations
             return user == null ? null : new User(user);
         }
         
-        public bool UpdateAvatar(int userId, string url)
+        public bool UpdateAvatar(int userId, UrlDto dto)
         {
             var userFromDb = db.Users.FirstOrDefault(x => x.Id == userId && !x.DelFlag);
 
@@ -28,7 +28,7 @@ namespace EducationManagement.Services.Implementations
                 return false;
             }
 
-            userFromDb.Avatar = url;
+            userFromDb.Avatar = dto.Url;
 
             db.SaveChanges();
 
