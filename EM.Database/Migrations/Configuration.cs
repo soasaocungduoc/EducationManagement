@@ -16,62 +16,60 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    context.Classes.Add(new Class
-            //    {
-            //        Name = "10A" + i,
-            //        GradeId = 2,
-            //        NumberOfStudents = 30,
-            //        TeacherId = 8,
-
-            //    });
-            //    context.Classes.Add(new Class
-            //    {
-            //        Name = "11A" + i,
-            //        GradeId = 3,
-            //        NumberOfStudents = 30,
-            //        TeacherId = 8
-            //    });
-            //    context.Classes.Add(new Class
-            //    {
-            //        Name = "12A" + i,
-            //        GradeId = 4,
-            //        NumberOfStudents = 30,
-            //        TeacherId = 8
-            //    });
-            //}
-
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    context.Classes.Add(new Class
-            //    {
-            //        Name = "10B" + i,
-            //        GradeId = 2,
-            //        NumberOfStudents = 30,
-            //        TeacherId = 8
-            //    });
-            //    context.Classes.Add(new Class
-            //    {
-            //        Name = "11B" + i,
-            //        GradeId = 3,
-            //        NumberOfStudents = 30,
-            //        TeacherId = 8
-            //    });
-            //    context.Classes.Add(new Class
-            //    {
-            //        Name = "12B" + i,
-            //        GradeId = 4,
-            //        NumberOfStudents = 30,
-            //        TeacherId = 8
-            //    });
-            //}
-
-            for (int i = 1; i < 30; i++)
+            var Roomid = 1;
+            for (int i = 1; i < 4; i++)
             {
-                context.Rooms.Add(new Room
+                context.Classes.Add(new Class
                 {
-                    RoomNumber = i.ToString()
+                    Name = "10A" + i,
+                    GradeId = 2,
+                    NumberOfStudents = 30,
+                    TeacherId = 8,
+                    RoomId = Roomid++
+                });
+                context.Classes.Add(new Class
+                {
+                    Name = "11A" + i,
+                    GradeId = 3,
+                    NumberOfStudents = 30,
+                    TeacherId = 8,
+                    RoomId = Roomid++
+                });
+                context.Classes.Add(new Class
+                {
+                    Name = "12A" + i,
+                    GradeId = 4,
+                    NumberOfStudents = 30,
+                    TeacherId = 8,
+                    RoomId = Roomid++
+                });
+            }
+
+            for (int i = 1; i < 4; i++)
+            {
+                context.Classes.Add(new Class
+                {
+                    Name = "10B" + i,
+                    GradeId = 2,
+                    NumberOfStudents = 30,
+                    TeacherId = 8,
+                    RoomId = Roomid++
+                });
+                context.Classes.Add(new Class
+                {
+                    Name = "11B" + i,
+                    GradeId = 3,
+                    NumberOfStudents = 30,
+                    TeacherId = 8,
+                    RoomId = Roomid++
+                });
+                context.Classes.Add(new Class
+                {
+                    Name = "12B" + i,
+                    GradeId = 4,
+                    NumberOfStudents = 30,
+                    TeacherId = 8,
+                    RoomId = Roomid++
                 });
             }
 
