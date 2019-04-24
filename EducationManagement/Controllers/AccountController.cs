@@ -34,12 +34,15 @@ namespace EducationManagement.Controllers
                         Content = new StringContent("Not allowed.")
                     });
                 }
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
                 var i = _accountService.ChangePassword(password, id);
                 if (i == -1)
                     return BadRequest("Cannot found this account");
                 else if (i == 0)
                     return BadRequest("Old password isn't correct");
                 return Ok("Update password success");
+
 
             }
             catch (Exception e)
