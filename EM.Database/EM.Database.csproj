@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201904231055526_CreateListStudentAndListScheduleSubjectPermission.Designer.cs">
       <DependentUpon>201904231055526_CreateListStudentAndListScheduleSubjectPermission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904240220050_CreateGradeDatabase.cs" />
+    <Compile Include="Migrations\201904240220050_CreateGradeDatabase.Designer.cs">
+      <DependentUpon>201904240220050_CreateGradeDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904231055526_CreateListStudentAndListScheduleSubjectPermission.resx">
       <DependentUpon>201904231055526_CreateListStudentAndListScheduleSubjectPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904240220050_CreateGradeDatabase.resx">
+      <DependentUpon>201904240220050_CreateGradeDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

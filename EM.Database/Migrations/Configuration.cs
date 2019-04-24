@@ -16,33 +16,18 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            for (int i = 1; i < 7; i++)
+            context.Grades.Add(new Grade
             {
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 13,
-                    IsEnable = true,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 14,
-                    IsEnable = true,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 15,
-                    IsEnable = true,
-                });
-                context.Permissions.Add(new Permission
-                {
-                    GroupId = i,
-                    FunctionId = 16,
-                    IsEnable = true,
-                });
-            }
+                Name = "Khối 10"
+            });
+            context.Grades.Add(new Grade
+            {
+                Name = "Khối 11"
+            });
+            context.Grades.Add(new Grade
+            {
+                Name = "Khối 12"
+            });
 
 
 
