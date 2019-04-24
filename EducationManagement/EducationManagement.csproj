@@ -190,6 +190,7 @@
     <Compile Include="Commons\TokenValidationHandler.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\Bases\BaseApiController.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ScheduleSubjectController.cs" />
     <Compile Include="Controllers\SchoolInformationController.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Dtos\InputDtos\SlideDto.cs" />
     <Compile Include="Dtos\InputDtos\TeacherConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
+    <Compile Include="Dtos\OutputDtos\ClassResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
@@ -229,6 +231,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstractions\IAuthenticationService.cs" />
+    <Compile Include="Services\Abstractions\IClassService.cs" />
     <Compile Include="Services\Abstractions\INewsService.cs" />
     <Compile Include="Services\Abstractions\IParentService.cs" />
     <Compile Include="Services\Abstractions\IScheduleSubjectService.cs" />
@@ -240,6 +243,7 @@
     <Compile Include="Services\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\Abstractions\IUserService.cs" />
     <Compile Include="Services\Implementations\AuthenticationService.cs" />
+    <Compile Include="Services\Implementations\ClassService.cs" />
     <Compile Include="Services\Implementations\NewsService.cs" />
     <Compile Include="Services\Implementations\ParentService.cs" />
     <Compile Include="Services\Implementations\ScheduleSubjectService.cs" />
