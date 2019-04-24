@@ -15,22 +15,22 @@ namespace EducationManagement.Dtos.OutputDtos
         public UserResponseDto UserInfo { get; set; }
 
         [JsonProperty("class_name")]
-        public string ClassName { get; set; }
+        public ClassInfoForListStudent ClassInfo { get; set; }
 
         [JsonProperty("parent_name")]
-        public string ParentName { get; set; }
+        public ParentInfoForListStudent ParentInfo { get; set; }
 
         public StudentResponseDto()
         {
 
         }
 
-        public StudentResponseDto(int id, UserResponseDto userInfo, string className, string parentName)
+        public StudentResponseDto(int id, UserResponseDto userInfo, ClassInfoForListStudent classInfo, ParentInfoForListStudent parentInfo)
         {
             Id = id;
             UserInfo = userInfo;
-            ClassName = className;
-            ParentName = parentName;
+            ClassInfo = classInfo;
+            ParentInfo = parentInfo;
         }
     }
 }

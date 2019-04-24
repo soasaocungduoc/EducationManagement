@@ -7,8 +7,6 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    [AdminAuthorization]
-    [RoutePrefix("api/student")]
     public class StudentController : BaseApiController
     {
         private readonly IStudentService _studentService;
@@ -17,6 +15,7 @@ namespace EducationManagement.Controllers
             _studentService = studentService;
         }
 
+        [AdminAuthorization]
         [HttpPost]
         [ActionName("AddStudents")]
         public IHttpActionResult AddStudents([FromBody] StudentDto[] dtos)
@@ -43,6 +42,7 @@ namespace EducationManagement.Controllers
         }
 
         
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetStudentsByParentId")]
         public IHttpActionResult GetStudentsByParentId(int id)
@@ -50,6 +50,21 @@ namespace EducationManagement.Controllers
             try
             {
                 return Ok(_studentService.GetStudentsByParentId(id));
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        //[AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetStudentsByClassId")]
+        public IHttpActionResult GetStudentsByClassId(int id)
+        {
+            try
+            {
+                return Ok(_studentService.GetStudentsByClassId(id));
             }
             catch (Exception e)
             {
