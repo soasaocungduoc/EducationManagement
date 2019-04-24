@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201904240220050_CreateGradeDatabase.Designer.cs">
       <DependentUpon>201904240220050_CreateGradeDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904240335492_CreateRoomDatabase.cs" />
+    <Compile Include="Migrations\201904240335492_CreateRoomDatabase.Designer.cs">
+      <DependentUpon>201904240335492_CreateRoomDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904240220050_CreateGradeDatabase.resx">
       <DependentUpon>201904240220050_CreateGradeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904240335492_CreateRoomDatabase.resx">
+      <DependentUpon>201904240335492_CreateRoomDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

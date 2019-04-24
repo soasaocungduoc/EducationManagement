@@ -16,20 +16,64 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            context.Grades.Add(new Grade
-            {
-                Name = "Khối 10"
-            });
-            context.Grades.Add(new Grade
-            {
-                Name = "Khối 11"
-            });
-            context.Grades.Add(new Grade
-            {
-                Name = "Khối 12"
-            });
+            //for (int i = 1; i < 4; i++)
+            //{
+            //    context.Classes.Add(new Class
+            //    {
+            //        Name = "10A" + i,
+            //        GradeId = 2,
+            //        NumberOfStudents = 30,
+            //        TeacherId = 8,
 
+            //    });
+            //    context.Classes.Add(new Class
+            //    {
+            //        Name = "11A" + i,
+            //        GradeId = 3,
+            //        NumberOfStudents = 30,
+            //        TeacherId = 8
+            //    });
+            //    context.Classes.Add(new Class
+            //    {
+            //        Name = "12A" + i,
+            //        GradeId = 4,
+            //        NumberOfStudents = 30,
+            //        TeacherId = 8
+            //    });
+            //}
 
+            //for (int i = 1; i < 4; i++)
+            //{
+            //    context.Classes.Add(new Class
+            //    {
+            //        Name = "10B" + i,
+            //        GradeId = 2,
+            //        NumberOfStudents = 30,
+            //        TeacherId = 8
+            //    });
+            //    context.Classes.Add(new Class
+            //    {
+            //        Name = "11B" + i,
+            //        GradeId = 3,
+            //        NumberOfStudents = 30,
+            //        TeacherId = 8
+            //    });
+            //    context.Classes.Add(new Class
+            //    {
+            //        Name = "12B" + i,
+            //        GradeId = 4,
+            //        NumberOfStudents = 30,
+            //        TeacherId = 8
+            //    });
+            //}
+
+            for (int i = 1; i < 30; i++)
+            {
+                context.Rooms.Add(new Room
+                {
+                    RoomNumber = i.ToString()
+                });
+            }
 
             //context.Functions.Add(new Function
             //{
