@@ -27,7 +27,7 @@ namespace EducationManagement
             container.RegisterType<ISemesterService, SemesterService>();
             container.RegisterType<IStudentService, StudentService>();
             container.RegisterType<IScheduleSubjectService, ScheduleSubjectService>();
-
+            container.RegisterType<IClassService, ClassService>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

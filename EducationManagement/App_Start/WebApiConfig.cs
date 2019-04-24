@@ -163,6 +163,14 @@ namespace EducationManagement
                 new { controller = "ScheduleSubject", action = "GetTeachingSchedulesByTeacherId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- Class controller -->
+            config.Routes.MapHttpRoute(
+                "GetClasses",
+                "api/class",
+                new { controller = "Class", action = "GetClasses" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
