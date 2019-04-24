@@ -185,7 +185,7 @@ namespace EducationManagement
             //<--Account controller-->
             config.Routes.MapHttpRoute(
                 "ChangePasswordApi",
-                "api/account/{id}/change-password",
+                "api/account/{id}/password",
                 new { controller = "Account", action = "ChangePassword", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
             );
