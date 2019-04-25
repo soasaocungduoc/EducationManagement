@@ -49,7 +49,10 @@ namespace EducationManagement.Controllers
         {
             try
             {
-                return Ok(_studentService.GetStudentsByParentId(id));
+                var result = _studentService.GetStudentsByParentId(id);
+                if (result != null)
+                    return Ok(result);
+                return BadRequest("Cannot found this parent");
             }
             catch (Exception e)
             {
@@ -64,7 +67,10 @@ namespace EducationManagement.Controllers
         {
             try
             {
-                return Ok(_studentService.GetStudentsByClassId(id));
+                var result = _studentService.GetStudentsByClassId(id);
+                if(result != null)
+                    return Ok(result);
+                return BadRequest("Cannot found this class");
             }
             catch (Exception e)
             {

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace EducationManagement.Dtos.OutputDtos
 {
-    public class StudentOfClassRespondeDto
+    public class StudentOfClassResponseDto
     {
 
         [JsonProperty("id")]

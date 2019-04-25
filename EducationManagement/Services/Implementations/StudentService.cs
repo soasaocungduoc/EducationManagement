@@ -81,12 +81,14 @@ namespace EducationManagement.Services.Implementations
         {
             try
             {
+                var Class = db.Classes.FirstOrDefault(x => !x.DelFlag && x.Id == classId);
+                if (Class == null) return null;
                 ListStudentsOfClassResponseDto students = new ListStudentsOfClassResponseDto();
 
-                students.ClassInfo = new ClassInfoForListStudent(db.Classes.FirstOrDefault(x => !x.DelFlag && x.Id == classId));
+                students.ClassInfo = new ClassInfoForListStudent(Class);
 
                 students.Students = db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.ClassId == classId).ToList()
-                    .Select(s => new StudentOfClassRespondeDto
+                    .Select(s => new StudentOfClassResponseDto
                     {
                         Id = s.Id,
                         UserInfo = new UserResponseDto(s.User),
@@ -101,18 +103,22 @@ namespace EducationManagement.Services.Implementations
             }
         }
 
-        public List<StudentResponseDto> GetStudentsByParentId(int id)
+        public ListStudentOfParentResponseDto GetStudentsByParentId(int id)
         {
             try
             {
-                return db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.Parent.UserId == id).ToList()
-                    .Select(s => new StudentResponseDto
+                var parent = db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.UserId == id);
+                if (parent == null) return null;
+                ListStudentOfParentResponseDto students = new ListStudentOfParentResponseDto();
+                students.ParentInfo = new ParentInfoForListStudent(id, parent.User.LastName + " " + parent.User.FirstName);
+                students.Students = db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.Parent.UserId == id).ToList()
+                    .Select(s => new StudentOfParentResponseDto
                     {
                         Id = s.Id,
                         ClassInfo = new ClassInfoForListStudent(s.Class),
                         UserInfo = new UserResponseDto(s.User),
-                        ParentInfo = new ParentInfoForListStudent(s.Parent.UserId, db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == s.ParentId).User.FirstName)
                     }).ToList();
+                return students;
             }
             catch (Exception e)
             {
