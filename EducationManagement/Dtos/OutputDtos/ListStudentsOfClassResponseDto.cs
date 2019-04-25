@@ -12,14 +12,14 @@ namespace EducationManagement.Dtos.OutputDtos
         public ClassInfoForListStudent ClassInfo { get; set; }
 
         [JsonProperty("all_student")]
-        public List<StudentOfClassRespondeDto> Students { get; set; }
+        public List<StudentOfClassResponseDto> Students { get; set; }
 
         public ListStudentsOfClassResponseDto()
         {
 
         }
 
-        public ListStudentsOfClassResponseDto(ClassInfoForListStudent classInfo, List<StudentOfClassRespondeDto> students)
+        public ListStudentsOfClassResponseDto(ClassInfoForListStudent classInfo, List<StudentOfClassResponseDto> students)
         {
             ClassInfo = classInfo;
             Students = students;

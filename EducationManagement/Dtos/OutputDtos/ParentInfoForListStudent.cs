@@ -25,6 +25,5 @@ namespace EducationManagement.Dtos.OutputDtos
             Id = id;
             Name = name;
         }
-
     }
 }
