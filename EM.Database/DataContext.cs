@@ -229,6 +229,12 @@ namespace EM.Database
                 .HasForeignKey(e => e.SemesterId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Semester>()
+                .HasMany(e => e.ScheduleSubjects)
+                .WithRequired(e => e.Semester)
+                .HasForeignKey(e => e.SemesterId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Student>()
                 .HasMany(e => e.Results)
                 .WithRequired(e => e.Student)
