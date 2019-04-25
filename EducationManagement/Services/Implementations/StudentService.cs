@@ -77,18 +77,22 @@ namespace EducationManagement.Services.Implementations
             return errorIndexs.ToArray();
         }
 
-        public List<StudentResponseDto> GetStudentsByClassId(int classId)
+        public ListStudentsOfClassResponseDto GetStudentsByClassId(int classId)
         {
             try
             {
-                return db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.ClassId == classId).ToList()
-                    .Select(s => new StudentResponseDto
+                ListStudentsOfClassResponseDto students = new ListStudentsOfClassResponseDto();
+
+                students.ClassInfo = new ClassInfoForListStudent(db.Classes.FirstOrDefault(x => !x.DelFlag && x.Id == classId));
+
+                students.Students = db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.ClassId == classId).ToList()
+                    .Select(s => new StudentOfClassRespondeDto
                     {
                         Id = s.Id,
-                        ClassInfo = new ClassInfoForListStudent(s.Class),
                         UserInfo = new UserResponseDto(s.User),
                         ParentInfo = new ParentInfoForListStudent(s.Parent.UserId, db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == s.ParentId).User.FirstName)
                     }).ToList();
+                return students;
             }
             catch (Exception e)
             {
