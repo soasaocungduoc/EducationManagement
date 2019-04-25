@@ -1,8 +1,10 @@
 using EducationManagement.Dtos;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -70,6 +72,12 @@ namespace EducationManagement.Services.Implementations
                 return null;
             }
             
+        }
+
+        public List<UserResponseDto> GetUsers()
+        {
+            return db.Users.Where(x => !x.DelFlag).ToList().
+                Select(x => new UserResponseDto(x)).ToList();
         }
     }
 }
