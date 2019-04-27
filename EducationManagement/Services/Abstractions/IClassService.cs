@@ -10,5 +10,6 @@ namespace EducationManagement.Services.Abstractions
     public interface IClassService
     {
         List<ClassResponseDto> GetClasses();
+        List<ClassResponseDto> GetClassesByGradeId(int gradeId);
     }
 }

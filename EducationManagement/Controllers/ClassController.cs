@@ -30,5 +30,23 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetClassesByGradeId")]
+        public IHttpActionResult GetClasses(int id)
+        {
+            try
+            {
+                var result = _classService.GetClassesByGradeId(id);
+                if (result == null)
+                    return BadRequest("Cannot found this grade");
+                return Ok(result);
+
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
