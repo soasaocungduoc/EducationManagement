@@ -16,6 +16,10 @@ namespace EM.Database.Schema
 
         public int TeacherId { get; set; }
 
+        public int SemesterId { get; set; }
+
+        public virtual Semester Semester { get; set; }
+
         public virtual Teacher Teacher { get; set; }
 
         public virtual Class Class { get; set; }
