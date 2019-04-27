@@ -197,6 +197,14 @@ namespace EducationManagement
                 new { controller = "User", action = "GetUsers"},
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- Grade controller -->
+            config.Routes.MapHttpRoute(
+                "GetGradesApi",
+                "api/grade",
+                new { controller = "Grade", action = "GetGrades" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
