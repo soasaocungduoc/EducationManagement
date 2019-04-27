@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Web;
+using EducationManagement.Dtos.InputDtos;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -13,12 +14,14 @@ namespace EducationManagement.Services.Implementations
     {
         private readonly DataContext db = new DataContext();
 
-        public List<ScheduleSubjectResponseDto> GetScheduleSubjectsByClassId(int id)
+        public List<ScheduleSubjectResponseDto> GetScheduleSubjectsByClassId(int id, SemesterIdDto semesterId)
         {
             try
             {
+                var Class = db.Classes.FirstOrDefault(x => !x.DelFlag && x.Id == id);
+                if (Class == null) return null;
                 return db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
-                    .Where(x => !x.DelFlag && x.ClassId == id).ToList()
+                    .Where(x => !x.DelFlag && x.ClassId == id && x.SemesterId == semesterId.id).ToList()
                     .Select(y => new ScheduleSubjectResponseDto
                     {
                         Id = y.Id,
@@ -36,12 +39,14 @@ namespace EducationManagement.Services.Implementations
             }
         }
 
-        public List<ScheduleSubjectResponseDto> GetScheduleSubjectsByStudentId(int id)
+        public List<ScheduleSubjectResponseDto> GetScheduleSubjectsByStudentId(int id, SemesterIdDto semesterId)
         {
             try
             {
-                var classId = db.Students.FirstOrDefault(x => !x.DelFlag && x.UserId == id).ClassId;
-                return GetScheduleSubjectsByClassId(classId);
+                var student =  db.Students.FirstOrDefault(x => !x.DelFlag && x.UserId == id);
+                if (student == null) return null;
+                var classId =  student.ClassId;
+                return GetScheduleSubjectsByClassId(classId, semesterId);
             }
             catch (Exception e)
             {
@@ -50,12 +55,14 @@ namespace EducationManagement.Services.Implementations
             }
         }
 
-        public List<TeachingScheduleResponseDto> GetTeachingScheduleByTeacherId(int id)
+        public List<TeachingScheduleResponseDto> GetTeachingScheduleByTeacherId(int id, SemesterIdDto semesterId)
         {
             try
             {
+                var teacher = db.Teachers.FirstOrDefault(x => !x.DelFlag && x.UserId == id);
+                if (teacher == null) return null;
                 return db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
-                    .Where(x => !x.DelFlag && x.Teacher.UserId == id).ToList()
+                    .Where(x => !x.DelFlag && x.Teacher.UserId == id && x.SemesterId == semesterId.id).ToList()
                     .Select(y => new TeachingScheduleResponseDto
                     {
                         Id = y.Id,

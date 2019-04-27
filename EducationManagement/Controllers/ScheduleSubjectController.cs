@@ -1,4 +1,5 @@
 ﻿using EducationManagement.Controllers.Bases;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System;
@@ -21,13 +22,15 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetScheduleSubjectsByClassId")]
-        public IHttpActionResult GetScheduleSubjectsByClassId(int id)
+        public IHttpActionResult GetScheduleSubjectsByClassId(int id, [FromBody] SemesterIdDto semesterId)
         {
             try
             {
-                if (_scheduleSubjectService.GetScheduleSubjectsByClassId(id) == null)
-                    return BadRequest("Cannot found");
-                return Ok(_scheduleSubjectService.GetScheduleSubjectsByClassId(id));
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var result = _scheduleSubjectService.GetScheduleSubjectsByClassId(id, semesterId);
+                if (result == null)
+                    return BadRequest("Cannot found this class");
+                return Ok(result);
                    
             }
             catch (Exception e)
@@ -38,14 +41,16 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetScheduleSubjectsByStudentId")]
-        public IHttpActionResult GetScheduleSubjectsByStudentId(int id)
+        public IHttpActionResult GetScheduleSubjectsByStudentId(int id, [FromBody] SemesterIdDto semesterId)
         {
             try
             {
-                if (_scheduleSubjectService.GetScheduleSubjectsByStudentId(id) == null)
-                    return BadRequest("Cannot found");
-                return Ok(_scheduleSubjectService.GetScheduleSubjectsByStudentId(id));
-                
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var result = _scheduleSubjectService.GetScheduleSubjectsByStudentId(id, semesterId);
+                if (result == null)
+                    return BadRequest("Cannot found this student");
+                return Ok(result);
+
             }
             catch (Exception e)
             {
@@ -55,13 +60,15 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetTeachingSchedulesByTeacherId")]
-        public IHttpActionResult GetTeachingSchedulesByTeacherId(int id)
+        public IHttpActionResult GetTeachingSchedulesByTeacherId(int id, [FromBody] SemesterIdDto semesterId)
         {
             try
             {
-                if (_scheduleSubjectService.GetTeachingScheduleByTeacherId(id) == null)
-                    return BadRequest("Cannot found");
-                return Ok(_scheduleSubjectService.GetTeachingScheduleByTeacherId(id));
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var result = _scheduleSubjectService.GetTeachingScheduleByTeacherId(id, semesterId);
+                if (result == null)
+                    return BadRequest("Cannot found this teacher");
+                return Ok(result);
 
             }
             catch (Exception e)
