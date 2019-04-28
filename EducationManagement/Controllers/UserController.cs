@@ -59,7 +59,7 @@ namespace EducationManagement.Controllers
         /// </summary>
         [Route("{userId}/avatar")]
         [HttpPut]
-        public IHttpActionResult UpdateAvatar(int userId, [JsonProperty("avatar_url")] [FromBody] UrlDto dto)
+        public IHttpActionResult UpdateAvatar(int userId, [FromBody] UrlDto dto)
         {
             if(dto == null)
             {
