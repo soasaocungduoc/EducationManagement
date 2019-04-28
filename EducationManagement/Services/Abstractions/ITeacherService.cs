@@ -12,5 +12,7 @@ namespace EducationManagement.Services.Abstractions
     public interface ITeacherService
     {
         List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch);
+
+        bool Add(TeacherDto dto);
     }
 }

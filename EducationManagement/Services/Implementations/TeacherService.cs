@@ -3,6 +3,7 @@ using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Dtos.OutputDtos;
 using EducationManagement.Services.Abstractions;
 using EM.Database;
+using EM.Database.Schema;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,6 +15,48 @@ namespace EducationManagement.Services.Implementations
     public class TeacherService : ITeacherService
     {
         private readonly DataContext db = new DataContext();
+
+        public bool Add(TeacherDto dto)
+        {
+            var user = new EM.Database.Schema.User();
+            var account = new Account();
+            var teacher = new Teacher();
+
+            try
+            {
+                user.FirstName = dto.FirstName;
+                user.LastName = dto.LastName;
+                user.Avatar = dto.Avatar;
+                user.Gender = dto.Gender;
+                user.Birthday = Convert.ToDateTime(dto.Birthday);
+                user.PhoneNumber = dto.PhoneNumber;
+                user.Address = dto.Address;
+                user.IdentificationNumber = dto.IdentificationNumber;
+
+                db.Users.Add(user);
+
+                account.UserName = "teacher_" + db.Accounts.Max(x => x.Id).ToString();
+                account.Password = DatabaseCreation.GetMd5(DatabaseCreation.GetSimpleMd5("12345678"));
+                account.UserId = user.Id;
+                account.GroupId = 6;
+
+                db.Accounts.Add(account);
+
+                teacher.UserId = user.Id;
+                teacher.TeamId = dto.TeamId;
+
+                db.Teachers.Add(teacher);
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            db.SaveChanges();
+
+            return true;
+        }
 
         public List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch)
         {

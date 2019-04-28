@@ -211,6 +211,7 @@
     <Compile Include="Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\SlideDto.cs" />
     <Compile Include="Dtos\InputDtos\TeacherConditionSearch.cs" />
+    <Compile Include="Dtos\InputDtos\TeacherDto.cs" />
     <Compile Include="Dtos\InputDtos\UrlDto.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\ClassInfoForListStudent.cs" />

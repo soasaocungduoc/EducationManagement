@@ -11,7 +11,6 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    [AdminAuthorization]
     public class TeacherController : BaseApiController
     {
         private readonly ITeacherService _teacherService;
@@ -20,6 +19,7 @@ namespace EducationManagement.Controllers
             _teacherService = teacherService;
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetTeachers")]
         public IHttpActionResult GetTeachers([FromBody]TeacherConditionSearch conditionSearch)
@@ -32,6 +32,26 @@ namespace EducationManagement.Controllers
             {
                 return InternalServerError(e);
             }
+        }
+
+        [AdminAuthorization]
+        [HttpPost]
+        [ActionName("AddTeacher")]
+        public IHttpActionResult AddTeacher([FromBody] TeacherDto dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("null input");
+            }
+
+            var result = _teacherService.Add(dto);
+
+            if (result == true)
+            {
+                return Ok();
+            }
+
+            return BadRequest("invalid input");
         }
     }
 }
