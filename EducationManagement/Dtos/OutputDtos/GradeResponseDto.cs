@@ -7,20 +7,25 @@ using System.Web;
 
 namespace EducationManagement.Dtos.OutputDtos
 {
-    public class ParentInfoForListStudent
+    public class GradeResponseDto
     {
         [JsonProperty("id")]
         public int Id { get; set; }
-
-        [JsonProperty("parent_name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        public ParentInfoForListStudent()
+        public GradeResponseDto()
         {
 
         }
 
-        public ParentInfoForListStudent(int id, string name)
+        public GradeResponseDto(Grade grade)
+        {
+            Id = grade.Id;
+            Name = grade.Name;
+        }
+
+        public GradeResponseDto(int id, string name)
         {
             Id = id;
             Name = name;

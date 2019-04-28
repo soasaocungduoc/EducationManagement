@@ -80,6 +80,20 @@ namespace EducationManagement.Controllers
                 : Response(HttpStatusCode.OK, "Avatar is updated.");
         }
 
+        [HttpGet]
+        [ActionName("GetUsers")]
+        public IHttpActionResult GetUsers()
+        {
+            try
+            {
+                return Ok(_userService.GetUsers());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
         private IHttpActionResult Response(HttpStatusCode statusCode, string message)
         {
             return ResponseMessage(new HttpResponseMessage(statusCode)

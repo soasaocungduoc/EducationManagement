@@ -7,8 +7,8 @@ namespace EducationManagement.Services.Abstractions
     public interface IStudentService
     {
         int[] AddStudents(StudentDto[] dtos);
-        List<StudentResponseDto> GetStudentsByParentId(int parentId);
-        List<StudentResponseDto> GetStudentsByClassId(int classId);
+        ListStudentOfParentResponseDto GetStudentsByParentId(int parentId);
+        ListStudentsOfClassResponseDto GetStudentsByClassId(int classId);
 
     }
 }

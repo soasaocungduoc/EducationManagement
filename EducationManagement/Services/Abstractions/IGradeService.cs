@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace EducationManagement.Services.Abstractions
 {
-    public interface IClassService
+    public interface IGradeService
     {
-        List<ClassResponseDto> GetClasses();
-        List<ClassResponseDto> GetClassesByGradeId(int gradeId);
+        List<GradeResponseDto> GetGrades();
     }
 }

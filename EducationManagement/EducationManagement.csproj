@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\Bases\BaseApiController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ScheduleSubjectController.cs" />
     <Compile Include="Controllers\SchoolInformationController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dtos\InputDtos\SemesterIdDto.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
     <Compile Include="Dtos\InputDtos\NewsConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\NewsDto.cs" />
@@ -210,10 +212,14 @@
     <Compile Include="Dtos\InputDtos\SlideDto.cs" />
     <Compile Include="Dtos\InputDtos\TeacherConditionSearch.cs" />
     <Compile Include="Dtos\InputDtos\TeacherDto.cs" />
+    <Compile Include="Dtos\InputDtos\UrlDto.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
     <Compile Include="Dtos\OutputDtos\ClassInfoForListStudent.cs" />
     <Compile Include="Dtos\OutputDtos\ClassResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\GradeResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\ListStudentOfParentResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\ListStudentsOfClassResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ParentInfoForListStudent.cs" />
@@ -222,7 +228,8 @@
     <Compile Include="Dtos\OutputDtos\SchoolYearResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SemesterResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
-    <Compile Include="Dtos\OutputDtos\StudentResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\StudentOfClassResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\StudentOfParentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeachingScheduleResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
@@ -238,6 +245,7 @@
     <Compile Include="Services\Abstractions\IAccountService.cs" />
     <Compile Include="Services\Abstractions\IAuthenticationService.cs" />
     <Compile Include="Services\Abstractions\IClassService.cs" />
+    <Compile Include="Services\Abstractions\IGradeService.cs" />
     <Compile Include="Services\Abstractions\INewsService.cs" />
     <Compile Include="Services\Abstractions\IParentService.cs" />
     <Compile Include="Services\Abstractions\IScheduleSubjectService.cs" />
@@ -251,6 +259,7 @@
     <Compile Include="Services\Implementations\AccountService.cs" />
     <Compile Include="Services\Implementations\AuthenticationService.cs" />
     <Compile Include="Services\Implementations\ClassService.cs" />
+    <Compile Include="Services\Implementations\GradeService.cs" />
     <Compile Include="Services\Implementations\NewsService.cs" />
     <Compile Include="Services\Implementations\ParentService.cs" />
     <Compile Include="Services\Implementations\ScheduleSubjectService.cs" />

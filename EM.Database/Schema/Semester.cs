@@ -13,6 +13,7 @@ namespace EM.Database.Schema
         {
             StudentTranscripts = new HashSet<StudentTranscript>();
             SubjectMarks = new HashSet<SubjectMark>();
+            ScheduleSubjects = new HashSet<ScheduleSubject>();
         }
 
         [Required]
@@ -28,6 +29,8 @@ namespace EM.Database.Schema
         public SchoolYear SchoolYear { get; set; }
 
         public ICollection<StudentTranscript> StudentTranscripts { get; set; }
+
+        public ICollection<ScheduleSubject> ScheduleSubjects { get; set; }
 
         public ICollection<SubjectMark> SubjectMarks { get; set; }
     }
