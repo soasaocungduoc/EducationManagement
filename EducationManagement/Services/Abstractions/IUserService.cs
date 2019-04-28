@@ -7,7 +7,7 @@ namespace EducationManagement.Services.Abstractions
     {
         User GetUserInfoById(int id);
 
-        bool UpdateAvatar(int userId, string url);
+        bool UpdateAvatar(int userId, UrlDto dto);
 
         int GetCurrentUserId(string token);
 

@@ -8,5 +8,7 @@ namespace EducationManagement.Services.Abstractions
     {
         int[] AddStudents(StudentDto[] dtos);
         List<StudentResponseDto> GetStudentsByParentId(int parentId);
+        List<StudentResponseDto> GetStudentsByClassId(int classId);
+
     }
 }

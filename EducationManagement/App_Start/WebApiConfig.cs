@@ -105,11 +105,6 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "AddStudentsApi",
-                routeTemplate: "api/student",
-                defaults: new { controller = "Student", action = "AddStudents", httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
-            );
 
             config.Routes.MapHttpRoute(
                 "UpdateSlideApi",
@@ -142,10 +137,25 @@ namespace EducationManagement
             );
 
             //<-- Student controller -->
+
+            config.Routes.MapHttpRoute(
+                "AddStudentsApi",
+                "api/student",
+                new { controller = "Student", action = "AddStudents"},
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
             config.Routes.MapHttpRoute(
                 "GetStudentsByParentIdApi",
                 "api/parent/{id}/students",
                 new { controller = "Student", action = "GetStudentsByParentId", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
+                "GetStudentsByClassId",
+                "api/class/{id}/students",
+                new { controller = "Student", action = "GetStudentsByClassId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 

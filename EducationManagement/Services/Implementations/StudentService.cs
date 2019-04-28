@@ -77,6 +77,25 @@ namespace EducationManagement.Services.Implementations
             return errorIndexs.ToArray();
         }
 
+        public List<StudentResponseDto> GetStudentsByClassId(int classId)
+        {
+            try
+            {
+                return db.Students.Include(u => u.User).Include(c => c.Class).Include(p => p.Parent).Where(x => !x.DelFlag && x.ClassId == classId).ToList()
+                    .Select(s => new StudentResponseDto
+                    {
+                        Id = s.Id,
+                        ClassInfo = new ClassInfoForListStudent(s.Class),
+                        UserInfo = new UserResponseDto(s.User),
+                        ParentInfo = new ParentInfoForListStudent(s.Parent.UserId, db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == s.ParentId).User.FirstName)
+                    }).ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
 
         public List<StudentResponseDto> GetStudentsByParentId(int id)
         {
@@ -86,9 +105,9 @@ namespace EducationManagement.Services.Implementations
                     .Select(s => new StudentResponseDto
                     {
                         Id = s.Id,
-                        ClassName = s.Class.Name,
+                        ClassInfo = new ClassInfoForListStudent(s.Class),
                         UserInfo = new UserResponseDto(s.User),
-                        ParentName = db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == s.ParentId).User.FirstName
+                        ParentInfo = new ParentInfoForListStudent(s.Parent.UserId, db.Parents.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == s.ParentId).User.FirstName)
                     }).ToList();
             }
             catch (Exception e)
