@@ -14,5 +14,7 @@ namespace EducationManagement.Services.Abstractions
         List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch);
 
         bool Add(TeacherDto dto);
+
+        TeacherResponseDto Get(int teacherId);
     }
 }

@@ -58,6 +58,52 @@ namespace EducationManagement.Services.Implementations
             return true;
         }
 
+        public TeacherResponseDto Get(int teacherId)
+        {
+            var teacher = db.Teachers.FirstOrDefault(x => x.Id == teacherId);
+
+            if(teacher == null)
+            {
+                return null;
+            }
+
+            var team = db.Teams.FirstOrDefault(x => x.Id == teacher.TeamId);
+
+            if(team == null)
+            {
+                return null;
+            }
+
+            var user = db.Users.FirstOrDefault(x => x.Id == teacher.UserId);
+
+            if(user == null)
+            {
+                return null;
+            }
+            return new TeacherResponseDto()
+            {
+                Id = teacher.Id,
+                TeamInfo = new TeamResponseDto()
+                {
+                    Id = teacher.TeamId,
+                    Name = team.Name
+                },
+                UserInfo = new UserResponseDto()
+                {
+                    Id = teacher.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Gender = user.Gender,
+                    Address = user.Address,
+                    Birthday = user.Birthday,
+                    IdentificationNumber = user.IdentificationNumber,
+                    PhoneNumber = user.PhoneNumber,
+                    Avatar = user.Avatar
+                }
+
+            };
+        }
+
         public List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch)
         {
             try

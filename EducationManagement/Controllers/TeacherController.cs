@@ -53,5 +53,20 @@ namespace EducationManagement.Controllers
 
             return BadRequest("invalid input");
         }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetTeacher")]
+        public IHttpActionResult GetTeacher(int teacherId)
+        {
+            var result = _teacherService.Get(teacherId);
+
+            if(result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
     }
 }
