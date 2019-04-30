@@ -95,6 +95,13 @@ namespace EducationManagement
                 new { controller = "Teacher", action = "UpdateTeacher", teacherId = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
             );
+
+            config.Routes.MapHttpRoute(
+                "DeleteTeacherApi",
+                "api/teacher/{teacherId}",
+                new { controller = "Teacher", action = "DeleteTeacher", teacherId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+            );
             //<-- Slide controller -->
 
             config.Routes.MapHttpRoute(
