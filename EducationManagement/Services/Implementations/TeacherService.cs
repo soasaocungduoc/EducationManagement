@@ -143,6 +143,29 @@ namespace EducationManagement.Services.Implementations
             return Get(teacherId);
         }
 
+        public bool Delete(int teacherId)
+        {
+            var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == teacherId);
+
+            if(teacherFromDb == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                teacherFromDb.DelFlag = true;
+
+                db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch)
         {
             try
