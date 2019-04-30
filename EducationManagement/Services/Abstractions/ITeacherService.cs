@@ -16,5 +16,7 @@ namespace EducationManagement.Services.Abstractions
         bool Add(TeacherDto dto);
 
         TeacherResponseDto Get(int teacherId);
+
+        TeacherResponseDto Update(int teacherId, TeacherDto dto);
     }
 }

@@ -104,6 +104,45 @@ namespace EducationManagement.Services.Implementations
             };
         }
 
+        public TeacherResponseDto Update(int teacherId, TeacherDto dto)
+        {
+            var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == teacherId);
+
+            if(teacherFromDb == null)
+            {
+                return null;
+            }
+
+            teacherFromDb.TeamId = dto.TeamId;
+
+            var userFromDb = db.Users.FirstOrDefault(x => x.Id == teacherFromDb.UserId);
+
+            if(userFromDb == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                userFromDb.FirstName = dto.FirstName;
+                userFromDb.LastName = dto.LastName;
+                userFromDb.Gender = dto.Gender;
+                userFromDb.Birthday = dto.Birthday;
+                userFromDb.PhoneNumber = dto.PhoneNumber;
+                userFromDb.Address = dto.Address;
+                userFromDb.Avatar = dto.Avatar;
+                userFromDb.IdentificationNumber = dto.IdentificationNumber;
+
+                db.SaveChanges();
+            }
+            catch
+            {
+                return null;
+            }
+
+            return Get(teacherId);
+        }
+
         public List<TeacherResponseDto> GetListOfTeachers(TeacherConditionSearch conditionSearch)
         {
             try
