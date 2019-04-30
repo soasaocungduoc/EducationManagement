@@ -89,6 +89,12 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "UpdateTeacherApi",
+                "api/teacher/{teacherId}",
+                new { controller = "Teacher", action = "UpdateTeacher", teacherId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+            );
             //<-- Slide controller -->
 
             config.Routes.MapHttpRoute(

@@ -68,5 +68,21 @@ namespace EducationManagement.Controllers
 
             return Ok(result);
         }
+
+        [AdminAuthorization]
+        [HttpPut]
+        [ActionName("UpdateTeacher")]
+        public IHttpActionResult UpdateTeacher(int teacherId, TeacherDto dto)
+        {
+            var result = _teacherService.Update(teacherId, dto);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
     }
 }
