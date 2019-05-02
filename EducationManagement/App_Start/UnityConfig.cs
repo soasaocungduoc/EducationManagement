@@ -30,6 +30,7 @@ namespace EducationManagement
             container.RegisterType<IClassService, ClassService>();
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<IGradeService, GradeService>();
+            container.RegisterType<ISubjectService, SubjectService>();
 
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
