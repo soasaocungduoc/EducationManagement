@@ -16,62 +16,93 @@ namespace EM.Database.Migrations
         protected override void Seed(DataContext context)
         {
             base.Seed(context);
-            var Roomid = 1;
-            for (int i = 1; i < 4; i++)
-            {
-                context.Classes.Add(new Class
-                {
-                    Name = "10A" + i,
-                    GradeId = 2,
-                    NumberOfStudents = 30,
-                    TeacherId = 8,
-                    RoomId = Roomid++
-                });
-                context.Classes.Add(new Class
-                {
-                    Name = "11A" + i,
-                    GradeId = 3,
-                    NumberOfStudents = 30,
-                    TeacherId = 8,
-                    RoomId = Roomid++
-                });
-                context.Classes.Add(new Class
-                {
-                    Name = "12A" + i,
-                    GradeId = 4,
-                    NumberOfStudents = 30,
-                    TeacherId = 8,
-                    RoomId = Roomid++
-                });
-            }
 
-            for (int i = 1; i < 4; i++)
+            context.TypeMarks.Add(new TypeMark
             {
-                context.Classes.Add(new Class
-                {
-                    Name = "10B" + i,
-                    GradeId = 2,
-                    NumberOfStudents = 30,
-                    TeacherId = 8,
-                    RoomId = Roomid++
-                });
-                context.Classes.Add(new Class
-                {
-                    Name = "11B" + i,
-                    GradeId = 3,
-                    NumberOfStudents = 30,
-                    TeacherId = 8,
-                    RoomId = Roomid++
-                });
-                context.Classes.Add(new Class
-                {
-                    Name = "12B" + i,
-                    GradeId = 4,
-                    NumberOfStudents = 30,
-                    TeacherId = 8,
-                    RoomId = Roomid++
-                });
-            }
+                Name = "Miệng",
+                Factor = 1
+            });
+
+            context.TypeMarks.Add(new TypeMark
+            {
+                Name = "15 phút",
+                Factor = 1
+            });
+
+            context.TypeMarks.Add(new TypeMark
+            {
+                Name = "1 tiết",
+                Factor = 2
+            });
+
+            context.TypeMarks.Add(new TypeMark
+            {
+                Name = "Học kỳ",
+                Factor = 3
+            });
+
+            context.TypeMarks.Add(new TypeMark
+            {
+                Name = "TBC",
+                Factor = 0
+            });
+
+            context.Conducts.Add(new Conduct
+            {
+                ConductType = "Tốt"
+            });
+            context.Conducts.Add(new Conduct
+            {
+                ConductType = "Khá"
+            });
+            context.Conducts.Add(new Conduct
+            {
+                ConductType = "Trung bình"
+            });
+            context.Conducts.Add(new Conduct
+            {
+                ConductType = "Yếu"
+            });
+
+            context.Conducts.Add(new Conduct
+            {
+                ConductType = "Kém"
+            });
+
+            context.Classifications.Add(new Classification
+            {
+                FromGpa = 8.0,
+                ToGpa = 10.0,
+                Name = "Giỏi"
+            });
+
+            context.Classifications.Add(new Classification
+            {
+                FromGpa = 6.5,
+                ToGpa = 7.9,
+                Name = "Khá"
+            });
+
+            context.Classifications.Add(new Classification
+            {
+                FromGpa = 5.0,
+                ToGpa = 6.4,
+                Name = "Trung bình"
+            });
+
+            context.Classifications.Add(new Classification
+            {
+                FromGpa = 3.5,
+                ToGpa = 4.9,
+                Name = "Yếu"
+            });
+
+            context.Classifications.Add(new Classification
+            {
+                FromGpa = 0.0,
+                ToGpa = 3.4,
+                Name = "Kém"
+            });
 
             //context.Functions.Add(new Function
             //{
