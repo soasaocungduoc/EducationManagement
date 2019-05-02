@@ -206,5 +206,17 @@ namespace EducationManagement.Services.Implementations
                 throw e;
             }
         }
+
+        public string GetTeacherName(int teacherId)
+        {
+            try
+            {
+                return db.Teachers.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == teacherId).User.FirstName;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
     }
 }

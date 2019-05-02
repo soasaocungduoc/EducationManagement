@@ -11,5 +11,7 @@ namespace EducationManagement.Services.Abstractions
     {
         List<ClassResponseDto> GetClasses();
         List<ClassResponseDto> GetClassesByGradeId(int gradeId);
+        ClassResponseDto GetClassByClassid(int id);
+
     }
 }

@@ -13,6 +13,7 @@ namespace EducationManagement.Services.Implementations
     public class ScheduleSubjectService : IScheduleSubjectService
     {
         private readonly DataContext db = new DataContext();
+        private readonly TeacherService _teacherService = new TeacherService();
 
         public List<ScheduleSubjectResponseDto> GetScheduleSubjectsByClassId(int id, SemesterIdDto semesterId)
         {
@@ -20,17 +21,18 @@ namespace EducationManagement.Services.Implementations
             {
                 var Class = db.Classes.FirstOrDefault(x => !x.DelFlag && x.Id == id);
                 if (Class == null) return null;
-                return db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
+                var list = db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
                     .Where(x => !x.DelFlag && x.ClassId == id && x.SemesterId == semesterId.id).ToList()
                     .Select(y => new ScheduleSubjectResponseDto
                     {
                         Id = y.Id,
                         SubjectName = y.Subject.Name,
                         ClassName = y.Class.Name,
-                        TeacherName = db.Teachers.Include(u => u.User).FirstOrDefault(x => !x.DelFlag && x.Id == y.TeacherId).User.FirstName,
+                        TeacherName = _teacherService.GetTeacherName(y.TeacherId),
                         DayOfWeek = y.DayOfWeekLesson.DayOfWeek,
                         Lesson = y.DayOfWeekLesson.Lesson
                     }).OrderBy(x=> x.DayOfWeek).OrderBy(x=>x.Lesson).ToList();
+                return list ?? new List<ScheduleSubjectResponseDto>();
             }
             catch (Exception e)
             {
@@ -61,21 +63,36 @@ namespace EducationManagement.Services.Implementations
             {
                 var teacher = db.Teachers.FirstOrDefault(x => !x.DelFlag && x.UserId == id);
                 if (teacher == null) return null;
-                return db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
+                var list = db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(s => s.Subject).Include(d => d.DayOfWeekLesson)
                     .Where(x => !x.DelFlag && x.Teacher.UserId == id && x.SemesterId == semesterId.id).ToList()
                     .Select(y => new TeachingScheduleResponseDto
                     {
                         Id = y.Id,
                         ClassName = y.Class.Name,
-                        Room = db.Classes.Include(u => u.Room).FirstOrDefault(x => !x.DelFlag && x.Id == y.ClassId).Room.RoomNumber,
+                        Room = GetRoomNumber(y.ClassId),
                         DayOfWeek = y.DayOfWeekLesson.DayOfWeek,
                         Lesson = y.DayOfWeekLesson.Lesson
                     }).OrderBy(x => x.DayOfWeek).ToList();
+                return list ?? new List<TeachingScheduleResponseDto>();
+
             }
             catch (Exception e)
             {
 
                 throw e;
+            }
+        }
+
+
+        public string GetRoomNumber(int classId)
+        {
+            try
+            {
+                return db.Classes.Include(u => u.Room).FirstOrDefault(x => !x.DelFlag && x.Id == classId).Room.RoomNumber;
+            }
+            catch (Exception e)
+            {
+                return "";
             }
         }
     }
