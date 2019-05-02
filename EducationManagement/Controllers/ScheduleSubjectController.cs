@@ -22,12 +22,12 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetScheduleSubjectsByClassId")]
-        public IHttpActionResult GetScheduleSubjectsByClassId(int id, [FromBody] SemesterIdDto semesterId)
+        public IHttpActionResult GetScheduleSubjectsByClassId(int id, int semesterId)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-                var result = _scheduleSubjectService.GetScheduleSubjectsByClassId(id, semesterId);
+                var result = _scheduleSubjectService.GetScheduleSubjectsByClassId(id, new SemesterIdDto { id = semesterId });
                 if (result == null)
                     return BadRequest("Cannot found this class");
                 return Ok(result);
@@ -59,12 +59,12 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetTeachingSchedulesByTeacherId")]
-        public IHttpActionResult GetTeachingSchedulesByTeacherId(int id, [FromBody] SemesterIdDto semesterId)
+        public IHttpActionResult GetTeachingSchedulesByTeacherId(int id, int semesterId)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-                var result = _scheduleSubjectService.GetTeachingScheduleByTeacherId(id, semesterId);
+                var result = _scheduleSubjectService.GetTeachingScheduleByTeacherId(id, new SemesterIdDto { id = semesterId });
                 if (result == null)
                     return BadRequest("Cannot found this teacher");
                 return Ok(result);

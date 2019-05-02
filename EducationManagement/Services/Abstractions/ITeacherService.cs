@@ -20,5 +20,7 @@ namespace EducationManagement.Services.Abstractions
         TeacherResponseDto Update(int teacherId, TeacherDto dto);
 
         bool Delete(int teacherId);
+
+        string GetTeacherName(int teacherId);
     }
 }

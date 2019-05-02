@@ -182,7 +182,7 @@ namespace EducationManagement
             //<-- ScheduleSubject controller -->
             config.Routes.MapHttpRoute(
                 "GetScheduleSubjectsByClassIdApi",
-                "api/class/{id}/schedulers",
+                "api/class/{id}/semester/{semesterId}/schedulers",
                 new { controller = "ScheduleSubject", action = "GetScheduleSubjectsByClassId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
@@ -196,7 +196,7 @@ namespace EducationManagement
 
             config.Routes.MapHttpRoute(
                 "GetTeachingSchedulesByTeacherIdApi",
-                "api/teacher/{id}/schedulers",
+                "api/teacher/{id}/semester/{semesterId}/schedulers",
                 new { controller = "ScheduleSubject", action = "GetTeachingSchedulesByTeacherId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
