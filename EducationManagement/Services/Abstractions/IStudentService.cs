@@ -11,5 +11,7 @@ namespace EducationManagement.Services.Abstractions
         ListStudentsOfClassResponseDto GetStudentsByClassId(int classId);
 
         StudentResponseDto Get(int studentId);
+
+        StudentResponseDto Update(int studentId, StudentDto dto);
     }
 }
