@@ -60,53 +60,27 @@ namespace EducationManagement.Services.Implementations
 
         public TeacherResponseDto Get(int teacherId)
         {
-            var teacher = db.Teachers.FirstOrDefault(x => x.Id == teacherId);
+            var teacherFromDb = db.Teachers
+                .Include(x => x.User)
+                .Include(x => x.Team)
+                .FirstOrDefault(x => x.Id == teacherId && x.DelFlag == false);
 
-            if(teacher == null)
+            if(teacherFromDb == null)
             {
                 return null;
             }
-
-            var team = db.Teams.FirstOrDefault(x => x.Id == teacher.TeamId);
-
-            if(team == null)
-            {
-                return null;
-            }
-
-            var user = db.Users.FirstOrDefault(x => x.Id == teacher.UserId);
-
-            if(user == null)
-            {
-                return null;
-            }
+            
             return new TeacherResponseDto()
             {
-                Id = teacher.Id,
-                TeamInfo = new TeamResponseDto()
-                {
-                    Id = teacher.TeamId,
-                    Name = team.Name
-                },
-                UserInfo = new UserResponseDto()
-                {
-                    Id = teacher.UserId,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Gender = user.Gender,
-                    Address = user.Address,
-                    Birthday = user.Birthday,
-                    IdentificationNumber = user.IdentificationNumber,
-                    PhoneNumber = user.PhoneNumber,
-                    Avatar = user.Avatar
-                }
-
+                Id = teacherFromDb.Id,
+                TeamInfo = new TeamResponseDto(teacherFromDb.Team),
+                UserInfo = new UserResponseDto(teacherFromDb.User)
             };
         }
 
         public TeacherResponseDto Update(int teacherId, TeacherDto dto)
         {
-            var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == teacherId);
+            var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == teacherId && x.DelFlag == false);
 
             if(teacherFromDb == null)
             {
@@ -115,7 +89,7 @@ namespace EducationManagement.Services.Implementations
 
             teacherFromDb.TeamId = dto.TeamId;
 
-            var userFromDb = db.Users.FirstOrDefault(x => x.Id == teacherFromDb.UserId);
+            var userFromDb = db.Users.FirstOrDefault(x => x.Id == teacherFromDb.UserId && x.DelFlag == false);
 
             if(userFromDb == null)
             {
@@ -145,7 +119,7 @@ namespace EducationManagement.Services.Implementations
 
         public bool Delete(int teacherId)
         {
-            var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == teacherId);
+            var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == teacherId && x.DelFlag == false);
 
             if(teacherFromDb == null)
             {
