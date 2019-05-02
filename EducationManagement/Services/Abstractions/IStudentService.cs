@@ -10,5 +10,6 @@ namespace EducationManagement.Services.Abstractions
         ListStudentOfParentResponseDto GetStudentsByParentId(int parentId);
         ListStudentsOfClassResponseDto GetStudentsByClassId(int classId);
 
+        StudentResponseDto Get(int studentId);
     }
 }

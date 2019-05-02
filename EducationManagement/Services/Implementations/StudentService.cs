@@ -77,6 +77,41 @@ namespace EducationManagement.Services.Implementations
             return errorIndexs.ToArray();
         }
 
+        public StudentResponseDto Get(int studentId)
+        {
+            var studentFromDb = db.Students
+                .Include(x => x.User)
+                .Include(x => x.Parent)
+                .Include(x => x.Class)
+                .FirstOrDefault(x => x.Id == studentId && x.DelFlag == false);
+
+            if (studentFromDb == null)
+            {
+                return null;
+            }
+
+            var parentFromDb = db.Parents
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.Id == studentFromDb.ParentId && x.DelFlag == false);
+
+            if(parentFromDb == null)
+            {
+                return null;
+            }
+
+            return new StudentResponseDto()
+            {
+                Id = studentFromDb.Id,
+                UserInfo = new UserResponseDto(studentFromDb.User),
+                ClassInfo = new ClassInfoForListStudent(studentFromDb.Class),
+                ParentInfo = new ParentInfoForListStudent()
+                {
+                    Id = studentFromDb.ParentId,
+                    Name = parentFromDb.User.FirstName
+                }
+            };
+        }
+
         public ListStudentsOfClassResponseDto GetStudentsByClassId(int classId)
         {
             try
