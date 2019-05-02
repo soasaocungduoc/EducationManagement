@@ -77,5 +77,20 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetStudent")]
+        public IHttpActionResult GetStudent(int studentId)
+        {
+            var result = _studentService.Get(studentId);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
     }
 }

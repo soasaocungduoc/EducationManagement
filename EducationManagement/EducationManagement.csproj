@@ -231,6 +231,7 @@
     <Compile Include="Dtos\OutputDtos\SemesterResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\StudentOfClassResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\StudentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\StudentOfParentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SubjectResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
