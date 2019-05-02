@@ -41,12 +41,11 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetScheduleSubjectsByStudentId")]
-        public IHttpActionResult GetScheduleSubjectsByStudentId(int id, [FromBody] SemesterIdDto semesterId)
+        public IHttpActionResult GetScheduleSubjectsByStudentId(int id, int semesterId)
         {
             try
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
-                var result = _scheduleSubjectService.GetScheduleSubjectsByStudentId(id, semesterId);
+                var result = _scheduleSubjectService.GetScheduleSubjectsByStudentId(id, new SemesterIdDto {id = semesterId});
                 if (result == null)
                     return BadRequest("Cannot found this student");
                 return Ok(result);
