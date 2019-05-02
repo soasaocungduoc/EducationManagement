@@ -112,6 +112,46 @@ namespace EducationManagement.Services.Implementations
             };
         }
 
+        public StudentResponseDto Update(int studentId, StudentDto dto)
+        {
+            var studentFromDb = db.Students.FirstOrDefault(x => x.Id == studentId && x.DelFlag == false);
+
+            if(studentFromDb == null)
+            {
+                return null;
+            }
+            
+            var userFromDb = db.Users.FirstOrDefault(x => x.Id == studentFromDb.UserId && x.DelFlag == false);
+
+            if (userFromDb == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                studentFromDb.ParentId = dto.ParentId;
+                studentFromDb.ClassId = dto.ClassId;
+
+                userFromDb.FirstName = dto.FirstName;
+                userFromDb.LastName = dto.LastName;
+                userFromDb.Gender = dto.Gender;
+                userFromDb.Birthday = dto.Birthday;
+                userFromDb.PhoneNumber = dto.PhoneNumber;
+                userFromDb.Address = dto.Address;
+                userFromDb.Avatar = dto.Avatar;
+                userFromDb.IdentificationNumber = dto.IdentificationNumber;
+
+                db.SaveChanges();
+            }
+            catch
+            {
+                return null;
+            }
+
+            return Get(studentId);
+        }
+
         public ListStudentsOfClassResponseDto GetStudentsByClassId(int classId)
         {
             try

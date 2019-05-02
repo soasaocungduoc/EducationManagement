@@ -186,6 +186,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "UpdateStudentApi",
+                "api/student/{studentId}",
+                new { controller = "Student", action = "UpdateStudent", studentId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+            );
+
             //<-- ScheduleSubject controller -->
             config.Routes.MapHttpRoute(
                 "GetScheduleSubjectsByClassIdApi",

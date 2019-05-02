@@ -92,5 +92,20 @@ namespace EducationManagement.Controllers
 
             return Ok(result);
         }
+
+        [AdminAuthorization]
+        [HttpPut]
+        [ActionName("UpdateStudent")]
+        public IHttpActionResult UpdateStudent(int studentId, StudentDto dto)
+        {
+            var result = _studentService.Update(studentId, dto);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
     }
 }
