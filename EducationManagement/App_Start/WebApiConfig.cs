@@ -247,6 +247,14 @@ namespace EducationManagement
                 new { controller = "Subject", action = "GetSubjects" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- Team controller -->
+            config.Routes.MapHttpRoute(
+                "GetTeamsApi",
+                "api/team",
+                new { controller = "Team", action = "GetTeams" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
