@@ -79,5 +79,17 @@ namespace EducationManagement.Services.Implementations
             return db.Users.Where(x => !x.DelFlag).ToList().
                 Select(x => new UserResponseDto(x)).ToList();
         }
+
+        public bool DeleteUser(int id)
+        {
+            var user = db.Users.FirstOrDefault(x => !x.DelFlag && x.Id == id);
+            if (user == null) return false;
+            var account = db.Accounts.FirstOrDefault(x => !x.DelFlag && x.UserId == user.Id);
+            if (account == null) return false;
+            user.DelFlag = true;
+            account.DelFlag = true;
+            db.SaveChanges();
+            return true;
+        }
     }
 }

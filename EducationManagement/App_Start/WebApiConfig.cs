@@ -232,6 +232,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "DeleteUserApi",
+                "api/user/{id}",
+                new { controller = "User", action = "DeleteUser", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+            );
+
             //<-- Grade controller -->
             config.Routes.MapHttpRoute(
                 "GetGradesApi",

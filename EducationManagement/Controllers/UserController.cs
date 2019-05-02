@@ -86,7 +86,35 @@ namespace EducationManagement.Controllers
         {
             try
             {
+                var token = Request.Headers.GetValues("Authorization").First();
+
+                if (!AuthenticationValidation.IsAdmin(token))
+                {
+                    return Response(HttpStatusCode.Unauthorized, "Not allowed.");
+                }
                 return Ok(_userService.GetUsers());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [Route("{userId}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteUsers(int userId)
+        {
+            try
+            {
+                var token = Request.Headers.GetValues("Authorization").First();
+
+                if (!AuthenticationValidation.IsAdmin(token))
+                {
+                    return Response(HttpStatusCode.Unauthorized, "Not allowed.");
+                }
+                if (_userService.DeleteUser(userId))
+                    return Ok("delete successed");
+                return BadRequest("delete failed");
             }
             catch (System.Exception e)
             {
