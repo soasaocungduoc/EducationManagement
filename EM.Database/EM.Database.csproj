@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201905021019235_CreateConductClassificationTypeMarksDatabase.Designer.cs">
       <DependentUpon>201905021019235_CreateConductClassificationTypeMarksDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905021103405_CreateUserDatabase0205.cs" />
+    <Compile Include="Migrations\201905021103405_CreateUserDatabase0205.Designer.cs">
+      <DependentUpon>201905021103405_CreateUserDatabase0205.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -370,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905021019235_CreateConductClassificationTypeMarksDatabase.resx">
       <DependentUpon>201905021019235_CreateConductClassificationTypeMarksDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021103405_CreateUserDatabase0205.resx">
+      <DependentUpon>201905021103405_CreateUserDatabase0205.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
