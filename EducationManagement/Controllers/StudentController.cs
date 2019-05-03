@@ -107,5 +107,20 @@ namespace EducationManagement.Controllers
 
             return Ok(result);
         }
+
+        [AdminAuthorization]
+        [HttpDelete]
+        [ActionName("DeleteStudent")]
+        public IHttpActionResult DeleteStudent(int studentId)
+        {
+            var result = _studentService.Delete(studentId);
+
+            if (result == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }
