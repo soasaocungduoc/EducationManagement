@@ -1,3 +1,4 @@
+using EducationManagement.Commons;
 using EducationManagement.Dtos;
 using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Dtos.OutputDtos;
@@ -90,6 +91,41 @@ namespace EducationManagement.Services.Implementations
             account.DelFlag = true;
             db.SaveChanges();
             return true;
+        }
+
+        public bool AddUser(UserInfoDto userInfo)
+        {
+            try
+            {
+                var user = new EM.Database.Schema.User();
+                var account = new EM.Database.Schema.Account();
+
+                user.FirstName = userInfo.FirstName;
+                user.LastName = userInfo.LastName;
+                user.Gender = userInfo.Gender;
+                user.Birthday = userInfo.Birthday;
+                user.Address = userInfo.Address;
+                user.PhoneNumber = userInfo.PhoneNumber;
+                user.IdentificationNumber = userInfo.IdentificationNumber;
+                user.Avatar = userInfo.Avatar;
+                db.Users.Add(user);
+                db.SaveChanges();
+
+                account.UserName = userInfo.Username;
+                account.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(userInfo.Password));
+                account.UserId = user.Id;
+                account.GroupId = userInfo.IsAdmin ? db.Groups.FirstOrDefault(x => !x.DelFlag && x.Name.Equals("Admin")).Id :
+                                    db.Groups.FirstOrDefault(x => !x.DelFlag && x.Name.Equals("Mod")).Id;
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+
         }
     }
 }
