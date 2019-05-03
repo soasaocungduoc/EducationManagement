@@ -152,6 +152,29 @@ namespace EducationManagement.Services.Implementations
             return Get(studentId);
         }
 
+        public bool Delete(int studentId)
+        {
+            var studentFromDb = db.Students.FirstOrDefault(x => x.Id == studentId && x.DelFlag == false);
+
+            if (studentFromDb == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                studentFromDb.DelFlag = true;
+
+                db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public ListStudentsOfClassResponseDto GetStudentsByClassId(int classId)
         {
             try

@@ -13,5 +13,7 @@ namespace EducationManagement.Services.Abstractions
         StudentResponseDto Get(int studentId);
 
         StudentResponseDto Update(int studentId, StudentDto dto);
+
+        bool Delete(int studentId);
     }
 }
