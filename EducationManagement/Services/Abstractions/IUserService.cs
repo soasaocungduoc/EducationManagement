@@ -18,5 +18,7 @@ namespace EducationManagement.Services.Abstractions
 
         List<UserResponseDto> GetUsers();
 
+        bool DeleteUser(int id);
+
     }
 }
