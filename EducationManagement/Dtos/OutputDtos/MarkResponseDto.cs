@@ -15,14 +15,14 @@ namespace EducationManagement.Dtos.OutputDtos
         public double Mark { get; set; }
 
         [JsonProperty("type_mark")]
-        public double TypeMark { get; set; }
+        public string TypeMark { get; set; }
 
         public MarkResponseDto()
         {
 
         }
 
-        public MarkResponseDto(int id, double mark, double typeMark)
+        public MarkResponseDto(int id, double mark, string typeMark)
         {
             Id = id;
             Mark = mark;

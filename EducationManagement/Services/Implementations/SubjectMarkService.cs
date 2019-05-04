@@ -19,7 +19,7 @@ namespace EducationManagement.Services.Implementations
             if (student == null) return null;
             var list = new List<SubjectMarkResponseDto>();
 
-            list = db.Subjects.Where(x => !x.DelFlag && (!x.Name.Equals("Sinh hoạt") || !x.Name.Equals("Chào cờ"))).ToList()
+            list = db.Subjects.Where(x => !x.DelFlag && (!x.Name.Equals("Sinh hoạt") && !x.Name.Equals("Chào cờ"))).ToList()
                .Select(x => new SubjectMarkResponseDto
                 {
                     SubjectName = x.Name,
@@ -36,7 +36,7 @@ namespace EducationManagement.Services.Implementations
                     {
                         Id = x.Id,
                         Mark = x.Mark,
-                        TypeMark = x.TypeMark.Id
+                        TypeMark = x.TypeMark.Name
                     }).ToList();
         }
     }
