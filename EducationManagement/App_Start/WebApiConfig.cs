@@ -283,6 +283,14 @@ namespace EducationManagement
                 new { controller = "Team", action = "GetTeams" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- SubjectMark controller -->
+            config.Routes.MapHttpRoute(
+                "GetSubjectMarksOfStudentApi",
+                "api/student/{userId}/semester/{semesterId}/marks",
+                new { controller = "SubjectMark", action = "GetSubjectMarksOfStudent", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
