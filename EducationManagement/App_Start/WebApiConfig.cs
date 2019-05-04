@@ -298,6 +298,14 @@ namespace EducationManagement
                 new { controller = "SubjectMark", action = "GetSubjectMarksOfStudent", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- TypeMark controller -->
+            config.Routes.MapHttpRoute(
+                "GetTypeMarksApi",
+                "api/type-mark",
+                new { controller = "TypeMark", action = "GetTypeMarks" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }

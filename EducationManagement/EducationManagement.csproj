@@ -204,6 +204,7 @@
     <Compile Include="Controllers\SubjectMarkController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\TypeMarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\SemesterIdDto.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeachingScheduleResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeamResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\TypeMarkResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserInformationResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\UserResponseDto.cs" />
     <Compile Include="Dtos\TokenInformation.cs" />
@@ -266,6 +268,7 @@
     <Compile Include="Services\Abstractions\ISubjectService.cs" />
     <Compile Include="Services\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\Abstractions\ITeamService.cs" />
+    <Compile Include="Services\Abstractions\ITypeMarkService.cs" />
     <Compile Include="Services\Abstractions\IUserService.cs" />
     <Compile Include="Services\Implementations\AccountService.cs" />
     <Compile Include="Services\Implementations\AuthenticationService.cs" />
@@ -283,6 +286,7 @@
     <Compile Include="Services\Implementations\SubjectService.cs" />
     <Compile Include="Services\Implementations\TeacherService.cs" />
     <Compile Include="Services\Implementations\TeamService.cs" />
+    <Compile Include="Services\Implementations\TypeMarkService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
