@@ -13,7 +13,7 @@ namespace EM.Database.Schema
         {
             StudentTranscripts = new HashSet<StudentTranscript>();
             SubjectMarks = new HashSet<SubjectMark>();
-            ScheduleSubjects = new HashSet<ScheduleSubject>();
+            //ScheduleSubjects = new HashSet<ScheduleSubject>();
         }
 
         [Required]
