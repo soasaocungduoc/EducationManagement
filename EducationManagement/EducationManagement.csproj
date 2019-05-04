@@ -201,6 +201,7 @@
     <Compile Include="Controllers\SlideController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\SubjectMarkController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Dtos\OutputDtos\ListStudentOfParentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ListStudentsOfClassResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\LoginResultDto.cs" />
+    <Compile Include="Dtos\OutputDtos\MarkResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ParentInfoForListStudent.cs" />
     <Compile Include="Dtos\OutputDtos\ScheduleSubjectResponseDto.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="Dtos\OutputDtos\StudentOfClassResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\StudentResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\StudentOfParentResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\SubjectMarkResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\SubjectResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeacherResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\TeachingScheduleResponseDto.cs" />
@@ -259,6 +262,7 @@
     <Compile Include="Services\Abstractions\ISemesterService.cs" />
     <Compile Include="Services\Abstractions\ISlideService.cs" />
     <Compile Include="Services\Abstractions\IStudentService.cs" />
+    <Compile Include="Services\Abstractions\ISubjectMarkService.cs" />
     <Compile Include="Services\Abstractions\ISubjectService.cs" />
     <Compile Include="Services\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\Abstractions\ITeamService.cs" />
@@ -275,6 +279,7 @@
     <Compile Include="Services\Implementations\SemesterService.cs" />
     <Compile Include="Services\Implementations\SlideService.cs" />
     <Compile Include="Services\Implementations\StudentService.cs" />
+    <Compile Include="Services\Implementations\SubjectMarkService.cs" />
     <Compile Include="Services\Implementations\SubjectService.cs" />
     <Compile Include="Services\Implementations\TeacherService.cs" />
     <Compile Include="Services\Implementations\TeamService.cs" />
