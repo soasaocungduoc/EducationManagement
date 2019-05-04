@@ -15,47 +15,124 @@ namespace EM.Database.Migrations
 
         protected override void Seed(DataContext context)
         {
-            //base.Seed(context);
-            //for (int i = 1; i < 7; i++)
-            //{
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 1,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 2,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 3,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 4,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 5,
-            //        IsEnable = false,
-            //    });
-            //    context.Permissions.Add(new Permission
-            //    {
-            //        GroupId = i,
-            //        FunctionId = 6,
-            //        IsEnable = false,
-            //    });
-            //}
-            
+
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 9,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 16,
+                SemesterId = 10
+            });
+
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 10,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 16,
+                SemesterId = 10
+            });
+
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 8,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 17,
+                SemesterId = 10
+            });
+
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 8.5,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 18,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 7.3,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 19,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 9,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 20,
+                SemesterId = 10
+            });
+
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 9.5,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 21,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 7.5,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 22,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 8.5,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 23,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 10,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 24,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 9,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 25,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 9.3,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 26,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 8,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 27,
+                SemesterId = 10
+            });
+            context.SubjectMarks.Add(new SubjectMark
+            {
+                Mark = 10,
+                TypeMarkId = 3,
+                StudentId = 5,
+                SubjectId = 28,
+                SemesterId = 10
+            });
+
 
 
             //context.Functions.Add(new Function

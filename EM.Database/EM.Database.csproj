@@ -139,6 +139,10 @@
     <Compile Include="Migrations\201905021302235_UpdateTableScheduleSubjectv2.Designer.cs">
       <DependentUpon>201905021302235_UpdateTableScheduleSubjectv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905040433225_CreateDataSubjectMark27.cs" />
+    <Compile Include="Migrations\201905040433225_CreateDataSubjectMark27.Designer.cs">
+      <DependentUpon>201905040433225_CreateDataSubjectMark27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -209,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905021302235_UpdateTableScheduleSubjectv2.resx">
       <DependentUpon>201905021302235_UpdateTableScheduleSubjectv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905040433225_CreateDataSubjectMark27.resx">
+      <DependentUpon>201905040433225_CreateDataSubjectMark27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
