@@ -216,6 +216,7 @@
     <Compile Include="Dtos\InputDtos\TeacherDto.cs" />
     <Compile Include="Dtos\InputDtos\UrlDto.cs" />
     <Compile Include="Dtos\InputDtos\UserDto.cs" />
+    <Compile Include="Dtos\InputDtos\UserInfoDto.cs" />
     <Compile Include="Dtos\OutputDtos\ClassInfoForListStudent.cs" />
     <Compile Include="Dtos\OutputDtos\ClassResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\GradeResponseDto.cs" />

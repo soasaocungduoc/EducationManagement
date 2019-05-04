@@ -79,14 +79,14 @@ namespace EducationManagement.Controllers
                 ? Response(HttpStatusCode.BadRequest, "Fail to update.")
                 : Response(HttpStatusCode.OK, "Avatar is updated.");
         }
-
+        [Route]
         [HttpGet]
         [ActionName("GetUsers")]
         public IHttpActionResult GetUsers()
         {
             try
             {
-                var token = Request.Headers.GetValues("Authorization").First();
+                var token = Request.GetAuthorizationHeader();
 
                 if (!AuthenticationValidation.IsAdmin(token))
                 {
@@ -106,7 +106,7 @@ namespace EducationManagement.Controllers
         {
             try
             {
-                var token = Request.Headers.GetValues("Authorization").First();
+                var token = Request.GetAuthorizationHeader();
 
                 if (!AuthenticationValidation.IsAdmin(token))
                 {
@@ -115,6 +115,29 @@ namespace EducationManagement.Controllers
                 if (_userService.DeleteUser(userId))
                     return Ok("delete successed");
                 return BadRequest("delete failed");
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [Route]
+        [HttpPost]
+        public IHttpActionResult AddUser([FromBody] UserInfoDto userInfo)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var token = Request.GetAuthorizationHeader();
+
+                if (!AuthenticationValidation.IsAdmin(token))
+                {
+                    return Response(HttpStatusCode.Unauthorized, "Not allowed.");
+                }
+                if (_userService.AddUser(userInfo))
+                    return Ok("add successed");
+                return BadRequest("add failed");
             }
             catch (System.Exception e)
             {

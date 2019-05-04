@@ -20,5 +20,7 @@ namespace EducationManagement.Services.Abstractions
 
         bool DeleteUser(int id);
 
+        bool AddUser(UserInfoDto userInfo);
+
     }
 }
