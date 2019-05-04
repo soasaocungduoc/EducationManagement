@@ -10,9 +10,8 @@ namespace EducationManagement.Dtos.InputDtos
     public class ScheduleSubjectDto
     {
         [Required]
-        [StringLength(200)]
-        [JsonProperty("day")]
-        public int Day { get; set; }
+        [JsonProperty("day_of_week")]
+        public int DayOfWeek { get; set; }
 
         [Required]
         [JsonProperty("lesson")]
@@ -25,5 +24,18 @@ namespace EducationManagement.Dtos.InputDtos
         [Required]
         [JsonProperty("teacher_id")]
         public int TeacherId { get; set; }
+
+        public ScheduleSubjectDto()
+        {
+
+        }
+
+        public ScheduleSubjectDto(int dayOfWeek, int lesson, int subjectId, int teacherId)
+        {
+            DayOfWeek = dayOfWeek;
+            Lesson = lesson;
+            SubjectId = subjectId;
+            TeacherId = teacherId;
+        }
     }
 }

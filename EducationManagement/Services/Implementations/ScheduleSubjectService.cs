@@ -95,5 +95,10 @@ namespace EducationManagement.Services.Implementations
                 return "";
             }
         }
+
+        public bool AddScheduleSubjectsByClassId(int classId, int semesterId)
+        {
+            var subject
+        }
     }
 }
