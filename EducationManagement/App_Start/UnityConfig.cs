@@ -33,6 +33,7 @@ namespace EducationManagement
             container.RegisterType<ISubjectService, SubjectService>();
             container.RegisterType<ITeamService, TeamService>();
             container.RegisterType<ISubjectMarkService, SubjectMarkService>();
+            container.RegisterType<ITypeMarkService, TypeMarkService>();
 
 
 
