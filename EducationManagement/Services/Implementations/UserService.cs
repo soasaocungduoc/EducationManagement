@@ -97,25 +97,29 @@ namespace EducationManagement.Services.Implementations
         {
             try
             {
-                var user = new EM.Database.Schema.User();
-                var account = new EM.Database.Schema.Account();
+                var user = new EM.Database.Schema.User
+                {
+                    FirstName = userInfo.FirstName,
+                    LastName = userInfo.LastName,
+                    Gender = userInfo.Gender,
+                    Birthday = userInfo.Birthday,
+                    Address = userInfo.Address,
+                    PhoneNumber = userInfo.PhoneNumber,
+                    IdentificationNumber = userInfo.IdentificationNumber,
+                    Avatar = userInfo.Avatar
+                };
 
-                user.FirstName = userInfo.FirstName;
-                user.LastName = userInfo.LastName;
-                user.Gender = userInfo.Gender;
-                user.Birthday = userInfo.Birthday;
-                user.Address = userInfo.Address;
-                user.PhoneNumber = userInfo.PhoneNumber;
-                user.IdentificationNumber = userInfo.IdentificationNumber;
-                user.Avatar = userInfo.Avatar;
                 db.Users.Add(user);
                 db.SaveChanges();
-
-                account.UserName = userInfo.Username;
-                account.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(userInfo.Password));
-                account.UserId = user.Id;
-                account.GroupId = userInfo.IsAdmin ? db.Groups.FirstOrDefault(x => !x.DelFlag && x.Name.Equals("Admin")).Id :
-                                    db.Groups.FirstOrDefault(x => !x.DelFlag && x.Name.Equals("Mod")).Id;
+                var account = new EM.Database.Schema.Account
+                {
+                    UserName = userInfo.Username,
+                    Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(userInfo.Password)),
+                    UserId = user.Id,
+                    GroupId = userInfo.IsAdmin ? db.Groups.FirstOrDefault(x => !x.DelFlag && x.Name.Equals("Admin")).Id :
+                                    db.Groups.FirstOrDefault(x => !x.DelFlag && x.Name.Equals("Mod")).Id
+                };
+                
                 db.Accounts.Add(account);
                 db.SaveChanges();
                 return true;

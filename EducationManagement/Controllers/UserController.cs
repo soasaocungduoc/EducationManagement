@@ -86,7 +86,7 @@ namespace EducationManagement.Controllers
         {
             try
             {
-                var token = Request.Headers.GetValues("Authorization").First();
+                var token = Request.GetAuthorizationHeader();
 
                 if (!AuthenticationValidation.IsAdmin(token))
                 {
@@ -106,7 +106,7 @@ namespace EducationManagement.Controllers
         {
             try
             {
-                var token = Request.Headers.GetValues("Authorization").First();
+                var token = Request.GetAuthorizationHeader();
 
                 if (!AuthenticationValidation.IsAdmin(token))
                 {
@@ -129,7 +129,7 @@ namespace EducationManagement.Controllers
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-                var token = Request.Headers.GetValues("Authorization").First();
+                var token = Request.GetAuthorizationHeader();
 
                 if (!AuthenticationValidation.IsAdmin(token))
                 {
