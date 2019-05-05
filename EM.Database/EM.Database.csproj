@@ -143,6 +143,10 @@
     <Compile Include="Migrations\201905040433225_CreateDataSubjectMark27.Designer.cs">
       <DependentUpon>201905040433225_CreateDataSubjectMark27.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905041512598_sidaavc.cs" />
+    <Compile Include="Migrations\201905041512598_sidaavc.Designer.cs">
+      <DependentUpon>201905041512598_sidaavc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905040433225_CreateDataSubjectMark27.resx">
       <DependentUpon>201905040433225_CreateDataSubjectMark27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905041512598_sidaavc.resx">
+      <DependentUpon>201905041512598_sidaavc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
