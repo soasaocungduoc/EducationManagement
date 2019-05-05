@@ -147,6 +147,18 @@
     <Compile Include="Migrations\201905041512598_sidaavc.Designer.cs">
       <DependentUpon>201905041512598_sidaavc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905050424066_CreateUserDataForParent.cs" />
+    <Compile Include="Migrations\201905050424066_CreateUserDataForParent.Designer.cs">
+      <DependentUpon>201905050424066_CreateUserDataForParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905050429565_CreateAccountDataForParent.cs" />
+    <Compile Include="Migrations\201905050429565_CreateAccountDataForParent.Designer.cs">
+      <DependentUpon>201905050429565_CreateAccountDataForParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905050433452_CreateParentDataForParentv1.cs" />
+    <Compile Include="Migrations\201905050433452_CreateParentDataForParentv1.Designer.cs">
+      <DependentUpon>201905050433452_CreateParentDataForParentv1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -223,6 +235,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905041512598_sidaavc.resx">
       <DependentUpon>201905041512598_sidaavc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905050424066_CreateUserDataForParent.resx">
+      <DependentUpon>201905050424066_CreateUserDataForParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905050429565_CreateAccountDataForParent.resx">
+      <DependentUpon>201905050429565_CreateAccountDataForParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905050433452_CreateParentDataForParentv1.resx">
+      <DependentUpon>201905050433452_CreateParentDataForParentv1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
