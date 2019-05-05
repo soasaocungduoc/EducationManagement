@@ -207,6 +207,7 @@
     <Compile Include="Controllers\TypeMarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\ScheduleSubjectDto.cs" />
+    <Compile Include="Dtos\InputDtos\ScheduleSubjectOfClassDto.cs" />
     <Compile Include="Dtos\InputDtos\SemesterIdDto.cs" />
     <Compile Include="Dtos\InputDtos\LoginDto.cs" />
     <Compile Include="Dtos\InputDtos\NewsConditionSearch.cs" />

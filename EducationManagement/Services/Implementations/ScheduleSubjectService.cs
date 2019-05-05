@@ -7,6 +7,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Web;
 using EducationManagement.Dtos.InputDtos;
+using EM.Database.Schema;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -96,9 +97,36 @@ namespace EducationManagement.Services.Implementations
             }
         }
 
-        public bool AddScheduleSubjectsByClassId(int classId, int semesterId)
+        public bool AddScheduleSubjectsByClassId(ScheduleSubjectOfClassDto dto)
         {
-            var subject
+            try
+            {
+                foreach (var item in dto.ScheduleSubjects)
+                {
+                    var schedule = new ScheduleSubject
+                    {
+                        TeacherId = item.TeacherId,
+                        ClassId = dto.ClassId,
+                        SubjectId = item.SubjectId,
+                        SemesterId = dto.SemesterId,
+                        DayLessonId = GetDayLessonId(item.DayOfWeek, item.Lesson)
+                    };
+                    db.ScheduleSubjects.Add(schedule);
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        private int GetDayLessonId(int day, int lesson)
+        {
+            var dayLesson = db.DayLessons.FirstOrDefault(x => !x.DelFlag && x.DayOfWeek == day && x.Lesson == lesson);
+            return dayLesson == null ? 0 : dayLesson.Id;
         }
     }
 }

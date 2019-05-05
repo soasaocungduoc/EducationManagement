@@ -11,7 +11,6 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    [AdminAuthorization]
     public class ScheduleSubjectController : BaseApiController
     {
         private readonly IScheduleSubjectService _scheduleSubjectService;
@@ -20,6 +19,7 @@ namespace EducationManagement.Controllers
             _scheduleSubjectService = scheduleSubjectService;
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetScheduleSubjectsByClassId")]
         public IHttpActionResult GetScheduleSubjectsByClassId(int id, int semesterId)
@@ -39,6 +39,7 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetScheduleSubjectsByStudentId")]
         public IHttpActionResult GetScheduleSubjectsByStudentId(int id, int semesterId)
@@ -57,6 +58,7 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetTeachingSchedulesByTeacherId")]
         public IHttpActionResult GetTeachingSchedulesByTeacherId(int id, int semesterId)
@@ -68,6 +70,26 @@ namespace EducationManagement.Controllers
                 if (result == null)
                     return BadRequest("Cannot found this teacher");
                 return Ok(result);
+
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        //[AdminAuthorization]
+        [HttpPost]
+        [ActionName("AddScheduleSubjectOfClass")]
+        public IHttpActionResult AddScheduleSubjectOfClass(int classId, int semesterId,[FromBody] List<ScheduleSubjectDto> schedules)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var isSuccess = _scheduleSubjectService.AddScheduleSubjectsByClassId(new ScheduleSubjectOfClassDto { ClassId = classId, SemesterId = semesterId, ScheduleSubjects = schedules});
+                if (!isSuccess)
+                    return BadRequest("Add schedules faild");
+                return Ok(_scheduleSubjectService.GetScheduleSubjectsByClassId(classId, new SemesterIdDto { id = semesterId }));
 
             }
             catch (Exception e)
