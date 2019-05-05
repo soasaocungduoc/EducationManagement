@@ -112,8 +112,8 @@ namespace EducationManagement.Services.Implementations
                         DayLessonId = GetDayLessonId(item.DayOfWeek, item.Lesson)
                     };
                     db.ScheduleSubjects.Add(schedule);
-                    db.SaveChanges();
                 }
+                db.SaveChanges();
                 return true;
             }
             catch (Exception)
