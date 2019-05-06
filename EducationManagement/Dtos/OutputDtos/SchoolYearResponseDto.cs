@@ -9,26 +9,14 @@ namespace EducationManagement.Dtos.OutputDtos
 {
     public class SchoolYearResponseDto
     {
-        public SchoolYearResponseDto(int id, int startYear, int endYear, bool isCurrent)
-        {
-            Id = id;
-            StartYear = startYear;
-            EndYear = endYear;
-            IsCurrent = isCurrent;
-        }
 
-        public SchoolYearResponseDto()
-        {
-
-        }
-
-        public SchoolYearResponseDto(SchoolYear year)
-        {
-            Id = year.Id;
-            StartYear = year.StartYear;
-            EndYear = year.EndYear;
-            IsCurrent = (year.StartYear <= Convert.ToInt32(DateTime.Now.Year.ToString()) && (year.EndYear >= Convert.ToInt32(DateTime.Now.Year.ToString())));
-        }
+        //public SchoolYearResponseDto(SchoolYear year)
+        //{
+        //    Id = year.Id;
+        //    StartYear = year.StartYear;
+        //    EndYear = year.EndYear;
+        //    IsCurrent = (year.StartYear <= Convert.ToInt32(DateTime.Now.Year.ToString()) && (year.EndYear >= Convert.ToInt32(DateTime.Now.Year.ToString())));
+        //}
 
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -38,5 +26,21 @@ namespace EducationManagement.Dtos.OutputDtos
         public int EndYear { get; set; }
         [JsonProperty("is_current")]
         public bool IsCurrent { get; set; }
+        [JsonProperty("semester_info")]
+        public List<SemesterResponseDto> SemesterInfo { get; set; }
+
+        public SchoolYearResponseDto()
+        {
+
+        }
+
+        public SchoolYearResponseDto(int id, int startYear, int endYear, bool isCurrent, List<SemesterResponseDto> semesterInfo)
+        {
+            Id = id;
+            StartYear = startYear;
+            EndYear = endYear;
+            IsCurrent = isCurrent;
+            SemesterInfo = semesterInfo;
+        }
     }
 }
