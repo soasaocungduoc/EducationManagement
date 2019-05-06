@@ -13,5 +13,6 @@ namespace EducationManagement.Services.Abstractions
         List<ScheduleSubjectResponseDto> GetScheduleSubjectsByClassId(int id, SemesterIdDto semesterId);
         List<ScheduleSubjectResponseDto> GetScheduleSubjectsByStudentId(int id, SemesterIdDto semesterId);
         List<TeachingScheduleResponseDto> GetTeachingScheduleByTeacherId(int id, SemesterIdDto semesterId);
+        bool AddScheduleSubjectsByClassId(ScheduleSubjectOfClassDto dto);
     }
 }

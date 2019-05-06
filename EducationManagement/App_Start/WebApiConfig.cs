@@ -222,6 +222,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "AddScheduleSubjectsOfClassApi",
+                "api/class/{classId}/semester/{semesterId}/schedulers",
+                new { controller = "ScheduleSubject", action = "AddScheduleSubjectOfClass", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
             //<-- Class controller -->
             config.Routes.MapHttpRoute(
                 "GetClasses",
