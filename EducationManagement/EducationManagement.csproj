@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ScheduleSubjectController.cs" />
     <Compile Include="Controllers\SchoolInformationController.cs" />
     <Compile Include="Controllers\SchoolYearController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\TypeMarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\MarkDto.cs" />
+    <Compile Include="Dtos\InputDtos\NotificationDto.cs" />
     <Compile Include="Dtos\InputDtos\SubjectMarkDto.cs" />
     <Compile Include="Dtos\InputDtos\ScheduleSubjectDto.cs" />
     <Compile Include="Dtos\InputDtos\ScheduleSubjectOfClassDto.cs" />
@@ -276,6 +278,7 @@
     <Compile Include="Services\Abstractions\IStudentService.cs" />
     <Compile Include="Services\Abstractions\ISubjectMarkService.cs" />
     <Compile Include="Services\Abstractions\ISubjectService.cs" />
+    <Compile Include="Services\Abstractions\INotificationService.cs" />
     <Compile Include="Services\Abstractions\ITeacherService.cs" />
     <Compile Include="Services\Abstractions\ITeamService.cs" />
     <Compile Include="Services\Abstractions\ITypeMarkService.cs" />
@@ -285,6 +288,7 @@
     <Compile Include="Services\Implementations\ClassService.cs" />
     <Compile Include="Services\Implementations\GradeService.cs" />
     <Compile Include="Services\Implementations\NewsService.cs" />
+    <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\ParentService.cs" />
     <Compile Include="Services\Implementations\ScheduleSubjectService.cs" />
     <Compile Include="Services\Implementations\SchoolInformationService.cs" />
