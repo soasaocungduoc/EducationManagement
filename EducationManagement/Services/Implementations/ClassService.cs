@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Web;
+using MoreLinq;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -96,6 +97,38 @@ namespace EducationManagement.Services.Implementations
             {
                 return "";
             }
+        }
+
+        public string GetGradeName(int classId)
+        {
+            try
+            {
+                return db.Classes.Include(u => u.Grade).FirstOrDefault(x => !x.DelFlag && x.Id == classId).Grade.Name;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
+        public List<ClassResponseDto> GetTeachingClassesByTeacherId(int id)
+        {
+            var teacher = db.Teachers.FirstOrDefault(x => !x.DelFlag && x.UserId == id);
+            if (teacher == null) return null;
+
+            var list = db.ScheduleSubjects.Include(t => t.Teacher).Include(c => c.Class).Include(c => c.Subject)
+                .Where(x => !x.DelFlag && x.TeacherId == teacher.Id && (!x.Subject.Name.Equals("Sinh hoạt") && !x.Subject.Name.Equals("Chào cờ"))).ToList();
+
+            return list == null ? new List<ClassResponseDto>() :
+              list.Select(x => new ClassResponseDto
+              {
+                  Id = x.ClassId,
+                  Name = x.Class.Name,
+                  GradeName = GetRoomNumber(x.ClassId),
+                  NumberOfStudents = x.Class.NumberOfStudents,
+                  RoomNumber = GetRoomNumber(x.ClassId),
+                  TeacherName = _teacherService.GetTeacherName(x.TeacherId)
+              }).DistinctBy(i => i.Id).ToList();
         }
     }
 }
