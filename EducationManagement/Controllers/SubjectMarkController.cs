@@ -1,4 +1,5 @@
 ﻿using EducationManagement.Controllers.Bases;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,21 @@ namespace EducationManagement.Controllers
             {
                 return InternalServerError(e);
             }
+        }
+
+        [HttpPost]
+        [ActionName("AddSubjectMarksforStudents")]
+        [Route("api/subjectmark")]
+        public IHttpActionResult AddSubjectMarksforStudents([FromBody] SubjectMarkDto dto)
+        {
+            var result = _subjectMarkService.Add(dto);
+
+            if(result == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using EducationManagement.Dtos.OutputDtos;
+﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace EducationManagement.Services.Abstractions
     public interface ISubjectMarkService
     {
         List<SubjectMarkResponseDto> GetSubjectMarks(int userId, int semesterId);
+
+        bool Add(SubjectMarkDto dto);
     }
 }
