@@ -71,7 +71,7 @@ namespace EducationManagement.Services.Implementations
         private bool CheckEndMarkFromDb(int studentId, int subjectId)
         {
             var subjectMarkFromDb = db.SubjectMarks
-                .FirstOrDefault(x => x.StudentId == studentId && x.TypeMarkId == 4 && x.SubjectId == subjectId);
+                .FirstOrDefault(x => x.StudentId == studentId && x.TypeMarkId == 4 && x.SubjectId == subjectId && x.DelFlag == false);
 
             if(subjectMarkFromDb == null)
             {
