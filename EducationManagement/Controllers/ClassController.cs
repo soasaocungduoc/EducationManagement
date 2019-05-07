@@ -33,13 +33,31 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetClassesByGradeId")]
-        public IHttpActionResult GetClasses(int id)
+        public IHttpActionResult GetClassesByGradeId(int id)
         {
             try
             {
                 var result = _classService.GetClassesByGradeId(id);
                 if (result == null)
                     return BadRequest("Cannot found this grade");
+                return Ok(result);
+
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetClassesByHomeroomTeacherId")]
+        public IHttpActionResult GetClassesByHomeroomTeacherId(int id)
+        {
+            try
+            {
+                var result = _classService.GetClassesByHomeroomTeacherId(id);
+                if (result == null)
+                    return BadRequest("Cannot found this teacher");
                 return Ok(result);
 
             }

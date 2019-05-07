@@ -65,6 +65,27 @@ namespace EducationManagement.Services.Implementations
             }).ToList();
         }
 
+        public List<ClassResponseDto> GetClassesByHomeroomTeacherId(int id)
+        {
+
+            var teacher = db.Teachers.FirstOrDefault(x => !x.DelFlag && x.UserId == id);
+            if (teacher == null) return null;
+
+            var list = db.Classes.Include(t => t.Teacher).Include(g => g.Grade).Include(r => r.Room)
+                 .Where(x => !x.DelFlag && x.TeacherId == teacher.Id).ToList();
+
+            return list == null ? new List<ClassResponseDto>() :
+              list.Select(x => new ClassResponseDto
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  GradeName = x.Grade.Name,
+                  NumberOfStudents = x.NumberOfStudents,
+                  RoomNumber = GetRoomNumber(x.Id),
+                  TeacherName = _teacherService.GetTeacherName(x.TeacherId)
+              }).ToList();
+        }
+
         public string GetRoomNumber(int classId)
         {
             try
