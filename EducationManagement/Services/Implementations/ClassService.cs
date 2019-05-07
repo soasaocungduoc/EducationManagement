@@ -26,8 +26,8 @@ namespace EducationManagement.Services.Implementations
                 Name = Class.Name,
                 GradeName = Class.Grade.Name,
                 NumberOfStudents = Class.NumberOfStudents,
-                RoomNumber = Class.Room.RoomNumber,
-                TeacherName = _teacherService.GetTeacherName(Class.TeacherId)
+                RoomNumber = GetRoomNumber(Class.Id),
+                 TeacherName = _teacherService.GetTeacherName(Class.TeacherId)
             };
         }
 
@@ -42,7 +42,7 @@ namespace EducationManagement.Services.Implementations
                 Name = x.Name,
                 GradeName = x.Grade.Name,
                 NumberOfStudents = x.NumberOfStudents,
-                RoomNumber = x.Room.RoomNumber,
+                RoomNumber = GetRoomNumber(x.Id),
                 TeacherName = _teacherService.GetTeacherName(x.TeacherId)
             }).ToList();
         }
@@ -60,9 +60,21 @@ namespace EducationManagement.Services.Implementations
                 Name = x.Name,
                 GradeName = x.Grade.Name,
                 NumberOfStudents = x.NumberOfStudents,
-                RoomNumber = x.Room.RoomNumber,
+                RoomNumber = GetRoomNumber(x.Id),
                 TeacherName = _teacherService.GetTeacherName(x.TeacherId)
             }).ToList();
+        }
+
+        public string GetRoomNumber(int classId)
+        {
+            try
+            {
+                return db.Classes.Include(u => u.Room).FirstOrDefault(x => !x.DelFlag && x.Id == classId).Room.RoomNumber;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
         }
     }
 }
