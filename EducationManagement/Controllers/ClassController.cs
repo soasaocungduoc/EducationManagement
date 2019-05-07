@@ -66,5 +66,23 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetTeachingClassesByTeacherId")]
+        public IHttpActionResult GetTeachingClassesByTeacherId(int id)
+        {
+            try
+            {
+                var result = _classService.GetTeachingClassesByTeacherId(id);
+                if (result == null)
+                    return BadRequest("Cannot found this teacher");
+                return Ok(result);
+
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

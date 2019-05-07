@@ -13,6 +13,7 @@ namespace EducationManagement.Services.Abstractions
         List<ClassResponseDto> GetClassesByGradeId(int gradeId);
         ClassResponseDto GetClassByClassid(int id);
         List<ClassResponseDto> GetClassesByHomeroomTeacherId(int id);
+        List<ClassResponseDto> GetTeachingClassesByTeacherId(int id);
 
     }
 }

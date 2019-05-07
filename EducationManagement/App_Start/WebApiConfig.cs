@@ -251,6 +251,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "GetTeachingClassesByTeacherId",
+                "api/teacher/{id}/teaching-class",
+                new { controller = "Class", action = "GetTeachingClassesByTeacherId", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
             //<--Account controller-->
             config.Routes.MapHttpRoute(
                 "ChangePasswordApi",
