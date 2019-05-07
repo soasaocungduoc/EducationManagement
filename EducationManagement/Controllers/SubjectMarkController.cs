@@ -1,5 +1,6 @@
 ﻿using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,9 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [AdminAuthorization]
         [HttpPost]
         [ActionName("AddSubjectMarksforStudents")]
-        [Route("api/subjectmark")]
         public IHttpActionResult AddSubjectMarksforStudents([FromBody] SubjectMarkDto dto)
         {
             var result = _subjectMarkService.Add(dto);
