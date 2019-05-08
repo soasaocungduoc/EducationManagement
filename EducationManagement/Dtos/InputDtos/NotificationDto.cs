@@ -9,15 +9,12 @@ namespace EducationManagement.Dtos.InputDtos
 {
     public class NotificationDto
     {
-        [Required]
         [JsonProperty("senderid")]
         public int SenderId { get; set; }
 
-        [Required]
         [JsonProperty("receiverid")]
         public int ReceiverId { get; set; }
 
-        [Required]
         [JsonProperty("classreceiverid")]
         public int ClassReceiverId { get; set; }
 
