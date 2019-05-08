@@ -341,6 +341,14 @@ namespace EducationManagement
                 new { controller = "TypeMark", action = "GetTypeMarks" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            //<-- Parent controller -->
+            config.Routes.MapHttpRoute(
+                "GetParentsApi",
+                "api/parent",
+                new { controller = "Parent", action = "GetParents" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }
