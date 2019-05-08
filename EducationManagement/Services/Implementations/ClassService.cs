@@ -124,7 +124,7 @@ namespace EducationManagement.Services.Implementations
               {
                   Id = x.ClassId,
                   Name = x.Class.Name,
-                  GradeName = GetRoomNumber(x.ClassId),
+                  GradeName = GetGradeName(x.ClassId),
                   NumberOfStudents = x.Class.NumberOfStudents,
                   RoomNumber = GetRoomNumber(x.ClassId),
                   TeacherName = _teacherService.GetTeacherName(x.TeacherId)
