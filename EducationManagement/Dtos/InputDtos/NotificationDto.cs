@@ -10,13 +10,13 @@ namespace EducationManagement.Dtos.InputDtos
     public class NotificationDto
     {
         [JsonProperty("senderid")]
-        public int SenderId { get; set; }
+        public int? SenderId { get; set; }
 
         [JsonProperty("receiverid")]
-        public int ReceiverId { get; set; }
+        public int? ReceiverId { get; set; }
 
         [JsonProperty("classreceiverid")]
-        public int ClassReceiverId { get; set; }
+        public int? ClassReceiverId { get; set; }
 
         [Required]
         [StringLength(100)]
