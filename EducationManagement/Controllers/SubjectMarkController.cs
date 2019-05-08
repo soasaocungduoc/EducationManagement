@@ -37,6 +37,23 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [HttpGet]
+        [ActionName("GetMarkInClass")]
+        public IHttpActionResult GetMarkInClass(int userId, int semesterId, int classId)
+        {
+            try
+            {
+                var result = _subjectMarkService.GetMarksInClass(classId, semesterId, userId);
+                if (result == null)
+                    return BadRequest("Cannot found");
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
         [AdminAuthorization]
         [HttpPost]
         [ActionName("AddSubjectMarksforStudents")]

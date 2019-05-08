@@ -13,5 +13,7 @@ namespace EducationManagement.Services.Abstractions
         List<SubjectMarkResponseDto> GetSubjectMarks(int userId, int semesterId);
 
         bool Add(SubjectMarkDto dto);
+
+        MarkInTeachingClassResponseDto GetMarksInClass(int classId, int semesterId, int userId);
     }
 }
