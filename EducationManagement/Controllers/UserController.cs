@@ -7,6 +7,7 @@ using EducationManagement.Commons;
 using EducationManagement.Controllers.Bases;
 using Newtonsoft.Json;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Fillters;
 
 namespace EducationManagement.Controllers
 {
@@ -57,28 +58,26 @@ namespace EducationManagement.Controllers
         /// <summary>
         /// update user avatar
         /// </summary>
-        [Route("{userId}/avatar")]
+        [AdminAuthorization]
         [HttpPut]
+        [ActionName("UpdateAvatar")]
         public IHttpActionResult UpdateAvatar(int userId, [FromBody] UrlDto dto)
         {
-            if(dto == null)
+            if (dto == null)
             {
-                return Response(HttpStatusCode.BadRequest, "Invalid or missing avatar url.");
-            }
-
-            var token = Request.Headers.GetValues("Authorization").First();
-
-            if (!ValidatePermission(token, userId))
-            {
-                return Response(HttpStatusCode.Unauthorized, "Not allowed.");
+                return BadRequest();
             }
 
             var result = _userService.UpdateAvatar(userId, dto);
 
-            return result == false
-                ? Response(HttpStatusCode.BadRequest, "Fail to update.")
-                : Response(HttpStatusCode.OK, "Avatar is updated.");
+            if (result == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
+
         [Route]
         [HttpGet]
         [ActionName("GetUsers")]

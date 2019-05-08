@@ -288,6 +288,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
+            config.Routes.MapHttpRoute(
+               "UpdateAvatarApi",
+               "api/user/{userId}/avatar",
+               new { controller = "User", action = "UpdateAvatar", userId = RouteParameter.Optional },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+           );
+
             //<-- Grade controller -->
             config.Routes.MapHttpRoute(
                 "GetGradesApi",
