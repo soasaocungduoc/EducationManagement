@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -25,11 +26,10 @@ namespace EducationManagement.Services.Implementations
                 var notification = new Notification();
 
                 notification.ReceiverId = dto.ReceiverId;
-                notification.SenderId = dto.SenderId;
                 notification.ClassReceiverId = dto.ClassReceiverId;
                 notification.Title = dto.Title;
                 notification.Content = dto.Content;
-                notification.Type = dto.Type;
+                notification.Type = "notification";
 
                 db.Notifications.Add(notification);
                 db.SaveChanges();
@@ -40,6 +40,53 @@ namespace EducationManagement.Services.Implementations
             }
 
             return true;
+        }
+
+        public bool AddRequest(RequestDto dto)
+        {
+            if (dto == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                var request = new Notification();
+
+                request.SenderId = dto.SenderId;
+                request.Title = dto.Title;
+                request.Content = dto.Content;
+                request.Type = "request";
+
+                db.Notifications.Add(request);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public RequestResponseDto GetRequest(int requestId)
+        {
+            var requestFromDb = db.Notifications
+                .Include(x => x.Sender)
+                .FirstOrDefault(x => x.Type == "request" && x.Id == requestId && x.DelFlag == false);
+
+            if(requestFromDb == null)
+            {
+                return null;
+            }
+
+            return new RequestResponseDto()
+            {
+                 Id = requestFromDb.Id,
+                 Title = requestFromDb.Title,
+                 Content = requestFromDb.Content,
+                 Sender = new UserResponseDto(requestFromDb.Sender)
+            };
         }
 
         public List<NotificationResponseDto> Get(int receiverId)
@@ -132,59 +179,32 @@ namespace EducationManagement.Services.Implementations
         public NotificationDetailDto GetById(int id)
         {
             var notificationFromDb = db.Notifications
-                .FirstOrDefault(x => x.Id == id && x.DelFlag == false);
+                .Include(x => x.Receiver)
+                .Include(x => x.Class)
+                .FirstOrDefault(x => x.Type == "notification" && x.Id == id && x.DelFlag == false);
 
             if (notificationFromDb == null)
             {
                 return null;
             }
 
-            UserResponseDto receiver = null;
-            UserResponseDto sender = null;
-            ClassResponseDto classReceiver = null;
+            var classFromDb = db.Classes
+                .Include(x => x.Room)
+                .Include(x => x.Grade)
+                .Include(x => x.Teacher)
+                .FirstOrDefault(x => x.Id == notificationFromDb.ClassReceiverId && x.DelFlag == false);
 
-            if (notificationFromDb.ReceiverId != null)
+            string teacherName = null;
+
+            if(classFromDb != null)
             {
-                receiver = new UserResponseDto(db.Users
-                .FirstOrDefault(x => x.Id == notificationFromDb.ReceiverId && x.DelFlag == false));
-            }
+                var teacherFromDb = db.Teachers.Include(x => x.User)
+                    .FirstOrDefault(x => x.Id == classFromDb.TeacherId && x.DelFlag == false);
 
-            if (notificationFromDb.SenderId != null)
-            {
-                sender = new UserResponseDto(db.Users
-                .FirstOrDefault(x => x.Id == notificationFromDb.SenderId && x.DelFlag == false));
-            }
-
-            if (notificationFromDb.ClassReceiverId != null)
-            {
-                var classFromDb = db.Classes
-                    .FirstOrDefault(x => x.Id == notificationFromDb.ClassReceiverId && x.DelFlag == false);
-
-                if(classFromDb != null)
+                if(teacherFromDb != null)
                 {
-                    var gradeFromDb = db.Grades.FirstOrDefault(x => x.Id == classFromDb.GradeId && x.DelFlag == false);
-                    var roomfromDb = db.Rooms.FirstOrDefault(x => x.Id == classFromDb.RoomId && x.DelFlag == false);
-                    var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == classFromDb.TeacherId && x.DelFlag == false);
-
-                    string teacherName = null;
-
-                    if(teacherFromDb != null)
-                    {
-                        var teacherUserFromDb = db.Users.FirstOrDefault(x => x.Id == teacherFromDb.UserId && x.DelFlag == false);
-                        teacherName = teacherUserFromDb == null ? null : teacherUserFromDb.FirstName + " " + teacherUserFromDb.LastName;
-                    }
-
-                    classReceiver = new ClassResponseDto()
-                    {
-                        Id = classFromDb.Id,
-                        Name = classFromDb.Name,
-                        NumberOfStudents = classFromDb.NumberOfStudents,
-                        GradeName = gradeFromDb == null ? null : gradeFromDb.Name,
-                        RoomNumber = roomfromDb == null ? null : roomfromDb.RoomNumber,
-                        TeacherName = teacherName 
-                    };
+                    teacherName = teacherFromDb.User.FirstName + " " + teacherFromDb.User.LastName;
                 }
-                
             }
 
             return new NotificationDetailDto()
@@ -193,9 +213,16 @@ namespace EducationManagement.Services.Implementations
                 Title = notificationFromDb.Title,
                 Content = notificationFromDb.Content,
                 Type = notificationFromDb.Type,
-                Receiver = receiver,
-                Sender = sender,
-                ClassReceiver = classReceiver
+                Receiver = new UserResponseDto(notificationFromDb.Receiver),
+                ClassReceiver = classFromDb == null ? null : new ClassResponseDto()
+                {
+                    Id = classFromDb.Id,
+                    Name = classFromDb.Name,
+                    NumberOfStudents = classFromDb.NumberOfStudents,
+                    GradeName = classFromDb.Grade.Name,
+                    RoomNumber = classFromDb.Room.RoomNumber,
+                    TeacherName =  teacherName
+                }
             };
         }
     }
