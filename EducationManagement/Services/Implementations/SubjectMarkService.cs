@@ -8,6 +8,7 @@ using System.Web;
 using System.Data.Entity;
 using EducationManagement.Dtos.InputDtos;
 using EM.Database.Schema;
+using MoreLinq;
 
 namespace EducationManagement.Services.Implementations
 {
@@ -111,9 +112,9 @@ namespace EducationManagement.Services.Implementations
             return list;
         }
 
-        private List<MarkResponseDto> GetMarkList(int studentId, int subjectId, int semesterId)
+        public List<MarkResponseDto> GetMarkList(int studentId, int subjectId, int semesterId)
         {
-            return db.SubjectMarks.Include(u => u.TypeMark)
+            var list = db.SubjectMarks.Include(u => u.TypeMark)
                     .Where(x => !x.DelFlag && x.StudentId == studentId && x.SubjectId == subjectId && x.SemesterId == semesterId)
                     .OrderBy(x => x.TypeMarkId).Select(x => new MarkResponseDto
                     {
@@ -121,6 +122,66 @@ namespace EducationManagement.Services.Implementations
                         Mark = x.Mark,
                         TypeMark = x.TypeMark.Name
                     }).ToList();
+            return list ?? new List<MarkResponseDto>();
         }
+
+        public List<StudentInfoForViewMark> GetStudentInClass(int classId, int semesterId, int subjectId)
+        {
+            try
+            {
+                var list = db.Students.Include(x => x.User).Where(x => !x.DelFlag && x.ClassId == classId)
+                .Select(x => new StudentInfoForViewMark
+                {
+                    StudentId = x.Id,
+                    StudentName = x.User.LastName + x.User.FirstName,
+                    Marks = GetMarkList(x.Id, subjectId, semesterId)
+                }).ToList();
+
+                return list ?? new List<StudentInfoForViewMark>();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+           
+        }
+
+        public MarkInTeachingClassResponseDto GetMarksInClass(int classId, int semesterId, int userId)
+        {
+            //Kiểm tra giáo viên có trong db không
+            var teacher = db.Teachers.FirstOrDefault(x => !x.DelFlag && x.UserId == userId);
+            if (teacher == null) return null;
+
+            //Kiểm tra lớp có trong db không
+            var Class = db.Classes.FirstOrDefault(x => !x.DelFlag && x.Id == classId);
+            if (Class == null) return null;
+
+            var result = new MarkInTeachingClassResponseDto();
+            result.ClassName = Class.Name;
+
+            //Lấy tất cả id môn học mà giáo viên dạy ở lớp đó
+            List<int> subjectIds = db.ScheduleSubjects.Include(x => x.Subject)
+                .Where(x => !x.DelFlag && x.ClassId == classId && x.TeacherId == teacher.Id && x.SemesterId == semesterId
+                && (!x.Subject.Name.Equals("Sinh hoạt") && !x.Subject.Name.Equals("Chào cờ")))
+                .DistinctBy(x => x.SubjectId).Select(x => x.SubjectId).ToList();
+
+            if (subjectIds == null) return result;
+
+            //Lấy tất cả điểm của học sinh theo môn học
+            foreach (var item in subjectIds)
+            {
+
+                result.Subjects.Add(new SubjectMarkOfStudentInClass
+                {
+                    SubjectName = db.Subjects.FirstOrDefault(x => !x.DelFlag && x.Id == item).Name,
+                    Students = GetStudentInClass(classId, semesterId, item)
+                });
+            }
+            return result;
+
+        }
+
+
     }
 }

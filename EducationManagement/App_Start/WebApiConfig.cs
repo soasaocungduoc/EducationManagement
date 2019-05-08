@@ -327,6 +327,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
+            config.Routes.MapHttpRoute(
+                "GetMarkInClassApi",
+                "api/teacher/{userId}/teaching-class/{classId}/semester/{semesterId}",
+                new { controller = "SubjectMark", action = "GetMarkInClass", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
             //<-- TypeMark controller -->
             config.Routes.MapHttpRoute(
                 "GetTypeMarksApi",
