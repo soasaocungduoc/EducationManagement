@@ -127,24 +127,15 @@ namespace EducationManagement.Services.Implementations
 
         public List<StudentInfoForViewMark> GetStudentInClass(int classId, int semesterId, int subjectId)
         {
-            try
-            {
-                var list = db.Students.Include(x => x.User).Where(x => !x.DelFlag && x.ClassId == classId)
-                .Select(x => new StudentInfoForViewMark
-                {
-                    StudentId = x.Id,
-                    StudentName = x.User.LastName + x.User.FirstName,
-                    Marks = GetMarkList(x.Id, subjectId, semesterId)
-                }).ToList();
+            var list = db.Students.Include(x => x.User).ToList().Where(x => !x.DelFlag && x.ClassId == classId)
+                 .Select(x => new StudentInfoForViewMark
+                 {
+                     StudentId = x.Id,
+                     StudentName = x.User.LastName + x.User.FirstName,
+                     Marks = GetMarkList(x.Id, subjectId, semesterId)
+                 }).ToList();
 
-                return list ?? new List<StudentInfoForViewMark>();
-            }
-            catch (Exception e)
-            {
-
-                throw e;
-            }
-           
+            return list ?? new List<StudentInfoForViewMark>();
         }
 
         public MarkInTeachingClassResponseDto GetMarksInClass(int classId, int semesterId, int userId)
@@ -159,7 +150,7 @@ namespace EducationManagement.Services.Implementations
 
             var result = new MarkInTeachingClassResponseDto();
             result.ClassName = Class.Name;
-
+            
             //Lấy tất cả id môn học mà giáo viên dạy ở lớp đó
             List<int> subjectIds = db.ScheduleSubjects.Include(x => x.Subject)
                 .Where(x => !x.DelFlag && x.ClassId == classId && x.TeacherId == teacher.Id && x.SemesterId == semesterId
@@ -171,15 +162,21 @@ namespace EducationManagement.Services.Implementations
             //Lấy tất cả điểm của học sinh theo môn học
             foreach (var item in subjectIds)
             {
-
+                var list = GetStudentInClass(classId, semesterId, item);
                 result.Subjects.Add(new SubjectMarkOfStudentInClass
                 {
-                    SubjectName = db.Subjects.FirstOrDefault(x => !x.DelFlag && x.Id == item).Name,
-                    Students = GetStudentInClass(classId, semesterId, item)
+                    SubjectName = GetSubjectName(item),
+                    Students = list ?? new List<StudentInfoForViewMark>()
                 });
             }
             return result;
 
+        }
+
+        private string GetSubjectName(int subjectId)
+        {
+            var subject = db.Subjects.FirstOrDefault(x => !x.DelFlag && x.Id == subjectId);
+            return subject == null ? "" : subject.Name; 
         }
 
 

@@ -16,7 +16,8 @@ namespace EducationManagement.Dtos.OutputDtos
 
         public MarkInTeachingClassResponseDto()
         {
-
+            ClassName = "";
+            Subjects = new List<SubjectMarkOfStudentInClass>();
         }
 
         public MarkInTeachingClassResponseDto(string className, List<SubjectMarkOfStudentInClass> subjects)
