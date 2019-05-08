@@ -12,5 +12,7 @@ namespace EducationManagement.Services.Abstractions
     public interface INotificationService
     {
         bool Add(NotificationDto dto);
+
+        List<NotificationResponseDto> Get(int receiverId);
     }
 }

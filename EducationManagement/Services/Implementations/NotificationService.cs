@@ -41,5 +41,92 @@ namespace EducationManagement.Services.Implementations
 
             return true;
         }
+
+        public List<NotificationResponseDto> Get(int receiverId)
+        {
+            var notifications = new List<NotificationResponseDto>();
+            notifications = db.Notifications
+                .Where(x => x.ReceiverId == receiverId && x.DelFlag == false)
+                .Select(x => new NotificationResponseDto
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    Type = x.Type
+                }).ToList();
+
+            //case receiver is teacher
+            var teacherFromDb = db.Teachers
+                .FirstOrDefault(x => x.UserId == receiverId && x.DelFlag == false);
+                
+            if(teacherFromDb != null)
+            {
+                var teacherNotifications = db.Notifications
+                .Where(x => x.ClassReceiverId == teacherFromDb.Id && x.DelFlag == false)
+                .Select(x => new NotificationResponseDto
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    Type = x.Type
+                }).ToList();
+
+                if (teacherNotifications != null)
+                {
+                    notifications.AddRange(teacherNotifications);
+                }
+            }
+
+            //case receiver is student
+            var studentFromDb = db.Students
+                .FirstOrDefault(x => x.UserId == receiverId && x.DelFlag == false);
+
+            if(studentFromDb != null)
+            {
+                var studentNotifications = db.Notifications
+                .Where(x => x.ClassReceiverId == studentFromDb.ClassId && x.DelFlag == false)
+                .Select(x => new NotificationResponseDto
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    Type = x.Type
+                }).ToList();
+
+                if (studentNotifications != null)
+                {
+                    notifications.AddRange(studentNotifications);
+                }
+            }
+
+            //case receiver is parent
+            studentFromDb = db.Students
+                .FirstOrDefault(x => x.ParentId == receiverId && x.DelFlag == false);
+
+            if(studentFromDb != null)
+            {
+                var parentNotifications = db.Notifications
+                .Where(x => x.ClassReceiverId == studentFromDb.ClassId && x.DelFlag == false)
+                .Select(x => new NotificationResponseDto
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    Type = x.Type
+                }).ToList();
+
+                if (parentNotifications != null)
+                {
+                    notifications.AddRange(parentNotifications);
+                }
+            }
+            
+            if (notifications == null)
+            {
+                return null;
+            }
+
+            return notifications;  
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using EducationManagement.Controllers.Bases;
+﻿using EducationManagement.Commons;
+using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
@@ -37,6 +38,21 @@ namespace EducationManagement.Controllers
             }
 
             return BadRequest();
+        }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetNotification")]
+        public IHttpActionResult GetNotification(int receiverId)
+        {
+            var result = _notificationService.Get(receiverId);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
         }
     }
 }
