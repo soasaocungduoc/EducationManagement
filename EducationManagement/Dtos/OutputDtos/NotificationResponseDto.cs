@@ -20,29 +20,10 @@ namespace EducationManagement.Dtos.OutputDtos
 
         [JsonProperty("type")]
         public string Type { get; set; }
-
-        //[JsonProperty("receiver")]
-        //public UserResponseDto Receiver { get; set; }
-
-        //[JsonProperty("sender")]
-        //public UserResponseDto Sender { get; set; }
-
-        //[JsonProperty("classreceiver")]
-        //public ClassResponseDto ClassReceiver { get; set; }
-
+        
         public NotificationResponseDto()
         {
 
         }
-
-        //public NotificationResponseDto(string title, string content, string type, UserResponseDto receiver, UserResponseDto sender, ClassResponseDto classReceiver)
-        //{
-        //    Title = title;
-        //    Content = content;
-        //    Type = type;
-        //    Receiver = receiver;
-        //    Sender = sender;
-        //    ClassReceiver = classReceiver;
-        //}
     }
 }
