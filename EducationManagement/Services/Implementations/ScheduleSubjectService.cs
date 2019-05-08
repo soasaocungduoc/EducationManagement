@@ -101,6 +101,7 @@ namespace EducationManagement.Services.Implementations
         {
             try
             {
+                if (!IsValidInput(dto)) return false;
                 foreach (var item in dto.ScheduleSubjects)
                 {
                     var schedule = new ScheduleSubject
@@ -118,7 +119,6 @@ namespace EducationManagement.Services.Implementations
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
@@ -128,5 +128,22 @@ namespace EducationManagement.Services.Implementations
             var dayLesson = db.DayLessons.FirstOrDefault(x => !x.DelFlag && x.DayOfWeek == day && x.Lesson == lesson);
             return dayLesson == null ? 0 : dayLesson.Id;
         }
+
+
+        private bool IsValidInput(ScheduleSubjectOfClassDto dto)
+        {
+            var scheduleSubjects = db.ScheduleSubjects.Include(x => x.DayOfWeekLesson).ToList();
+            foreach (var schedule in dto.ScheduleSubjects)
+            {
+                if (scheduleSubjects.Any(x =>
+                    !x.DelFlag
+                    && (x.ClassId == dto.ClassId || x.TeacherId == schedule.TeacherId)
+                    && x.SemesterId == dto.SemesterId
+                    && x.DayOfWeekLesson.DayOfWeek == schedule.DayOfWeek
+                    && x.DayOfWeekLesson.Lesson == schedule.Lesson)) return false;
+            }
+            return true;
+        }
+       
     }
 }

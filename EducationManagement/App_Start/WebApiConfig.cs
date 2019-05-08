@@ -288,6 +288,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
+            config.Routes.MapHttpRoute(
+               "UpdateAvatarApi",
+               "api/user/{userId}/avatar",
+               new { controller = "User", action = "UpdateAvatar", userId = RouteParameter.Optional },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
+           );
+
             //<-- Grade controller -->
             config.Routes.MapHttpRoute(
                 "GetGradesApi",
@@ -327,6 +334,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
+            config.Routes.MapHttpRoute(
+                "GetMarkInClassApi",
+                "api/teacher/{userId}/teaching-class/{classId}/semester/{semesterId}",
+                new { controller = "SubjectMark", action = "GetMarkInClass", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
             //<-- TypeMark controller -->
             config.Routes.MapHttpRoute(
                 "GetTypeMarksApi",
@@ -341,6 +355,14 @@ namespace EducationManagement
                 "api/notification",
                 new { controller = "Notification", action = "AddNotification" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );  
+              
+            //<-- Parent controller -->
+            config.Routes.MapHttpRoute(
+                "GetParentsApi",
+                "api/parent",
+                new { controller = "Parent", action = "GetParents" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
         }
     }
