@@ -90,5 +90,34 @@ namespace EducationManagement.Services.Implementations
 
             return requests;
         }
+
+        public List<RequestResponseDto> GetUserRequest(int userId)
+        {
+            var requests = new List<RequestResponseDto>();
+
+            requests = db.Notifications
+                .Include(x => x.Sender)
+                .Where(x => x.Type == "request" && x.SenderId == userId && x.DelFlag == false)
+                .Select(x => new RequestResponseDto
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    Sender = x.Sender == null ? null : new UserResponseDto()
+                    {
+                        Id = x.Sender.Id,
+                        FirstName = x.Sender.FirstName,
+                        LastName = x.Sender.LastName,
+                        Address = x.Sender.Address,
+                        Avatar = x.Sender.Avatar,
+                        Birthday = x.Sender.Birthday,
+                        Gender = x.Sender.Gender,
+                        IdentificationNumber = x.Sender.IdentificationNumber,
+                        PhoneNumber = x.Sender.PhoneNumber
+                    }
+                }).ToList();
+
+            return requests;
+        }
     }
 }

@@ -69,6 +69,35 @@ namespace EducationManagement.Controllers
 
             return Ok(result);
         }
-        
+
+        [HttpGet]
+        [ActionName("GetUserRequest")]
+        public IHttpActionResult GetUserRequest()
+        {
+            try
+            {
+                if (Request.Headers.Authorization == null)
+                {
+                    return Unauthorized();
+                }
+
+                var token = Request.Headers.Authorization.ToString();
+                
+                var userId = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+
+                var result = _requestService.GetUserRequest(userId);
+
+                if (result == null)
+                {
+                    return BadRequest();
+                }
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

@@ -16,5 +16,7 @@ namespace EducationManagement.Services.Abstractions
         RequestResponseDto Get(int requestId);
 
         List<RequestResponseDto> GetAll();
+
+        List<RequestResponseDto> GetUserRequest(int userId);
     }
 }
