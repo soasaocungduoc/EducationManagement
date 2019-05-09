@@ -37,7 +37,8 @@ namespace EducationManagement.Services.Implementations
         }
         private bool IsValidSubject(SubjectDto dto)
         {
-           var subject =  db.Subjects.Include(y => y.Team).FirstOrDefault(x => !x.DelFlag && x.Name.ToLower().Equals(dto.SubjectName.ToLower()));
+           var subject =  db.Subjects.Include(y => y.Team)
+                .FirstOrDefault(x => !x.DelFlag && x.Name.ToLower().Equals(dto.SubjectName.ToLower()));
             return subject == null ? true : false;
         }
 
@@ -53,6 +54,26 @@ namespace EducationManagement.Services.Implementations
                     Select(x => new SubjectResponseDto(x)).ToList();
         }
 
-        
+        public SubjectResponseDto UpdateSubject(SubjectDto subjectDto, int subjectId)
+        {
+            try
+            {
+                var subject = db.Subjects.Include(y => y.Team).FirstOrDefault(x => !x.DelFlag && x.Id == subjectId);
+
+                if (subject == null) return null;
+
+                if (!IsValidSubject(subjectDto)) return null;
+
+                subject.Name = subjectDto.SubjectName;
+                subject.TeamId = subjectDto.TeamId;
+                db.SaveChanges();
+                return GetSubjectBySubjectId(subject.Id);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
     }
 }

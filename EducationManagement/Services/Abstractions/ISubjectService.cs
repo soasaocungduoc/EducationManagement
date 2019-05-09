@@ -13,5 +13,7 @@ namespace EducationManagement.Services.Abstractions
         List<SubjectResponseDto> GetSubjects();
         SubjectResponseDto AddSubject(SubjectDto subject);
         SubjectResponseDto GetSubjectBySubjectId(int SubjectId);
+        SubjectResponseDto UpdateSubject(SubjectDto subjectDto, int subjectId);
+
     }
 }
