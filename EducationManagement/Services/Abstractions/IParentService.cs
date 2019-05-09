@@ -1,4 +1,5 @@
-﻿using EducationManagement.Dtos.OutputDtos;
+﻿using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Dtos.OutputDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace EducationManagement.Services.Abstractions
     {
         List<ParentResponseDto> GetParents();
         List<ParentResponseDto> GetParentsByClassId(int classId);
+        bool AddParent(ParentDto parent);
 
     }
 }
