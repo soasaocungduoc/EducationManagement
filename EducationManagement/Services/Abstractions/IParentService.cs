@@ -10,6 +10,7 @@ namespace EducationManagement.Services.Abstractions
     public interface IParentService
     {
         List<ParentResponseDto> GetParents();
+        List<ParentResponseDto> GetParentsByClassId(int classId);
 
     }
 }

@@ -30,5 +30,22 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetParentsByClassId")]
+        public IHttpActionResult GetParentsByClassId(int classId)
+        {
+            try
+            {
+                var result = _parentService.GetParentsByClassId(classId);
+                if (result == null)
+                    return BadRequest("Cannot found this class");
+                return Ok(_parentService.GetParentsByClassId(classId));
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
