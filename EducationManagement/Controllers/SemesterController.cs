@@ -17,6 +17,7 @@ namespace EducationManagement.Controllers
             _semesterService = semesterService;
         }
 
+        [Authorize]
         [HttpGet]
         [ActionName("GetSemestersByYearId")]
         public IHttpActionResult GetSemestersByYearId(int id)

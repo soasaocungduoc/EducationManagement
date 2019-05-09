@@ -18,7 +18,7 @@ namespace EducationManagement.Controllers
         {
             _subjectService = subjectService;
         }
-
+        
         [HttpGet]
         [ActionName("GetSubjects")]
         public IHttpActionResult GetSubjects()
