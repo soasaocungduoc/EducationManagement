@@ -378,17 +378,25 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            //<-- Request controller -->
+            config.Routes.MapHttpRoute(
+                "GetAllRequestApi",
+                "api/request",
+                new { controller = "Request", action = "GetAllRequest" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
             config.Routes.MapHttpRoute(
                 "AddRequestApi",
-                "api/notification/request",
-                new { controller = "Notification", action = "AddRequest" },
+                "api/request",
+                new { controller = "Request", action = "AddRequest" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
             );
 
             config.Routes.MapHttpRoute(
                 "GetRequestApi",
-                "api/notification/request/{requestId}",
-                new { controller = "Notification", action = "GetRequest", requestId = RouteParameter.Optional },
+                "api/request/{requestId}",
+                new { controller = "Request", action = "GetRequest", requestId = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 

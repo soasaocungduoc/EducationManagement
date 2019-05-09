@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace EducationManagement.Services.Abstractions
 {
-    public interface INotificationService
+    public interface IRequestService
     {
-        bool Add(NotificationDto dto);
+        bool Add(RequestDto dto);
 
-        List<NotificationResponseDto> Get(int receiverId);
+        RequestResponseDto Get(int requestId);
 
-        NotificationDetailDto GetById(int id);
+        List<RequestResponseDto> GetAll();
     }
 }

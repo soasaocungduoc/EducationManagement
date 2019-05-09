@@ -41,54 +41,7 @@ namespace EducationManagement.Services.Implementations
 
             return true;
         }
-
-        public bool AddRequest(RequestDto dto)
-        {
-            if (dto == null)
-            {
-                return false;
-            }
-
-            try
-            {
-                var request = new Notification();
-
-                request.SenderId = dto.SenderId;
-                request.Title = dto.Title;
-                request.Content = dto.Content;
-                request.Type = "request";
-
-                db.Notifications.Add(request);
-                db.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public RequestResponseDto GetRequest(int requestId)
-        {
-            var requestFromDb = db.Notifications
-                .Include(x => x.Sender)
-                .FirstOrDefault(x => x.Type == "request" && x.Id == requestId && x.DelFlag == false);
-
-            if(requestFromDb == null)
-            {
-                return null;
-            }
-
-            return new RequestResponseDto()
-            {
-                 Id = requestFromDb.Id,
-                 Title = requestFromDb.Title,
-                 Content = requestFromDb.Content,
-                 Sender = new UserResponseDto(requestFromDb.Sender)
-            };
-        }
-
+        
         public List<NotificationResponseDto> Get(int receiverId)
         {
             var notifications = new List<NotificationResponseDto>();

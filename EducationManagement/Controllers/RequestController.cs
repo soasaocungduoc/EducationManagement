@@ -12,25 +12,25 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
-    public class NotificationController : BaseApiController
+    public class RequestController : BaseApiController
     {
-        private readonly INotificationService _notificationService;
-        public NotificationController(INotificationService notificationService)
+        private readonly IRequestService _requestService;
+        public RequestController(IRequestService requestService)
         {
-            _notificationService = notificationService;
+            _requestService = requestService;
         }
 
         [AdminAuthorization]
         [HttpPost]
-        [ActionName("AddNotification")]
-        public IHttpActionResult AddNotification([FromBody] NotificationDto dto)
+        [ActionName("AddRequest")]
+        public IHttpActionResult AddRequest([FromBody] RequestDto dto)
         {
             if (dto == null)
             {
                 return BadRequest();
             }
 
-            var result = _notificationService.Add(dto);
+            var result = _requestService.Add(dto);
 
             if (result == true)
             {
@@ -39,35 +39,36 @@ namespace EducationManagement.Controllers
 
             return BadRequest();
         }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetRequest")]
+        public IHttpActionResult GetRequest(int requestId)
+        {
+            var result = _requestService.Get(requestId);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetAllRequest")]
+        public IHttpActionResult GetAllRequest()
+        {
+            var result = _requestService.GetAll();
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
         
-        [AdminAuthorization]
-        [HttpGet]
-        [ActionName("GetNotification")]
-        public IHttpActionResult GetNotification(int receiverId)
-        {
-            var result = _notificationService.Get(receiverId);
-
-            if (result == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(result);
-        }
-
-        [AdminAuthorization]
-        [HttpGet]
-        [ActionName("GetNotificationById")]
-        public IHttpActionResult GetNotificationById(int id)
-        {
-            var result = _notificationService.GetById(id);
-
-            if (result == null)
-            {
-                return BadRequest();
-            }
-
-            return Ok(result);
-        }
     }
 }
