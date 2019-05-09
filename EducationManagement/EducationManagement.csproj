@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\Bases\BaseApiController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\ConductController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Dtos\InputDtos\UserInfoDto.cs" />
     <Compile Include="Dtos\OutputDtos\ClassInfoForListStudent.cs" />
     <Compile Include="Dtos\OutputDtos\ClassResponseDto.cs" />
+    <Compile Include="Dtos\OutputDtos\ConductResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\GradeResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\GroupResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ListStudentOfParentResponseDto.cs" />
@@ -279,6 +281,7 @@
     <Compile Include="Services\Abstractions\IAccountService.cs" />
     <Compile Include="Services\Abstractions\IAuthenticationService.cs" />
     <Compile Include="Services\Abstractions\IClassService.cs" />
+    <Compile Include="Services\Abstractions\IConductService.cs" />
     <Compile Include="Services\Abstractions\IGradeService.cs" />
     <Compile Include="Services\Abstractions\INewsService.cs" />
     <Compile Include="Services\Abstractions\IRequestService.cs" />
@@ -299,6 +302,7 @@
     <Compile Include="Services\Implementations\AccountService.cs" />
     <Compile Include="Services\Implementations\AuthenticationService.cs" />
     <Compile Include="Services\Implementations\ClassService.cs" />
+    <Compile Include="Services\Implementations\ConductService.cs" />
     <Compile Include="Services\Implementations\GradeService.cs" />
     <Compile Include="Services\Implementations\NewsService.cs" />
     <Compile Include="Services\Implementations\RequestService.cs" />
