@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EM.Database.Schema;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,13 @@ namespace EducationManagement.Dtos.OutputDtos
             Id = id;
             Name = name;
             TeamInfo = teamInfo;
+        }
+
+        public SubjectResponseDto(Subject subject)
+        {
+            Id = subject.Id;
+            Name = subject.Name;
+            TeamInfo = new TeamResponseDto(subject.Team);
         }
     }
 }
