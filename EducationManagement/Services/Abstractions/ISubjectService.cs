@@ -14,6 +14,7 @@ namespace EducationManagement.Services.Abstractions
         SubjectResponseDto AddSubject(SubjectDto subject);
         SubjectResponseDto GetSubjectBySubjectId(int SubjectId);
         SubjectResponseDto UpdateSubject(SubjectDto subjectDto, int subjectId);
+        bool DeleteSubject(int subjectId);
 
     }
 }

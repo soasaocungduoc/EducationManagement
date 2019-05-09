@@ -75,5 +75,25 @@ namespace EducationManagement.Services.Implementations
                 return null;
             }
         }
+
+        public bool DeleteSubject(int subjectId)
+        {
+            try
+            {
+                var subject = db.Subjects.Include(y => y.Team).FirstOrDefault(x => !x.DelFlag && x.Id == subjectId);
+
+                if (subject == null) return false;
+
+                subject.DelFlag = true;
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
     }
 }

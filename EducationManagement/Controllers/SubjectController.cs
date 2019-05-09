@@ -87,5 +87,21 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpDelete]
+        [ActionName("DeleteSubject")]
+        public IHttpActionResult DeleteSubject(int subjectId)
+        {
+            try
+            {
+                if (_subjectService.DeleteSubject(subjectId))
+                    return Ok("Delete successed");
+                return BadRequest("Delete faild");
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
