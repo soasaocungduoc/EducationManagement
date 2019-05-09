@@ -32,12 +32,12 @@ namespace EducationManagement.Controllers
 
             var result = _requestService.Add(dto);
 
-            if (result == true)
+            if (result == null)
             {
-                return Ok();
+                return BadRequest();
             }
 
-            return BadRequest();
+            return Ok(result);
         }
 
         [AdminAuthorization]

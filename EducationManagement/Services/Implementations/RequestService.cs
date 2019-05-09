@@ -15,17 +15,17 @@ namespace EducationManagement.Services.Implementations
     {
         private readonly DataContext db = new DataContext();
         
-        public bool Add(RequestDto dto)
+        public RequestResponseDto Add(RequestDto dto)
         {
             if (dto == null)
             {
-                return false;
+                return null;
             }
+
+            var request = new Notification();
 
             try
             {
-                var request = new Notification();
-
                 request.SenderId = dto.SenderId;
                 request.Title = dto.Title;
                 request.Content = dto.Content;
@@ -36,10 +36,10 @@ namespace EducationManagement.Services.Implementations
             }
             catch
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return Get(request.Id);
         }
 
         public RequestResponseDto Get(int requestId)
