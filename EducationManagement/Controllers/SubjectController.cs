@@ -33,6 +33,23 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [HttpGet]
+        [ActionName("GetSubjectBySubjectId")]
+        public IHttpActionResult GetSubjectBySubjectId(int subjectId)
+        {
+            try
+            {
+                var result = _subjectService.GetSubjectBySubjectId(subjectId);
+                if (result == null)
+                    return BadRequest("Cannot found this subject");
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
         [HttpPost]
         [ActionName("AddSubject")]
         public IHttpActionResult AddSubject([FromBody] SubjectDto subjectDto)
