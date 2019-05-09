@@ -41,6 +41,41 @@ namespace EducationManagement.Controllers
         }
 
         [AdminAuthorization]
+        [HttpPost]
+        [ActionName("AddRequest")]
+        public IHttpActionResult AddRequest([FromBody] RequestDto dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest();
+            }
+
+            var result = _notificationService.AddRequest(dto);
+
+            if (result == true)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetRequest")]
+        public IHttpActionResult GetRequest(int requestId)
+        {
+            var result = _notificationService.GetRequest(requestId);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetNotification")]
         public IHttpActionResult GetNotification(int receiverId)

@@ -7,13 +7,10 @@ using System.Web;
 
 namespace EducationManagement.Dtos.InputDtos
 {
-    public class NotificationDto
+    public class RequestDto
     {
-        [JsonProperty("receiverid")]
-        public int? ReceiverId { get; set; }
-
-        [JsonProperty("classreceiverid")]
-        public int? ClassReceiverId { get; set; }
+        [JsonProperty("senderid")]
+        public int? SenderId { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -24,6 +21,6 @@ namespace EducationManagement.Dtos.InputDtos
         [StringLength(200)]
         [JsonProperty("content")]
         public string Content { get; set; }
-
+        
     }
 }

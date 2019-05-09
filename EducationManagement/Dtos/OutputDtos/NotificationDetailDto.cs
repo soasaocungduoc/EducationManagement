@@ -23,9 +23,6 @@ namespace EducationManagement.Dtos.OutputDtos
         [JsonProperty("receiver")]
         public UserResponseDto Receiver { get; set; }
 
-        [JsonProperty("sender")]
-        public UserResponseDto Sender { get; set; }
-
         [JsonProperty("classreceiver")]
         public ClassResponseDto ClassReceiver { get; set; }
 
@@ -34,13 +31,12 @@ namespace EducationManagement.Dtos.OutputDtos
 
         }
 
-        public NotificationDetailDto(string title, string content, string type, UserResponseDto receiver, UserResponseDto sender, ClassResponseDto classReceiver)
+        public NotificationDetailDto(string title, string content, string type, UserResponseDto receiver, ClassResponseDto classReceiver)
         {
             Title = title;
             Content = content;
             Type = type;
             Receiver = receiver;
-            Sender = sender;
             ClassReceiver = classReceiver;
         }
     }

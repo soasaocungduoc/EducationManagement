@@ -215,6 +215,7 @@
     <Compile Include="Controllers\TypeMarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\InputDtos\MarkDto.cs" />
+    <Compile Include="Dtos\InputDtos\RequestDto.cs" />
     <Compile Include="Dtos\InputDtos\NotificationDto.cs" />
     <Compile Include="Dtos\InputDtos\ParentDto.cs" />
     <Compile Include="Dtos\InputDtos\SubjectDto.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Dtos\OutputDtos\MarkResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\NewsResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\NotificationDetailDto.cs" />
+    <Compile Include="Dtos\OutputDtos\RequestResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\NotificationResponseDto.cs" />
     <Compile Include="Dtos\OutputDtos\ParentInfoForListStudent.cs" />
     <Compile Include="Dtos\OutputDtos\ParentResponseDto.cs" />
