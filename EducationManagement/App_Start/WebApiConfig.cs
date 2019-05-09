@@ -312,6 +312,13 @@ namespace EducationManagement
             );
 
             config.Routes.MapHttpRoute(
+                "GetSubjectBySubjectIdApi",
+                "api/subject/{subjectId}",
+                new { controller = "Subject", action = "GetSubjectBySubjectId", subjectId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
                 "AddSubjectApi",
                 "api/subject",
                 new { controller = "Subject", action = "AddSubject" },
