@@ -11,7 +11,7 @@ namespace EducationManagement.Services.Abstractions
 {
     public interface IRequestService
     {
-        bool Add(RequestDto dto);
+        RequestResponseDto Add(RequestDto dto);
 
         RequestResponseDto Get(int requestId);
 
