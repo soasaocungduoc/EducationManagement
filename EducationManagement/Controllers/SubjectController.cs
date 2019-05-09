@@ -68,5 +68,24 @@ namespace EducationManagement.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpPut]
+        [ActionName("UpdateSubject")]
+        public IHttpActionResult UpdateSubject(int subjectId,[FromBody] SubjectDto subjectDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                var result = _subjectService.UpdateSubject(subjectDto, subjectId);
+                if (result == null)
+                    return BadRequest("Update faild");
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
