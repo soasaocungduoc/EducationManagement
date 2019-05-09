@@ -332,6 +332,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
             );
 
+            config.Routes.MapHttpRoute(
+                "DeleteSubjectApi",
+                "api/subject/{subjectId}",
+                new { controller = "Subject", action = "DeleteSubject", subjectId = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+            );
+
             //<-- Team controller -->
             config.Routes.MapHttpRoute(
                 "GetTeamsApi",
