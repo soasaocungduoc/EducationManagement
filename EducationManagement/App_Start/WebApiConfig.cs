@@ -387,6 +387,13 @@ namespace EducationManagement
             );
 
             config.Routes.MapHttpRoute(
+                "GetUserRequestApi",
+                "api/request/user",
+                new { controller = "Request", action = "GetUserRequest" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            config.Routes.MapHttpRoute(
                 "AddRequestApi",
                 "api/request",
                 new { controller = "Request", action = "AddRequest" },
