@@ -54,5 +54,20 @@ namespace EducationManagement.Controllers
 
             return Ok(result);
         }
+
+        [AdminAuthorization]
+        [HttpGet]
+        [ActionName("GetNotificationById")]
+        public IHttpActionResult GetNotificationById(int id)
+        {
+            var result = _notificationService.GetById(id);
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
     }
 }

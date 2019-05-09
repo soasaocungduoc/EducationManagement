@@ -128,5 +128,75 @@ namespace EducationManagement.Services.Implementations
 
             return notifications;  
         }
+
+        public NotificationDetailDto GetById(int id)
+        {
+            var notificationFromDb = db.Notifications
+                .FirstOrDefault(x => x.Id == id && x.DelFlag == false);
+
+            if (notificationFromDb == null)
+            {
+                return null;
+            }
+
+            UserResponseDto receiver = null;
+            UserResponseDto sender = null;
+            ClassResponseDto classReceiver = null;
+
+            if (notificationFromDb.ReceiverId != null)
+            {
+                receiver = new UserResponseDto(db.Users
+                .FirstOrDefault(x => x.Id == notificationFromDb.ReceiverId && x.DelFlag == false));
+            }
+
+            if (notificationFromDb.SenderId != null)
+            {
+                sender = new UserResponseDto(db.Users
+                .FirstOrDefault(x => x.Id == notificationFromDb.SenderId && x.DelFlag == false));
+            }
+
+            if (notificationFromDb.ClassReceiverId != null)
+            {
+                var classFromDb = db.Classes
+                    .FirstOrDefault(x => x.Id == notificationFromDb.ClassReceiverId && x.DelFlag == false);
+
+                if(classFromDb != null)
+                {
+                    var gradeFromDb = db.Grades.FirstOrDefault(x => x.Id == classFromDb.GradeId && x.DelFlag == false);
+                    var roomfromDb = db.Rooms.FirstOrDefault(x => x.Id == classFromDb.RoomId && x.DelFlag == false);
+                    var teacherFromDb = db.Teachers.FirstOrDefault(x => x.Id == classFromDb.TeacherId && x.DelFlag == false);
+
+                    string teacherName = null;
+
+                    if(teacherFromDb != null)
+                    {
+                        var teacherUserFromDb = db.Users.FirstOrDefault(x => x.Id == teacherFromDb.UserId && x.DelFlag == false);
+                        teacherName = teacherUserFromDb == null ? null : teacherUserFromDb.FirstName + " " + teacherUserFromDb.LastName;
+                    }
+
+                    classReceiver = new ClassResponseDto()
+                    {
+                        Id = classFromDb.Id,
+                        Name = classFromDb.Name,
+                        NumberOfStudents = classFromDb.NumberOfStudents,
+                        GradeName = gradeFromDb == null ? null : gradeFromDb.Name,
+                        RoomNumber = roomfromDb == null ? null : roomfromDb.RoomNumber,
+                        TeacherName = teacherName 
+                    };
+                }
+                
+            }
+
+            return new NotificationDetailDto()
+            {
+                Id = notificationFromDb.Id,
+                Title = notificationFromDb.Title,
+                Content = notificationFromDb.Content,
+                Type = notificationFromDb.Type,
+                Receiver = receiver,
+                Sender = sender,
+                ClassReceiver = classReceiver
+            };
+        }
     }
 }

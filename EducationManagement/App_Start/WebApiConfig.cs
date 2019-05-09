@@ -364,6 +364,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "GetNotificationByIdApi",
+                "api/notification/{id}",
+                new { controller = "Notification", action = "GetNotificationById", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
             //<-- Parent controller -->
             config.Routes.MapHttpRoute(
                 "GetParentsApi",

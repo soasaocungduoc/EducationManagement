@@ -14,5 +14,7 @@ namespace EducationManagement.Services.Abstractions
         bool Add(NotificationDto dto);
 
         List<NotificationResponseDto> Get(int receiverId);
+
+        NotificationDetailDto GetById(int id);
     }
 }
