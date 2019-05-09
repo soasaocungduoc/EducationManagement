@@ -37,6 +37,7 @@ namespace EducationManagement
             container.RegisterType<INotificationService, NotificationService>();
             container.RegisterType<IParentService, ParentService>();
             container.RegisterType<IRequestService, RequestService>();
+            container.RegisterType<IConductService, ConductService>();
 
 
 
