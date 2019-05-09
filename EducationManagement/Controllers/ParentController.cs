@@ -50,6 +50,7 @@ namespace EducationManagement.Controllers
         }
 
         [HttpPost]
+        [ActionName("AddParent")]
         public IHttpActionResult AddParent([FromBody] ParentDto parentDto)
         {
             try

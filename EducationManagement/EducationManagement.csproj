@@ -217,6 +217,7 @@
     <Compile Include="Dtos\InputDtos\MarkDto.cs" />
     <Compile Include="Dtos\InputDtos\NotificationDto.cs" />
     <Compile Include="Dtos\InputDtos\ParentDto.cs" />
+    <Compile Include="Dtos\InputDtos\SubjectDto.cs" />
     <Compile Include="Dtos\InputDtos\SubjectMarkDto.cs" />
     <Compile Include="Dtos\InputDtos\ScheduleSubjectDto.cs" />
     <Compile Include="Dtos\InputDtos\ScheduleSubjectOfClassDto.cs" />

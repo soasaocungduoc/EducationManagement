@@ -311,6 +311,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "AddSubjectApi",
+                "api/subject",
+                new { controller = "Subject", action = "AddSubject" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
             //<-- Team controller -->
             config.Routes.MapHttpRoute(
                 "GetTeamsApi",
