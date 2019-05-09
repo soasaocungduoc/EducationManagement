@@ -1,4 +1,5 @@
 ﻿using EducationManagement.Controllers.Bases;
+using EducationManagement.Dtos.InputDtos;
 using EducationManagement.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,23 @@ namespace EducationManagement.Controllers
                 return Ok(_parentService.GetParentsByClassId(classId));
             }
             catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult AddParent([FromBody] ParentDto parentDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                if (_parentService.AddParent(parentDto))
+                    return Ok("Add successed");
+                return BadRequest("Add failed");
+            }
+            catch (System.Exception e)
             {
                 return InternalServerError(e);
             }

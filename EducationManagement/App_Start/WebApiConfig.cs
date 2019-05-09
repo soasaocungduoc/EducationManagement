@@ -371,6 +371,13 @@ namespace EducationManagement
                 new { controller = "Parent", action = "GetParentsByClassId", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            config.Routes.MapHttpRoute(
+                "AddParentApi",
+                "api/parent",
+                new { controller = "Parent", action = "AddParent" },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
         }
     }
 }
