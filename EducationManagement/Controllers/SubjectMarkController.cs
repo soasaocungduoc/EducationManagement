@@ -20,6 +20,7 @@ namespace EducationManagement.Controllers
             _subjectMarkService = subjectMarkService;
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetSubjectMarksOfStudent")]
         public IHttpActionResult GetSubjectMarksOfStudent(int userId, int semesterId)
@@ -37,6 +38,7 @@ namespace EducationManagement.Controllers
             }
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetMarkInClass")]
         public IHttpActionResult GetMarkInClass(int userId, int semesterId, int classId)

@@ -17,6 +17,7 @@ namespace EducationManagement.Controllers
             _schoolYearService = schoolYearService;
         }
 
+        [Authorize]
         [HttpGet]
         [ActionName("GetSchoolYears")]
         public IHttpActionResult GetSchoolYears()

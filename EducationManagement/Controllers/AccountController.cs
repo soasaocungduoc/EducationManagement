@@ -18,7 +18,7 @@ namespace EducationManagement.Controllers
         {
             _accountService = accountService;
         }
-
+        [Authorize]
         [HttpPut]
         [ActionName("ChangePassword")]
         public IHttpActionResult ChangePassword(int id, [FromBody] PasswordDto password)

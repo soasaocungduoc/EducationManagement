@@ -18,6 +18,7 @@ namespace EducationManagement.Controllers
             _conductService = conductService;
         }
 
+        [Authorize]
         [HttpGet]
         [ActionName("GetConducts")]
         public IHttpActionResult GetConducts()

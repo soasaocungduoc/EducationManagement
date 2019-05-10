@@ -18,6 +18,7 @@ namespace EducationManagement.Controllers
             _teamService = teamService;
         }
 
+        [Authorize]
         [HttpGet]
         [ActionName("GetTeams")]
         public IHttpActionResult GetTeams()

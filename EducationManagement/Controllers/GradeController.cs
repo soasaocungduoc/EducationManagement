@@ -17,7 +17,7 @@ namespace EducationManagement.Controllers
         {
             _gradeService = gradeService;
         }
-
+        [Authorize]
         [HttpGet]
         [ActionName("GetGrades")]
         public IHttpActionResult GetGrades()

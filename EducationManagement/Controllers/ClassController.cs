@@ -1,4 +1,5 @@
 ﻿using EducationManagement.Controllers.Bases;
+using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
+    [AdminAuthorization]
     public class ClassController : BaseApiController
     {
         private readonly IClassService _classService;

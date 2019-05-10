@@ -78,7 +78,7 @@ namespace EducationManagement.Controllers
             }
         }
 
-        //[AdminAuthorization]
+        [AdminAuthorization]
         [HttpPost]
         [ActionName("AddScheduleSubjectOfClass")]
         public IHttpActionResult AddScheduleSubjectOfClass(int classId, int semesterId,[FromBody] List<ScheduleSubjectDto> schedules)
