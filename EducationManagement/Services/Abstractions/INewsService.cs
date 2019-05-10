@@ -12,8 +12,8 @@ namespace EducationManagement.Services.Abstractions
 
         bool Delete(int newsId);
 
-        bool AddNews(NewsDto news);
+        bool AddNews(NewsDto dto);
 
-        bool UpdateNews(int newsId, NewsDto news);
+        bool UpdateNews(int newsId, NewsDto dto);
     }
 }
