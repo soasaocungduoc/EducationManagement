@@ -58,24 +58,30 @@ namespace EducationManagement.Controllers
         /// <summary>
         /// update user avatar
         /// </summary>
-        [AdminAuthorization]
+        [Route("{userId}/avatar")]
         [HttpPut]
-        [ActionName("UpdateAvatar")]
         public IHttpActionResult UpdateAvatar(int userId, [FromBody] UrlDto dto)
         {
-            if (dto == null)
+            if(dto == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid or missing avatar url");
+            }
+
+            var token = Request.Headers.GetValues("Authorization").First();
+
+            if (!ValidatePermission(token, userId))
+            {
+                return Unauthorized();
             }
 
             var result = _userService.UpdateAvatar(userId, dto);
 
-            if (result == false)
+            if(result == false)
             {
-                return BadRequest();
+                return BadRequest("Fail to update");
             }
 
-            return Ok();
+            return Ok("Avatar is update");
         }
 
         [Route]
