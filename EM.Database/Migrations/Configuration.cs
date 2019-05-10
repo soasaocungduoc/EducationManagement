@@ -134,16 +134,83 @@ namespace EM.Database.Migrations
             //    SemesterId = 10
             //});
 
+            for (int i = 1; i <= 3; i++)
+            {
+                for (int j = 33; j <= 50; j++)
+                {
+                    context.Permissions.Add(new Permission
+                    {
+                        GroupId = i,
+                        FunctionId = j,
+                        IsEnable = true
+                    });
+                }
+            }
 
+            for (int i = 4; i <= 6; i++)
+            {
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 43,
+                    IsEnable = true
+                });
+
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 45,
+                    IsEnable = true
+                });
+
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 49,
+                    IsEnable = true
+                });
+
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = i,
+                    FunctionId = 50,
+                    IsEnable = true
+                });
+            }
+
+            for (int i = 33; i <= 39; i++)
+            {
+                context.Permissions.Add(new Permission
+                {
+                    GroupId = 4,
+                    FunctionId = i,
+                    IsEnable = true
+                });
+            }
+
+            context.Permissions.Add(new Permission
+            {
+                GroupId = 4,
+                FunctionId = 42,
+                IsEnable = true
+            });
+
+
+            context.Permissions.Add(new Permission
+            {
+                GroupId = 4,
+                FunctionId = 48,
+                IsEnable = true
+            });
 
             //context.Functions.Add(new Function
             //{
-            //    ScreenId = 4,
-            //    Name = "Get list of slides",
-            //    Description = "Lay danh sach slide",
-            //    Area = "Home",
-            //    ControllerName = "SlideController",
-            //    ActionName = "GetSlides",
+            //    ScreenId = 16,
+            //    Name = "Get Classes",
+            //    Description = "Lay danh sach class",
+            //    Area = "Admin",
+            //    ControllerName = "Class",
+            //    ActionName = "GetClasses",
             //});
 
             //List<string> ten = new List<string>{"An", "Kiều", "Cường", "Đạt", "Hằng", "Uyên", "Giàu", "Hạnh", "Trường", "Khiêm", "Lan", "Minh", "Ngọc", "Anh", "Phong", "Quốc",

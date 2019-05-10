@@ -159,6 +159,18 @@
     <Compile Include="Migrations\201905050433452_CreateParentDataForParentv1.Designer.cs">
       <DependentUpon>201905050433452_CreateParentDataForParentv1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905091454354_CreateScreenForPermission.cs" />
+    <Compile Include="Migrations\201905091454354_CreateScreenForPermission.Designer.cs">
+      <DependentUpon>201905091454354_CreateScreenForPermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100416582_CreateFunctionDataForPermission.cs" />
+    <Compile Include="Migrations\201905100416582_CreateFunctionDataForPermission.Designer.cs">
+      <DependentUpon>201905100416582_CreateFunctionDataForPermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100500038_CreatePermissionDataForPermission.cs" />
+    <Compile Include="Migrations\201905100500038_CreatePermissionDataForPermission.Designer.cs">
+      <DependentUpon>201905100500038_CreatePermissionDataForPermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Schema\Account.cs" />
     <Compile Include="Schema\Class.cs" />
@@ -244,6 +256,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905050433452_CreateParentDataForParentv1.resx">
       <DependentUpon>201905050433452_CreateParentDataForParentv1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905091454354_CreateScreenForPermission.resx">
+      <DependentUpon>201905091454354_CreateScreenForPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100416582_CreateFunctionDataForPermission.resx">
+      <DependentUpon>201905100416582_CreateFunctionDataForPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100500038_CreatePermissionDataForPermission.resx">
+      <DependentUpon>201905100500038_CreatePermissionDataForPermission.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
