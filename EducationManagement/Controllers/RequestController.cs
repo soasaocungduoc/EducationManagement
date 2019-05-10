@@ -72,18 +72,21 @@ namespace EducationManagement.Controllers
 
         [HttpGet]
         [ActionName("GetUserRequest")]
-        public IHttpActionResult GetUserRequest()
+        public IHttpActionResult GetUserRequest(int userId)
         {
             try
             {
-                if (Request.Headers.Authorization == null)
+                if(Request.Headers.Authorization == null)
                 {
                     return Unauthorized();
                 }
 
                 var token = Request.Headers.Authorization.ToString();
-                
-                var userId = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+
+                if (!ValidatePermission(token, userId))
+                {
+                    return Unauthorized();
+                }
 
                 var result = _requestService.GetUserRequest(userId);
 
@@ -98,6 +101,15 @@ namespace EducationManagement.Controllers
             {
                 return InternalServerError(e);
             }
+        }
+
+        private static bool ValidatePermission(string token, int userId)
+        {
+            var tokenInformation = JwtAuthenticationExtensions.ExtractTokenInformation(token);
+            if (tokenInformation == null) return false;
+            return tokenInformation.GroupName == "Admin" ||
+                   tokenInformation.GroupName == "Mod" ||
+                   tokenInformation.UserId == userId;
         }
     }
 }
