@@ -179,6 +179,122 @@ namespace EducationManagement.Services.Implementations
             return subject == null ? "" : subject.Name; 
         }
 
+        public bool AddAverage(int classId, int subjectId, int semesterId)
+        {
+            var studentIds = db.Students
+                .Where(x => x.ClassId == classId && x.DelFlag == false)
+                .Select(x => x.Id)
+                .ToList();
 
+            if(!studentIds.Any())
+            {
+                return false;
+            }
+
+            //check if average marks have already in Db
+            var checkAverageMark = db.SubjectMarks
+                .FirstOrDefault(x => x.SubjectId == subjectId && x.StudentId == studentIds[0] && x.SemesterId == semesterId && x.TypeMarkId == 5 && x.DelFlag == false);
+
+            if (checkAverageMark != null)
+            {
+                return false;
+            }
+
+            var averageSubjectMarks = new List<SubjectMark>();
+
+            try
+            {
+                foreach (int studentId in studentIds)
+                {
+
+                    var subjectMarks = db.SubjectMarks
+                        .Where(x => x.StudentId == studentId && x.SubjectId == subjectId && x.SemesterId == semesterId && x.DelFlag == false)
+                        .Select(x => new
+                        {
+                            TypeMarkId = x.TypeMarkId,
+                            Mark = x.Mark
+                        }).ToList();
+
+                    //check student has a full of mark, if not return false
+                    var typeMarks = subjectMarks.GroupBy(x => x.TypeMarkId).ToArray();
+
+                    if (typeMarks.Length != 4)
+                    {
+                        return false;
+                    }
+
+                    var firstMark = 0.0;
+                    var secondMark = 0.0;
+                    var thirdMark = 0.0;
+                    var fourthMark = 0.0;
+
+                    var firstMarks = subjectMarks.Where(x => x.TypeMarkId == 1).Select(x => x.Mark).ToList();
+
+                    if (!firstMarks.Any())
+                    {
+                        firstMark = 0;
+                    }
+                    else
+                    {
+                        firstMark = firstMarks.Average();
+                    }
+
+                    var secondMarks = subjectMarks.Where(x => x.TypeMarkId == 2).Select(x => x.Mark).ToList();
+
+                    if (!secondMarks.Any())
+                    {
+                        secondMark = 0;
+                    }
+                    else
+                    {
+                        secondMark = secondMarks.Average();
+                    }
+
+                    var thirdMarks = subjectMarks.Where(x => x.TypeMarkId == 3).Select(x => x.Mark).ToList();
+
+                    if (!thirdMarks.Any())
+                    {
+                        thirdMark = 0;
+                    }
+                    else
+                    {
+                        thirdMark = thirdMarks.Average();
+                    }
+
+                    var fourthMarks = subjectMarks.Where(x => x.TypeMarkId == 4).Select(x => x.Mark).ToList();
+
+                    if (!fourthMarks.Any())
+                    {
+                        fourthMark = 0;
+                    }
+                    else
+                    {
+                        fourthMark = fourthMarks.Average();
+                    }
+
+                    var averageMark = (firstMark + secondMark + thirdMark * 2 + fourthMark * 3) / 7;
+
+                    var averageSubjectMark = new SubjectMark()
+                    {
+                        SubjectId = subjectId,
+                        SemesterId = semesterId,
+                        StudentId = studentId,
+                        TypeMarkId = 5,
+                        Mark = averageMark
+                    };
+
+                    averageSubjectMarks.Add(averageSubjectMark);
+                }
+
+                db.SubjectMarks.AddRange(averageSubjectMarks);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+            
+            return true;
+        }
     }
 }
