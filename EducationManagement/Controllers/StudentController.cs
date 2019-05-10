@@ -60,7 +60,7 @@ namespace EducationManagement.Controllers
             }
         }
 
-        //[AdminAuthorization]
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetStudentsByClassId")]
         public IHttpActionResult GetStudentsByClassId(int id)

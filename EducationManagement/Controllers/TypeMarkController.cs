@@ -1,4 +1,5 @@
-﻿using EducationManagement.Services.Abstractions;
+﻿using EducationManagement.Fillters;
+using EducationManagement.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace EducationManagement.Controllers
             _typeMarkService = typeMarkService;
         }
 
+        [AdminAuthorization]
         [HttpGet]
         [ActionName("GetTypeMarks")]
         public IHttpActionResult GetTypeMarks()

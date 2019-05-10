@@ -1,5 +1,6 @@
 ﻿using EducationManagement.Controllers.Bases;
 using EducationManagement.Dtos.InputDtos;
+using EducationManagement.Fillters;
 using EducationManagement.Services.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Http;
 
 namespace EducationManagement.Controllers
 {
+    [AdminAuthorization]
     public class SubjectController : BaseApiController
     {
         private readonly ISubjectService _subjectService;
