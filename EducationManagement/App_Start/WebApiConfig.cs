@@ -402,8 +402,8 @@ namespace EducationManagement
 
             config.Routes.MapHttpRoute(
                 "GetUserRequestApi",
-                "api/request/user",
-                new { controller = "Request", action = "GetUserRequest" },
+                "api/request/user/{userId}",
+                new { controller = "Request", action = "GetUserRequest", userId = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
