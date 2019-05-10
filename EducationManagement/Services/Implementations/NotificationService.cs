@@ -46,7 +46,7 @@ namespace EducationManagement.Services.Implementations
         {
             var notifications = new List<NotificationResponseDto>();
             notifications = db.Notifications
-                .Where(x => x.ReceiverId == receiverId && x.DelFlag == false)
+                .Where(x => x.ReceiverId == receiverId && x.Type == "notification" && x.DelFlag == false)
                 .Select(x => new NotificationResponseDto
                 {
                     Id = x.Id,
@@ -62,7 +62,7 @@ namespace EducationManagement.Services.Implementations
             if(teacherFromDb != null)
             {
                 var teacherNotifications = db.Notifications
-                .Where(x => x.ClassReceiverId == teacherFromDb.Id && x.DelFlag == false)
+                .Where(x => x.ClassReceiverId == teacherFromDb.Id && x.Type == "notification" && x.DelFlag == false)
                 .Select(x => new NotificationResponseDto
                 {
                     Id = x.Id,
@@ -84,7 +84,7 @@ namespace EducationManagement.Services.Implementations
             if(studentFromDb != null)
             {
                 var studentNotifications = db.Notifications
-                .Where(x => x.ClassReceiverId == studentFromDb.ClassId && x.DelFlag == false)
+                .Where(x => x.ClassReceiverId == studentFromDb.ClassId && x.Type == "notification" && x.DelFlag == false)
                 .Select(x => new NotificationResponseDto
                 {
                     Id = x.Id,
@@ -101,12 +101,13 @@ namespace EducationManagement.Services.Implementations
 
             //case receiver is parent
             studentFromDb = db.Students
-                .FirstOrDefault(x => x.ParentId == receiverId && x.DelFlag == false);
+                .Include(x => x.Parent)
+                .FirstOrDefault(x => x.Parent.UserId == receiverId && x.DelFlag == false);
 
             if(studentFromDb != null)
             {
                 var parentNotifications = db.Notifications
-                .Where(x => x.ClassReceiverId == studentFromDb.ClassId && x.DelFlag == false)
+                .Where(x => x.ClassReceiverId == studentFromDb.ClassId && x.Type == "notification" && x.DelFlag == false)
                 .Select(x => new NotificationResponseDto
                 {
                     Id = x.Id,
