@@ -362,6 +362,13 @@ namespace EducationManagement
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            config.Routes.MapHttpRoute(
+                "AddSubjectMarkAverageApi",
+                "api/subjectmark/average/class/{classId}/subject/{subjectId}/semester/{semesterId}",
+                new { controller = "SubjectMark", action = "AddSubjectMarkAverage", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+            );
+
             //<-- TypeMark controller -->
             config.Routes.MapHttpRoute(
                 "GetTypeMarksApi",

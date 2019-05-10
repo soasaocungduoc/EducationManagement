@@ -186,7 +186,7 @@ namespace EducationManagement.Services.Implementations
                 .Select(x => x.Id)
                 .ToList();
 
-            if(studentIds == null)
+            if(!studentIds.Any())
             {
                 return false;
             }
