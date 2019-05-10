@@ -12,23 +12,92 @@ namespace EducationManagement.Services.Implementations
     public class NewsService : INewsService
     {
         private readonly DataContext db = new DataContext();
+        
+        public NewsResponseDto GetNews(int newsId)
+        {
+            var newsFromDb = db.News.FirstOrDefault(x => x.DelFlag == false && x.Id == newsId);
+
+            if(newsFromDb == null)
+            {
+                return null;
+            }
+
+            return new NewsResponseDto(newsFromDb);
+        }
+
+        public bool Delete(int newsId)
+        {
+            var newsFromDb = db.News.FirstOrDefault(x => x.DelFlag == false && x.Id == newsId);
+
+            if (newsFromDb == null)
+            {
+                return false;
+            }
+
+            newsFromDb.DelFlag = true;
+
+            db.SaveChanges();
+
+            return true;
+        }
+
+        public bool AddNews(NewsDto dto)
+        {
+            try
+            {
+                var news = new News
+                {
+                    Title = dto.Title,
+                    Summary = dto.Summary,
+                    Content = dto.Content,
+                    ImageUrl = dto.ImageUrl
+                };
+
+                db.News.Add(news);
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateNews(int newsId, NewsDto dto)
+        {
+            var newsFromDb = db.News.FirstOrDefault(x => x.Id == newsId && x.DelFlag == false);
+
+            if (newsFromDb == null)
+            {
+                return false;
+            }
+
+            newsFromDb.Title = dto.Title;
+            newsFromDb.Summary = dto.Summary;
+            newsFromDb.ImageUrl = dto.ImageUrl;
+            newsFromDb.Content = dto.Content;
+
+            db.SaveChanges();
+
+            return true;
+        }
+
         public List<NewsResponseDto> GetNews(NewsConditionSearch conditionSearch)
         {
             try
             {
-                // Nếu không tồn tại điều kiện tìm kiếm thì khởi tạo giá trị tìm kiếm ban đầu
                 if (conditionSearch == null)
                 {
                     conditionSearch = new NewsConditionSearch();
                 }
 
-                // Lấy các thông tin dùng để phân trang
                 var paging = new Commons.Paging(db.News.Count(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                     , conditionSearch.CurrentPage, conditionSearch.PageSize);
 
-                // Tìm kiếm và lấy dữ liệu theo trang
                 var listOfNews = db.News.Where(x => !x.DelFlag &&
                     (conditionSearch.KeySearch == null ||
                     (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
@@ -49,52 +118,6 @@ namespace EducationManagement.Services.Implementations
             {
                 throw e;
             }
-        }
-
-        public NewsResponseDto GetNews(int newsId)
-        {
-            return new NewsResponseDto(db.News.FirstOrDefault(n => !n.DelFlag && n.Id == newsId));
-        }
-
-        public bool Delete(int newsId)
-        {
-            var newsFromDb = db.News.FirstOrDefault(n => !n.DelFlag && n.Id == newsId);
-            if (newsFromDb == null) return false;
-            newsFromDb.DelFlag = true;
-            db.SaveChanges();
-            return true;
-        }
-
-        public bool AddNews(NewsDto news)
-        {
-            try
-            {
-                db.News.Add(new News
-                {
-                    Title = news.Title,
-                    Summary = news.Summary,
-                    Content = news.Content,
-                    ImageUrl = news.ImageUrl
-                });
-                db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool UpdateNews(int newsId, NewsDto news)
-        {
-            var newsFromDb = db.News.FirstOrDefault(n => n.Id == newsId);
-            if (newsFromDb == null) return false;
-            newsFromDb.Title = news.Title;
-            newsFromDb.Summary = news.Summary;
-            newsFromDb.ImageUrl = news.ImageUrl;
-            newsFromDb.Content = news.Content;
-            db.SaveChanges();
-            return true;
         }
     }
 }
