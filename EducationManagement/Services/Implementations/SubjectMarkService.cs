@@ -181,6 +181,15 @@ namespace EducationManagement.Services.Implementations
 
         public bool AddAverage(int classId, int subjectId, int semesterId)
         {
+            //check if average marks have already in Db
+            var checkAverageMark = db.SubjectMarks
+                .FirstOrDefault(x => x.SubjectId == subjectId && x.SemesterId == semesterId && x.TypeMarkId == 5 && x.DelFlag == false);
+
+            if(checkAverageMark != null)
+            {
+                return false;
+            }
+
             var studentIds = db.Students
                 .Where(x => x.ClassId == classId && x.DelFlag == false)
                 .Select(x => x.Id)
@@ -207,12 +216,12 @@ namespace EducationManagement.Services.Implementations
                         }).ToList();
 
                     //check student has a full of mark, if not return false
-                    //var typeMarks = subjectMarks.GroupBy(x => x.TypeMarkId).ToArray();
+                    var typeMarks = subjectMarks.GroupBy(x => x.TypeMarkId).ToArray();
 
-                    //if(typeMarks.Length != 4)
-                    //{
-                    //    return false;
-                    //}
+                    if (typeMarks.Length != 4)
+                    {
+                        return false;
+                    }
 
                     var firstMark = 0.0;
                     var secondMark = 0.0;
