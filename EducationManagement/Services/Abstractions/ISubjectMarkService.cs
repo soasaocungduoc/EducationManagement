@@ -15,5 +15,7 @@ namespace EducationManagement.Services.Abstractions
         bool Add(SubjectMarkDto dto);
 
         MarkInTeachingClassResponseDto GetMarksInClass(int classId, int semesterId, int userId);
+
+        bool AddAverage(int classId, int subjectId, int semesterId);
     }
 }

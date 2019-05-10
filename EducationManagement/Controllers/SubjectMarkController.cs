@@ -68,5 +68,19 @@ namespace EducationManagement.Controllers
 
             return Ok();
         }
+
+        [Route("api/subjectmark/average/class/{classId}/subject/{subjectId}/semester/{semesterId}")]
+        [HttpPost]
+        public IHttpActionResult AddSubjectMarkAverage(int classId, int subjectId, int semesterId)
+        {
+            var result = _subjectMarkService.AddAverage(classId, subjectId, semesterId);
+
+            if (result == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }
