@@ -181,21 +181,21 @@ namespace EducationManagement.Services.Implementations
 
         public bool AddAverage(int classId, int subjectId, int semesterId)
         {
-            //check if average marks have already in Db
-            var checkAverageMark = db.SubjectMarks
-                .FirstOrDefault(x => x.SubjectId == subjectId && x.SemesterId == semesterId && x.TypeMarkId == 5 && x.DelFlag == false);
-
-            if(checkAverageMark != null)
-            {
-                return false;
-            }
-
             var studentIds = db.Students
                 .Where(x => x.ClassId == classId && x.DelFlag == false)
                 .Select(x => x.Id)
                 .ToList();
 
             if(studentIds == null)
+            {
+                return false;
+            }
+
+            //check if average marks have already in Db
+            var checkAverageMark = db.SubjectMarks
+                .FirstOrDefault(x => x.SubjectId == subjectId && x.StudentId == studentIds[0] && x.SemesterId == semesterId && x.TypeMarkId == 5 && x.DelFlag == false);
+
+            if (checkAverageMark != null)
             {
                 return false;
             }
